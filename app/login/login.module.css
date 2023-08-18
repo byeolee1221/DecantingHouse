@@ -1,0 +1,88 @@
+.login_container {
+    width: 40%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.login_wrapper {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 5px 30px var(--color-box-2);
+    display: flex;
+    flex-direction: column;
+}
+
+.login_title {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.login_title h2 {
+    font-size: 1.7rem;
+    color: var(--color-font-1);
+    margin-bottom: 0;
+    letter-spacing: .3rem;
+}
+
+.third_loginBox {
+    display: grid;
+    grid-template-columns: 180px 180px 180px;
+    gap: 80px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.loginBox_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: .5rem;
+    border-radius: 20px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.loginBox_item:nth-child(2) {
+    background-color: #FEE500;
+    padding: 1rem .3rem;
+}
+
+.loginBox_item:nth-child(3) {
+    background-color: #03c75a;
+}
+
+.loginBox_item button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.loginBox_item p {
+    margin: 0;
+    margin-top: 5px;
+}
+
+.loginBox_item:nth-child(3) img {
+    width: 50%;
+}
+
+.loginBox_item:nth-child(3) p {
+    color: white;
+    margin-top: 5px;
+}
+
+.Oauth_loginBox {
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    border-top: 2px solid #dfdede;
+}
+
+.Oauth_loginBox h2 {
+    text-align: center;
+    color: var(--color-font-1);
+    font-size: 1.7rem;
+    letter-spacing: .1rem;
+}
