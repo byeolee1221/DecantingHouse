@@ -1,6 +1,15 @@
+'use client'
+
+import { useRouter } from "next/navigation";
 import classes from "./login.module.css";
 
 const LoginPage = () => {
+    const router = useRouter();
+
+    const cancelBtnHandler = () => {
+        router.back();
+    }
+
     return (
         <div className={classes.login_container}>
             <div className={classes.login_wrapper}>
@@ -28,6 +37,20 @@ const LoginPage = () => {
                 </div>
                 <div className={classes.Oauth_loginBox}>
                     <h2>또는</h2>
+                    <form action="/api/login" method="POST" className={classes.login_form}>
+                        <div className={classes.loginForm_contentsBox}>
+                            <label htmlFor="user-email">이메일</label>
+                            <input type="email" id="user-email" name="userEmail" />
+                        </div>
+                        <div className={classes.loginForm_contentsBox}>
+                            <label htmlFor="user-password">비밀번호</label>
+                            <input type="password" id="user-password" name="userPassword" />
+                        </div>
+                        <div className={classes.loginForm_btn}>
+                            <button type="submit" id={classes.login_submitBtn} disabled>로그인</button>
+                            <button type="button" onClick={cancelBtnHandler}>취소</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

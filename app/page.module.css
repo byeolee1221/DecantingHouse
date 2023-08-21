@@ -25,3 +25,51 @@
     color: white;
     font-size: 3rem;
 }
+
+.popularPost_title {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.popularPost_title h2 {
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: .3rem;
+}
+
+.popularPost_itemBox {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 50px;
+    gap: 10px;
+}
+
+.popularPost_item {
+    width: 90%;
+    margin: auto;
+    height: 300px;
+    border-radius: 20px;
+    background-image: url('/france.jpg');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.popularPost_item h3 {
+    margin-bottom: 0;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.popularPost_item p {
+    color: white;
+}
+
+.popularPost_item p:first-of-type {
+    margin-top: 0;
+}
