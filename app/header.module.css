@@ -95,11 +95,15 @@
     background: none;
     border: none;
     cursor: pointer;
-    width: 50px;
+    width: 100%;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    gap: 10px;
+    font: inherit;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .second_nav_right img {

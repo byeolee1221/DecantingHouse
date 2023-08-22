@@ -30,8 +30,8 @@ const Header = () => {
                     <div className={classes.second_nav_right}>
                         <button type="button">
                             <img src="/favorite.png" alt="좋아요한 게시물" />
+                            좋아요한 게시물
                         </button>
-                        좋아요한 게시물
                     </div>
                 </nav>
             </div>

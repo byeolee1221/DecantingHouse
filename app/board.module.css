@@ -20,6 +20,7 @@
 
 .popular_item {
     width: 90%;
+    margin: auto;
     height: 200px;
     border: 2px solid var(--color-box-4);
     border-radius: 20px;
@@ -35,6 +36,7 @@
 
 .popular_item p {
     margin-top: 10px;
+    word-break: keep-all;
 }
 
 .board_title {
@@ -92,4 +94,5 @@
 
 .board_item p {
     margin-top: 10px;
+    word-break: keep-all;
 }
