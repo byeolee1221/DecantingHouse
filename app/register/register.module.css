@@ -2,6 +2,7 @@
     width: 30%;
     margin: auto;
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .register_wrapper {
@@ -49,8 +50,8 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    gap: 30px;
     margin-bottom: 40px;
+    gap: 20px;
 }
 
 .form_contenstBox label {
@@ -60,12 +61,27 @@
     letter-spacing: .1rem;
 }
 
-.form_contenstBox input {
+.form_item {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_item input {
     border: none;
     background-color: var(--color-box-3);
     border-radius: 10px;
-    width: 50%;
+    width: 100%;
     padding: .5rem;
+}
+
+.form_item p {
+    display: inline-block;
+    color: var(--color-font-4);
+    margin-top: 10px;
+    margin-bottom: 0;
+    display: none;
 }
 
 .registerForm_btn {

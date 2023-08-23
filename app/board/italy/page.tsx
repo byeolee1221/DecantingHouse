@@ -11,7 +11,7 @@ const ItalyPage = () => {
                     </div>
                     <div className={classes.board_titleBox_right}>
                         <img src="/italy-evening.jpg" alt="이탈리아 포도밭" id={classes.title_rightTop} />
-                        <img src="/italy-vineyard.jpg" alt="이탈리아 포도밭" id={classes.title_rigthBottom} />
+                        <img src="/italy-vineyard.jpg" alt="이탈리아 포도밭" id={classes.title_rightBottom} />
                     </div>
                 </div>
                 <ItalyBoard />

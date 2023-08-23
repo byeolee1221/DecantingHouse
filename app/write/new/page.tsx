@@ -37,7 +37,7 @@ const WriteNewPage = () => {
                     </div>
                     <div className={classes.write_formContents}>
                         <label htmlFor="user-contents">내용</label>
-                        <textarea name="userContents" id="user-contents" cols="50" rows="20" />
+                        <textarea name="userContents" id="user-contents" cols="50" rows="15" />
                     </div>
                     <div className={classes.write_formContents}>
                         <label htmlFor="user-file">이미지 첨부</label>

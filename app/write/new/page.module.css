@@ -52,6 +52,7 @@
     resize: none;
     width: 100%;
     padding: .5rem;
+    font: inherit;
 }
 
 .write_formBtnBox {

@@ -11,7 +11,7 @@ const AustraliaPage = () => {
                     </div>
                     <div className={classes.board_titleBox_right}>
                         <img src="/longview-winery.jpg" alt="오스트레일리아 포도밭" id={classes.title_rightTop} />
-                        <img src="/australia.jpg" alt="오스트레일리아 포도밭" id={classes.title_rigthBottom} />
+                        <img src="/australia.jpg" alt="오스트레일리아 포도밭" id={classes.title_rightBottom} />
                     </div>
                 </div>
                 <AustraliaBoard />

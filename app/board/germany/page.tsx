@@ -11,7 +11,7 @@ const GermanyPage = () => {
                     </div>
                     <div className={classes.board_titleBox_right}>
                         <img src="/germany-vineyards.jpg" alt="독일 포도밭" id={classes.title_rightTop} />
-                        <img src="/wood-germany.jpg" alt="독일 와인병" id={classes.title_rigthBottom} />
+                        <img src="/wood-germany.jpg" alt="독일 와인병" id={classes.title_rightBottom} />
                     </div>
                 </div>
                 <GermanyBoard />

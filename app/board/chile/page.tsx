@@ -11,7 +11,7 @@ const ChilePage = () => {
                     </div>
                     <div className={classes.board_titleBox_right}>
                         <img src="/chile-wine.jpg" alt="칠레 포도밭" id={classes.title_rightTop} />
-                        <img src="/chile.jpg" alt="칠레" id={classes.title_rigthBottom} />
+                        <img src="/chile.jpg" alt="칠레" id={classes.title_rightBottom} />
                     </div>
                 </div>
                 <ChileBoard />

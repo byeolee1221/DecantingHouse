@@ -11,7 +11,7 @@ const UsaPage = () => {
                     </div>
                     <div className={classes.board_titleBox_right}>
                         <img src="/napa.jpg" alt="미국 포도밭" id={classes.title_rightTop} />
-                        <img src="/usa-winery.jpg" alt="미국 나파밸리" id={classes.title_rigthBottom} />
+                        <img src="/usa-winery.jpg" alt="미국 나파밸리" id={classes.title_rightBottom} />
                     </div>
                 </div>
                 <USABoard />

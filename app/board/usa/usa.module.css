@@ -33,20 +33,21 @@
 }
 
 .board_titleBox_right {
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 #title_rightTop {
-    width: 550px;
+    width: 100%;
     height: 200px;
     object-fit: cover;
     border-radius: 20px;
 }
 
-#title_rigthBottom {
-    width: 550px;
+#title_rightBottom {
+    width: 100%;
     height: 300px;
     object-fit: cover;
     border-radius: 20px;
