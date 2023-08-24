@@ -1,3 +1,5 @@
+import { connectDB } from "@/util/database";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import KakaoProvider from "next-auth/providers/kakao";
@@ -18,6 +20,10 @@ export const authOptions = {
       clientSecret: process.env.NAVER_CLIENT_SECRET
     })
   ],
-  secret : process.env.NEXTAUTH_SECRET
+
+  secret : process.env.NEXTAUTH_SECRET,
+  adapter : MongoDBAdapter(connectDB)
+
 };
+
 export default NextAuth(authOptions); 

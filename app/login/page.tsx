@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import classes from "./login.module.css";
 
 const LoginPage = () => {
@@ -9,6 +10,25 @@ const LoginPage = () => {
     const cancelBtnHandler = () => {
         router.back();
     }
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    type LoginEvent = React.ChangeEvent<HTMLInputElement>;
+
+    const emailChangeHandler = (event: LoginEvent) => {
+        setEmail(event.target.value);
+    }
+
+    const passwordChangeHandler = (event: LoginEvent) => {
+        setPassword(event.target.value);
+    }
+
+    let isSubmitted = false;
+
+    if (email && password) {
+        isSubmitted = true;
+    };
 
     return (
         <div className={classes.login_container}>
@@ -40,14 +60,14 @@ const LoginPage = () => {
                     <form action="/api/login" method="POST" className={classes.login_form}>
                         <div className={classes.loginForm_contentsBox}>
                             <label htmlFor="user-email">이메일</label>
-                            <input type="email" id="user-email" name="userEmail" />
+                            <input type="email" id="user-email" name="userEmail" onChange={emailChangeHandler} value={email} />
                         </div>
                         <div className={classes.loginForm_contentsBox}>
                             <label htmlFor="user-password">비밀번호</label>
-                            <input type="password" id="user-password" name="userPassword" />
+                            <input type="password" id="user-password" name="userPassword" onChange={passwordChangeHandler} value={password} />
                         </div>
                         <div className={classes.loginForm_btn}>
-                            <button type="submit" id={classes.login_submitBtn} disabled>로그인</button>
+                            <button type="submit" id={classes.login_submitBtn} disabled={!isSubmitted}>로그인</button>
                             <button type="button" onClick={cancelBtnHandler}>취소</button>
                         </div>
                     </form>
