@@ -1,7 +1,11 @@
+import { connectDB } from "@/util/database";
 import FranceBoard from "./board";
 import classes from "./france.module.css";
 
-const FrancePage = () => {
+const FrancePage = async () => {
+    const db = (await connectDB).db('DecantingHouse');
+    let postArr = await db.collection('France').find().toArray();
+
     return (
         <div className={classes.board_france_container}>
             <div className={classes.board_wrapper}>
@@ -14,7 +18,7 @@ const FrancePage = () => {
                         <img src="/france-road.jpg" alt="프랑스 포도밭 도로" id={classes.title_rightBottom} />
                     </div>
                 </div>
-                <FranceBoard />
+                <FranceBoard post={postArr} />
             </div>
         </div>
     );

@@ -1,8 +1,8 @@
 'use client'
 
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import classes from "./page.module.css";
-import { ChangeEvent, useState } from "react";
 
 const WriteNewPage = () => {
     const router = useRouter();
@@ -17,21 +17,19 @@ const WriteNewPage = () => {
     const [contents, setContents] = useState('');
     const [postData, setPostData] = useState([]);
 
-    type BoardEvent = React.ChangeEvent<HTMLInputElement>;
-
-    const authorChangeHandler = (event: BoardEvent) => {
+    const authorChangeHandler = (event) => {
         setAuthor(event.target.value);
     }
 
-    const categoryChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const categoryChangeHandler = (event) => {
         setCategory(event.target.value);
     }
 
-    const titleChangeHandler = (event: BoardEvent) => {
+    const titleChangeHandler = (event) => {
         setTitle(event.target.value);
     }
 
-    const contentsChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const contentsChangeHandler = (event) => {
         setContents(event.target.value);
     }
 
@@ -41,8 +39,8 @@ const WriteNewPage = () => {
         isCompleted = true;
     }
 
-    const boardSubmitHandler = (event: React.ChangeEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const boardSubmitHandler = (event) => {
+        // event.preventDefault();
     }
 
     // 1. 제출하면 서버를 거쳐 DB에 저장됨. useEffect로 서버로 get 요청을 따로 보내면서 작성된 글의 id를 보냄.
@@ -52,13 +50,15 @@ const WriteNewPage = () => {
     // 5. useEffect 의존성 배열에는 boardSubmitHandler 함수를 넣어서 이 함수가 실행될 때만 실행되도록 함.
     // 6. 성공적으로 실행되면 글 목록에 글이 나타남. 
 
+    // 로그인 안하고 진입하려 하면 로그인페이지로 안내
+
     return (
         <div className={classes.board_write_container}>
             <div className={classes.write_wrapper}>
                 <div className={classes.write_titleBox}>
                     <h1>게시글 작성하기</h1>
                 </div>
-                <form action="/api/write/new" method="POST" className={classes.write_userForm} onSubmit={boardSubmitHandler} >
+                <form action="/api/write/usa" method="POST" className={classes.write_userForm} onSubmit={boardSubmitHandler} >
                     <div className={classes.write_formContents}>
                         <label htmlFor="author">작성자</label>
                         <input type="text" id="author" name="author" onChange={authorChangeHandler} value={author} />
@@ -66,7 +66,7 @@ const WriteNewPage = () => {
                     <div className={classes.write_formContents}>
                         <label htmlFor="user-category">카테고리</label>
                         <select name="category" id="user-category" onChange={categoryChangeHandler} value={category} >
-                            <option value="title" selected disabled>--카테고리를 골라주세요--</option>
+                            <option value="" selected disabled>--카테고리를 골라주세요--</option>
                             <option value="품종">품종</option>
                             <option value="페어링">음식 페어링</option>
                             <option value="제품">제품</option>

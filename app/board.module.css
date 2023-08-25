@@ -96,3 +96,8 @@
     margin-top: 10px;
     word-break: keep-all;
 }
+
+.board_item .category_item {
+    color: var(--color-font-2);
+    margin-top: 0;
+}

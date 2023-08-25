@@ -14,13 +14,13 @@ const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    type LoginEvent = React.ChangeEvent<HTMLInputElement>;
+    
 
-    const emailChangeHandler = (event: LoginEvent) => {
+    const emailChangeHandler = (event) => {
         setEmail(event.target.value);
     }
 
-    const passwordChangeHandler = (event: LoginEvent) => {
+    const passwordChangeHandler = (event) => {
         setPassword(event.target.value);
     }
 

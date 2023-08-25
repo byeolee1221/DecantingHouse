@@ -17,25 +17,23 @@ const RegisterPage = () => {
     const [password2, setPassword2] = useState('');
     const [email, setEmail] = useState('');
 
-    type RegisterEvent = React.ChangeEvent<HTMLInputElement>;
-
-    const nameChangeHandler = (event: RegisterEvent) => {
+    const nameChangeHandler = (event) => {
         setName(event.target.value);
     }
 
-    const nickNameChangeHandler = (event: RegisterEvent) => {
+    const nickNameChangeHandler = (event) => {
         setNickName(event.target.value);
     }
 
-    const password1ChangeHandler = (event: RegisterEvent) => {
+    const password1ChangeHandler = (event) => {
         setPassword1(event.target.value);
     }
 
-    const password2ChangeHandler = (event: RegisterEvent) => {
+    const password2ChangeHandler = (event) => {
         setPassword2(event.target.value);
     }
 
-    const emailChangeHandler = (event: RegisterEvent) => {
+    const emailChangeHandler = (event) => {
         setEmail(event.target.value);
     }
 

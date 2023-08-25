@@ -1,27 +1,54 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ],
+        "paths": {
+            "@/*": ["./*"]
+        }
+    },
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts",
+        "util/database.js",
+        "pages/api/write/france.js",
+        "pages/api/register.js",
+        "app/board/france/page.js",
+        "app/board/france/board.js",
+        "app/board/chile/page.js",
+        "app/board/chile/board.js",
+        "app/board/australia/page.js",
+        "app/board/australia/board.js",
+        "app/board/germany/page.js",
+        "app/board/germany/board.js",
+        "app/board/italy/page.js",
+        "app/board/italy/board.js",
+        "app/board/usa/page.js",
+        "app/board/usa/board.js",
+        "app/login/page.js",
+        "app/register/page.js",
+        "app/write/france/new/page.js",
+        "app/error.js",
+        "app/header.js",
+        "app/layout.js",
+        "app/page.js"
     ],
-    "paths": {
-      "@/*": ["./*"]
-    }
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "util/database.js", "pages/api/write/new.js", "pages/api/register.js"],
-  "exclude": ["node_modules"]
+    "exclude": ["node_modules"]
 }
