@@ -41,9 +41,10 @@ const FranceBoard = (props) => {
                 <div className={classes.board_itemBox}>
                     {props.post.map((postData, i) => {
                         return (
-                            <div className={classes.board_item} key={i}>
+                            <div className={classes.board_item} key={i}>                         
                                 <h3>{postData.userTitle}</h3>
                                 <p className={classes.category_item}>카테고리: {postData.category}</p>
+                                <p className={classes.date_item}>{postData.uploadDate}</p>
                                 <p>{postData.userContents}</p>
                             </div>
                         );

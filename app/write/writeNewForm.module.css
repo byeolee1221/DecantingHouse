@@ -1,22 +1,3 @@
-.board_write_container {
-    width: 60%;
-    margin: auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.write_titleBox h1 {
-    text-align: center;
-    color: var(--color-font-1);
-}
-
-.write_userForm {
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-    margin: auto;
-}
-
 .write_formContents {
     display: flex;
     flex-direction: column;
@@ -53,6 +34,48 @@
     width: 100%;
     padding: .5rem;
     font: inherit;
+}
+
+#formContents_file {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.uploadFile_name {
+    background-color: white;
+}
+
+#formContents_file label {
+    margin-bottom: 0;
+    background-color: var(--color-box-6);
+    padding: .4rem;
+    font-size: .9rem;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+#formContents_file:hover label,
+#formContents_file:active label {
+    background-color: #f58529;
+}
+
+.write_formContents input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+.upload_timeBox {
+    display: none;
 }
 
 .write_formBtnBox {

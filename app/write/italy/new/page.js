@@ -16,7 +16,7 @@ const WriteNewPage = () => {
                 <div className={classes.write_titleBox}>
                     <h1>게시글 작성하기</h1>
                 </div>
-                <form action="/api/write/usa" method="POST" className={classes.write_userForm} >
+                <form action="/api/write/italy" method="POST" className={classes.write_userForm} >
                     <WriteNewFormPage />
                 </form>
             </div>

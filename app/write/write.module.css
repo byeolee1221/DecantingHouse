@@ -1,0 +1,19 @@
+.board_write_container {
+    width: 60%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.write_titleBox h1 {
+    text-align: center;
+    color: var(--color-font-1);
+}
+
+.write_userForm {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: auto;
+}
+
