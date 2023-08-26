@@ -1,6 +1,6 @@
 import './globals.css'
 import Header from './header'
-import { getServerSession } from 'next-auth/next'
+import { getServerSession } from 'next-auth'
 import { authOptions } from "../pages/api/auth/[...nextauth]";
 import { connectDB } from '@/util/database';
 

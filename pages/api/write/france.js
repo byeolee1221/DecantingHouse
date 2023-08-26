@@ -10,7 +10,7 @@ const FranceWriteHandler = async (req, res) => {
 
     try {
         if (req.method === "POST") {
-            let result = await db.collection("France").insertOne(req.body);
+            let result = await db.collection("Forum").insertOne(req.body);
             console.log(result);
 
             return res.status(200).redirect(302, "/board/france");

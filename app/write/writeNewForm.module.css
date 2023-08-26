@@ -78,6 +78,10 @@
     display: none;
 }
 
+.country_box {
+    display: none;
+}
+
 .write_formBtnBox {
     display: flex;
     align-items: center;

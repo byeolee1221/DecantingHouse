@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
 import classes from "./writeNewForm.module.css";
 
-const WriteNewFormPage = () => {
+const WriteNewFormPage = (props) => {
     const router = useRouter();
 
     const cancelHandler = () => {
@@ -85,6 +85,9 @@ const WriteNewFormPage = () => {
             </div>
             <div className={classes.upload_timeBox}>
                 <input type="text" name="uploadDate" value={uploadDate} />
+            </div>
+            <div className={classes.country_box}>
+                <input type="text" name="country" value={props.country} />
             </div>
             <div className={classes.write_formBtnBox}>
                 <button type="submit" id={classes.write_submitBtn} disabled={!isCompleted}>완료</button>
