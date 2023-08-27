@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import classes from "./login.module.css";
 
+import LoginBtn from "./LoginBtn";
+
 const LoginPage = () => {
     const router = useRouter();
 
@@ -30,6 +32,12 @@ const LoginPage = () => {
         isSubmitted = true;
     };
 
+    let siteData = [
+        { siteName: "구글", btnName:"구글 로그인", siteLogo: "/g-logo.png" },
+        { siteName: "카카오", btnName:"카카오 로그인", siteLogo: "/kakao_login_large.png" },
+        { siteName: "네이버", btnName:"네이버 로그인", siteLogo: "/naver.png" },
+    ];
+
     return (
         <div className={classes.login_container}>
             <div className={classes.login_wrapper}>
@@ -37,24 +45,13 @@ const LoginPage = () => {
                     <h2>로그인</h2>
                 </div>
                 <div className={classes.third_loginBox}>
-                    <div className={classes.loginBox_item}>
-                        <button type="button">
-                            <img src="/g-logo.png" alt="구글 로그인" />
-                        </button>
-                        <p>Google 로그인</p>
-                    </div>
-                    <div className={classes.loginBox_item}>
-                        <button type="button">
-                            <img src="/kakao_login_large.png" alt="카카오 로그인" />
-                        </button>
-                    </div>
-                    <div className={classes.loginBox_item}>
-                        <button type="button">
-                            <img src="/naver.png" alt="네이버 로그인" />
-                        </button>
-                        <p>네이버 로그인</p>
-                    </div>
+                    {
+                        siteData.map((site) => 
+                            <LoginBtn siteName={site.siteName} btnName={site.btnName} siteLogo={site.siteLogo} />
+                        )
+                    }
                 </div>
+
                 <div className={classes.Oauth_loginBox}>
                     <h2>또는</h2>
                     <form action="/api/login" method="POST" className={classes.login_form}>
@@ -67,7 +64,7 @@ const LoginPage = () => {
                             <input type="password" id="user-password" name="userPassword" onChange={passwordChangeHandler} value={password} />
                         </div>
                         <div className={classes.loginForm_btn}>
-                            <button type="submit" id={classes.login_submitBtn} disabled={!isSubmitted}>로그인</button>
+                            <button type="butot" id={classes.login_submitBtn} disabled={!isSubmitted}>로그인</button>
                             <button type="button" onClick={cancelBtnHandler}>취소</button>
                         </div>
                     </form>
