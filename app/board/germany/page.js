@@ -1,7 +1,11 @@
+import { connectDB } from "@/util/database";
 import GermanyBoard from "./board";
 import classes from "./germany.module.css";
 
-const GermanyPage = () => {
+const GermanyPage = async () => {
+    const db = (await connectDB).db('DecantingHouse');
+    let postArr = await db.collection('Forum').find({country: 'Germany'}).toArray();
+
     return (
         <div className={classes.board_germany_container}>
             <div className={classes.board_wrapper}>
@@ -14,7 +18,7 @@ const GermanyPage = () => {
                         <img src="/wood-germany.jpg" alt="독일 와인병" id={classes.title_rightBottom} />
                     </div>
                 </div>
-                <GermanyBoard />
+                <GermanyBoard post={postArr} />
             </div>
         </div>
     );

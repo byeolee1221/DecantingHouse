@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 import classes from "./login.module.css";
 
 import LoginBtn from "./LoginBtn";
@@ -15,8 +16,6 @@ const LoginPage = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    
 
     const emailChangeHandler = (event) => {
         setEmail(event.target.value);
@@ -64,7 +63,7 @@ const LoginPage = () => {
                             <input type="password" id="user-password" name="userPassword" onChange={passwordChangeHandler} value={password} />
                         </div>
                         <div className={classes.loginForm_btn}>
-                            <button type="butot" id={classes.login_submitBtn} disabled={!isSubmitted}>로그인</button>
+                            <button type="submit" id={classes.login_submitBtn} disabled={!isSubmitted} onClick={() => {signIn()}}>로그인</button>
                             <button type="button" onClick={cancelBtnHandler}>취소</button>
                         </div>
                     </form>

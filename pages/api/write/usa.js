@@ -10,13 +10,13 @@ const USAWriteHandler = async (req, res) => {
 
     try {
         if (req.method === "POST") {
-            let result = await db.collection("USA").insertOne(req.body);
+            let result = await db.collection("Forum").insertOne(req.body);
             console.log(result);
 
             return res.status(200).redirect(302, "/board/usa");
         }
     } catch (error) {
-        return res.status(500).json("서버에 문제가 있어 등록되지 않았습니다.");
+        return res.status(500).redirect(302, "/error");
     }
 };
 

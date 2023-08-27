@@ -1,7 +1,12 @@
 import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import LogoutBtn from "./logoutBtn";
 import classes from "./header.module.css";
 
-const Header = () => {
+const Header = async () => {
+    let session = await getServerSession(authOptions);
+
     return (
         <header className={classes.header_container}>
             <div className={classes.header_wrapper}>
@@ -10,8 +15,10 @@ const Header = () => {
                         <Link href="/">Decanting House</Link>
                     </div>
                     <div className={classes.nav_right}>
-                        <Link href="/login">로그인</Link>
-                        <Link href="/register">회원가입</Link>
+                        {!session ? <Link href="/login">로그인</Link> : ''}
+                        {!session ? <Link href="/register">회원가입</Link>: ''}
+                        {session ? <LogoutBtn /> : ''}
+                        {session ? <Link href="/MyPage">마이페이지</Link> : ''}
                     </div>
                 </nav>
                 <nav className={classes.header_second_nav}>    
