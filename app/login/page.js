@@ -32,9 +32,9 @@ const LoginPage = () => {
     };
 
     let siteData = [
-        { siteName: "구글", btnName:"구글 로그인", siteLogo: "/g-logo.png" },
-        { siteName: "카카오", btnName:"카카오 로그인", siteLogo: "/kakao_login_large.png" },
-        { siteName: "네이버", btnName:"네이버 로그인", siteLogo: "/naver.png" },
+        { siteName: "google", btnName:"구글 로그인", siteLogo: "/g-logo.png" },
+        { siteName: "kakao", btnName:"카카오 로그인", siteLogo: "/kakao_login_large.png" },
+        { siteName: "naver", btnName:"네이버 로그인", siteLogo: "/naver.png" },
     ];
 
     return (
