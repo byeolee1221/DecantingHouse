@@ -38,7 +38,7 @@ const RegisterPage = () => {
     }
 
     let formIsValid = false;
-
+    
     if (name && nickName && password1 && password2 && email) {
         formIsValid = true;
     };
@@ -52,7 +52,7 @@ const RegisterPage = () => {
                     <h2>디캔팅하우스 회원가입</h2>
                     <p>Welcome to Decanting House</p>
                 </div>
-                <form action="/api/register" method="POST" className={classes.register_form}>
+                <form action="/api/auth/signup" method="POST" className={classes.register_form}>
                     <div className={classes.form_contenstBox}>
                         <label htmlFor="user-name">이름</label>
                         <div className={classes.form_item}>

@@ -23,9 +23,15 @@ export const authOptions = {
         }),
 
         CredentialsProvider({
+            name: "credentials",
+                credentials: {
+                    email: { label: "email", type: "text" },
+                    password: { label: "password", type: "password" },
+                },
             async authorize(credentials) {
+                
                 let db = (await connectDB).db("DecantingHouse");
-                let user = await db.collection("register").findOne({ email: credentials.email });
+                let user = await db.collection("user").findOne({ userEmail: credentials.email });
 
                 if (!user) {
                     console.log("해당 이메일은 없습니다.");
@@ -34,7 +40,7 @@ export const authOptions = {
 
                 const pwcheck = await bcrypt.compare(
                     credentials.password,
-                    user.password
+                    user.userPassword
                 );
 
                 if (!pwcheck) {

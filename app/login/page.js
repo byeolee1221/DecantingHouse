@@ -43,6 +43,8 @@ const LoginPage = () => {
                 <div className={classes.login_title}>
                     <h2>로그인</h2>
                 </div>
+
+                {/* 소셜 로그인 */}
                 <div className={classes.third_loginBox}>
                     {
                         siteData.map((site) => 
@@ -51,6 +53,7 @@ const LoginPage = () => {
                     }
                 </div>
 
+                {/* id/pw 로그인 */}
                 <div className={classes.Oauth_loginBox}>
                     <h2>또는</h2>
                     <form action="/api/login" method="POST" className={classes.login_form}>
@@ -63,7 +66,7 @@ const LoginPage = () => {
                             <input type="password" id="user-password" name="userPassword" onChange={passwordChangeHandler} value={password} />
                         </div>
                         <div className={classes.loginForm_btn}>
-                            <button type="submit" id={classes.login_submitBtn} disabled={!isSubmitted} onClick={() => {signIn()}}>로그인</button>
+                            <button type="submit" id={classes.login_submitBtn} onClick={() => {signIn()}}>로그인</button>
                             <button type="button" onClick={cancelBtnHandler}>취소</button>
                         </div>
                     </form>
