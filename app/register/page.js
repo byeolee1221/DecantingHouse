@@ -42,7 +42,7 @@ const RegisterPage = () => {
     }
 
     let formIsValid = false;
-
+    
     if (name && nickName && password1 && password2 && email) {
         formIsValid = true;
     };

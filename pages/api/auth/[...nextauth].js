@@ -29,7 +29,7 @@ export const authOptions = {
               password: { type: "password" },
             },
 
-            async authorize(credentials, req, res) {
+            async authorize(credentials) {
                 let db = (await connectDB).db("DecantingHouse");
                 let user = await db.collection("user").findOne({ email: credentials.email });
                 // console.log(credentials);
@@ -38,7 +38,6 @@ export const authOptions = {
                 let result = {};
 
                 if (!user) {
-                    // return result = { message: '가입된 이메일이 아닙니다.', cause: 'register', status: 500 };
                     return null;
                 }
 
@@ -48,7 +47,6 @@ export const authOptions = {
                 );
 
                 if (!pwcheck) {
-                    // return result = { message: '이메일 또는 비밀번호를 다시 확인해주세요.', cause: 'password', status: 500 };
                     return null;
                 }
 
