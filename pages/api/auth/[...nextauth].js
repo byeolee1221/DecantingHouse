@@ -23,22 +23,32 @@ export const authOptions = {
         }),
 
         CredentialsProvider({
-            async authorize(credentials) {
+            name: "credentials",
+            credentials: {
+              email: { type: "text" },
+              password: { type: "password" },
+            },
+
+            async authorize(credentials, req, res) {
                 let db = (await connectDB).db("DecantingHouse");
-                let user = await db.collection("register").findOne({ email: credentials.email });
+                let user = await db.collection("user").findOne({ email: credentials.email });
+                // console.log(credentials);
+                // console.log(user);
+
+                let result = {};
 
                 if (!user) {
-                    console.log("해당 이메일은 없습니다.");
+                    // return result = { message: '가입된 이메일이 아닙니다.', cause: 'register', status: 500 };
                     return null;
                 }
 
                 const pwcheck = await bcrypt.compare(
                     credentials.password,
-                    user.password
+                    user.password1
                 );
 
                 if (!pwcheck) {
-                    console.log("비밀번호가 틀렸습니다.");
+                    // return result = { message: '이메일 또는 비밀번호를 다시 확인해주세요.', cause: 'password', status: 500 };
                     return null;
                 }
 
@@ -46,6 +56,10 @@ export const authOptions = {
             },
         }),
     ],
+
+    pages: {
+        signIn: "/signIn",
+    },
 
     session: {
         strategy: "jwt",

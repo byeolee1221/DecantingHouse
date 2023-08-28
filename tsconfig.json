@@ -42,7 +42,7 @@
         "app/board/italy/board.js",
         "app/board/usa/page.js",
         "app/board/usa/board.js",
-        "app/login/page.js",
+        "app/signIn/page.js",
         "app/register/page.js",
         "app/write/france/new/page.js",
         "app/error.js",

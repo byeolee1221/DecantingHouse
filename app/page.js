@@ -1,6 +1,10 @@
+import { connectDB } from "@/util/database";
 import classes from "./page.module.css";
 
-export default function Home () {
+export default async function Home () {
+  const client = await connectDB;
+  const db = client.db('DecantingHouse');
+
   return (
     <main className={classes.home_container}>
       <div className={classes.home_wrapper}>

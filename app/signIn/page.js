@@ -5,7 +5,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import classes from "./login.module.css";
 
-const LoginPage = () => {
+const signInPage = () => {
     const router = useRouter();
 
     const cancelBtnHandler = () => {
@@ -14,6 +14,7 @@ const LoginPage = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const emailChangeHandler = (event) => {
         setEmail(event.target.value);
@@ -29,6 +30,30 @@ const LoginPage = () => {
         isSubmitted = true;
     };
 
+    const loginBoxImg = [
+        { providerName: "Google", btnHandler: () => signIn("google"), path: "/g-logo.png", imgAlt: "구글 로그인" },
+        { providerName: "KAKAO", btnHandler: () => signIn("kakao"), path: "/kakao_login_large.png", imgAlt: "카카오 로그인" },
+        { providerName: "네이버", btnHandler: () => signIn("naver"), path: "/naver.png", imgAlt: "네이버 로그인" }
+    ];
+
+    const loginBtnHandler = async (event) => {
+        event.preventDefault();
+
+        const response = await signIn("credentials", {
+            email,
+            password,
+            redirect: false
+        });
+
+        // console.log(response);
+
+        if (!response.ok) {
+            setError('이메일이나 비밀번호를 다시 한번 확인해주세요');
+        } else {
+            router.back();
+        }
+    }
+    
     return (
         <div className={classes.login_container}>
             <div className={classes.login_wrapper}>
@@ -36,27 +61,19 @@ const LoginPage = () => {
                     <h2>로그인</h2>
                 </div>
                 <div className={classes.third_loginBox}>
-                    <div className={classes.loginBox_item}>
-                        <button type="button">
-                            <img src="/g-logo.png" alt="구글 로그인" />
-                        </button>
-                        <p>Google 로그인</p>
-                    </div>
-                    <div className={classes.loginBox_item}>
-                        <button type="button">
-                            <img src="/kakao_login_large.png" alt="카카오 로그인" />
-                        </button>
-                    </div>
-                    <div className={classes.loginBox_item}>
-                        <button type="button">
-                            <img src="/naver.png" alt="네이버 로그인" />
-                        </button>
-                        <p>네이버 로그인</p>
-                    </div>
+                    {loginBoxImg.map((data, i) => {
+                        return (
+                        <div className={classes.loginBox_item} key={i}>
+                            <button type="button" onClick={data.btnHandler}>
+                                <img src={data.path} alt={data.imgAlt} />
+                            </button>
+                            <p>{data.providerName} 로그인</p>
+                        </div>);
+                    })}
                 </div>
                 <div className={classes.Oauth_loginBox}>
                     <h2>또는</h2>
-                    <form action="/api/login" method="POST" className={classes.login_form}>
+                    <form action="/" method="POST" className={classes.login_form}>
                         <div className={classes.loginForm_contentsBox}>
                             <label htmlFor="user-email">이메일</label>
                             <input type="email" id="user-email" name="userEmail" onChange={emailChangeHandler} value={email} />
@@ -65,8 +82,9 @@ const LoginPage = () => {
                             <label htmlFor="user-password">비밀번호</label>
                             <input type="password" id="user-password" name="userPassword" onChange={passwordChangeHandler} value={password} />
                         </div>
+                        <p className={classes.login_errorMsg}>{error}</p>
                         <div className={classes.loginForm_btn}>
-                            <button type="submit" id={classes.login_submitBtn} disabled={!isSubmitted} onClick={() => {signIn()}}>로그인</button>
+                            <button type="submit" id={classes.login_submitBtn} disabled={!isSubmitted} onClick={loginBtnHandler}>로그인</button>
                             <button type="button" onClick={cancelBtnHandler}>취소</button>
                         </div>
                     </form>
@@ -76,4 +94,4 @@ const LoginPage = () => {
     );
 }
 
-export default LoginPage;
+export default signInPage;

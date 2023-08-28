@@ -26,6 +26,8 @@
 
 .nav_right {
     margin-right: 200px;
+    display: flex;
+    align-items: center;
 }
 
 .nav_right a {
@@ -35,7 +37,8 @@
     margin-left: 50px;
 }
 
-.logout_btn {
+.logout_btn,
+.logIn_btn {
     background: none;
     border: none;
     font: inherit;

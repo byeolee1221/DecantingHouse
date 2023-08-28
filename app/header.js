@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import LogInBtn from "./loginBtn";
 import LogoutBtn from "./logoutBtn";
 import classes from "./header.module.css";
 
@@ -15,8 +16,9 @@ const Header = async () => {
                         <Link href="/">Decanting House</Link>
                     </div>
                     <div className={classes.nav_right}>
-                        {!session ? <Link href="/login">로그인</Link> : ''}
+                        {!session ? <LogInBtn /> : ''}
                         {!session ? <Link href="/register">회원가입</Link>: ''}
+                        {session ? <p>{session.user.name}님 반갑습니다😊</p> : ''}
                         {session ? <LogoutBtn /> : ''}
                         {session ? <Link href="/MyPage">마이페이지</Link> : ''}
                     </div>

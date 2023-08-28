@@ -76,12 +76,9 @@
     padding: .5rem;
 }
 
-.form_item p {
-    display: inline-block;
+.register_error {
     color: var(--color-font-4);
-    margin-top: 10px;
-    margin-bottom: 0;
-    display: none;
+    margin-top: 0;
 }
 
 .registerForm_btn {

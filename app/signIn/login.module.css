@@ -129,6 +129,12 @@
     padding: .5rem;
 }
 
+.login_errorMsg {
+    color: var(--color-font-4);
+    text-align: center;
+    margin-top: 0;
+}
+
 .loginForm_btn {
     display: flex;
     align-items: center;
