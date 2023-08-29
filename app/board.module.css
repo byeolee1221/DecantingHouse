@@ -108,3 +108,15 @@
     margin-top: 0;
     margin-bottom: 30px;
 }
+
+.board_item .contents_item {
+    height: 120px;
+    border-bottom: 1px solid var(--color-box-1);
+    margin-bottom: 0;
+}
+
+.board_item .author_item {
+    margin-top: 5px;
+    color: var(--color-font-3);
+    font-weight: bold;
+}

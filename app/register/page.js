@@ -13,20 +13,20 @@ const RegisterPage = () => {
         router.back();
     }
 
+    const [realName, setRealName] = useState('');
     const [name, setName] = useState('');
-    const [nickName, setNickName] = useState('');
     const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
     const [email, setEmail] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
-    const nameChangeHandler = (event) => {
-        setName(event.target.value);
+    const realNameChangeHandler = (event) => {
+        setRealName(event.target.value);
     }
 
     const nickNameChangeHandler = (event) => {
-        setNickName(event.target.value);
+        setName(event.target.value);
     }
 
     const password1ChangeHandler = (event) => {
@@ -43,19 +43,19 @@ const RegisterPage = () => {
 
     let formIsValid = false;
     
-    if (name && nickName && password1 && password2 && email) {
+    if (realName && name && password1 && password2 && email) {
         formIsValid = true;
     };
 
     const submitHandler = async (event) => {
         event.preventDefault();
 
-        if (!name) {
+        if (!realName) {
             setErrorMsg('이름을 확인해주세요.');    
             return; 
         } 
 
-        if (!nickName) {
+        if (!name) {
             setErrorMsg('닉네임을 확인해주세요.');    
             return;   
         } 
@@ -76,8 +76,8 @@ const RegisterPage = () => {
         }
 
         let userData = {
+            realName,
             name,
-            nickName,
             password1,
             password2,
             email
@@ -108,15 +108,15 @@ const RegisterPage = () => {
                 </div>
                 <form action="/" method="POST" className={classes.register_form} onSubmit={submitHandler}>
                     <div className={classes.form_contenstBox}>
-                        <label htmlFor="user-name">이름</label>
+                        <label htmlFor="user-realName">이름</label>
                         <div className={classes.form_item}>
-                            <input type="text" id="user-name" name="userName" onChange={nameChangeHandler} value={name} />
+                            <input type="text" id="user-realName" name="userRealName" onChange={realNameChangeHandler} value={realName} />
                         </div>
                     </div>
                     <div className={classes.form_contenstBox}>
                         <label htmlFor="user-nickname">닉네임</label>
                         <div className={classes.form_item}>
-                            <input type="text" id="user-nickname" name="userNickName" onChange={nickNameChangeHandler} value={nickName} />
+                            <input type="text" id="user-nickname" name="userNickName" onChange={nickNameChangeHandler} value={name} />
                         </div>
                     </div>
                     <div className={classes.form_contenstBox}>

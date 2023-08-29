@@ -43,7 +43,8 @@ const AustraliaBoard = (props) => {
                                 <h3>{postData.userTitle}</h3>
                                 <p className={classes.category_item}>카테고리: {postData.category}</p>
                                 <p className={classes.date_item}>{postData.uploadDate}</p>
-                                <p>{postData.userContents}</p>
+                                <p className={classes.contents_item}>{postData.userContents}</p>
+                                <p className={classes.author_item}>by {postData.author}</p>
                             </div>
                         );
                     })} 

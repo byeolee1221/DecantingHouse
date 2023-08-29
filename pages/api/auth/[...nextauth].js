@@ -35,8 +35,6 @@ export const authOptions = {
                 // console.log(credentials);
                 // console.log(user);
 
-                let result = {};
-
                 if (!user) {
                     return null;
                 }
@@ -80,6 +78,12 @@ export const authOptions = {
             session.user = token.user;
             return session;
         },
+
+        async redirect({url, baseUrl}) {
+            if (url.startsWith("/")) return `${baseUrl}${url}`;
+            else if (new URL(url).origin === baseUrl) return 'http://localhost:3000/';
+            return baseUrl;
+        }
     },
 
     secret: process.env.NEXTAUTH_SECRET,

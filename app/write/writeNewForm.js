@@ -11,7 +11,7 @@ const WriteNewFormPage = (props) => {
         router.back();
     }
 
-    const [author, setAuthor] = useState('');
+    const [author, setAuthor] = useState(props.session.user.name);
     const [category, setCategory] = useState('');
     const [title, setTitle] = useState('');
     const [contents, setContents] = useState('');
@@ -44,7 +44,7 @@ const WriteNewFormPage = (props) => {
         isCompleted = true;
     }
 
-    let uploadTime = new Date()
+    let uploadTime = new Date();
 
     let uploadYear = uploadTime.getFullYear();
     let uploadMonth = uploadTime.getMonth() + 1;
@@ -52,7 +52,7 @@ const WriteNewFormPage = (props) => {
 
     let uploadDate = `${uploadYear}.${uploadMonth}.${uploadDay}`;
 
-    // 로그인 안하고 진입하려 하면 로그인페이지로 안내
+    // 로그인 안하고 진입하려 하면 미들웨어를 통해 로그인페이지로 안내
 
     return (
         <Fragment>
@@ -68,6 +68,7 @@ const WriteNewFormPage = (props) => {
                     <option value="페어링">음식 페어링</option>
                     <option value="제품">제품</option>
                     <option value="맛">느껴지는 맛</option>
+                    <option value="기타">기타</option>
                 </select>
             </div>
             <div className={classes.write_formContents}>

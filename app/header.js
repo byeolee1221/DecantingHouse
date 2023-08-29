@@ -8,6 +8,8 @@ import classes from "./header.module.css";
 const Header = async () => {
     let session = await getServerSession(authOptions);
 
+    // console.log(session);
+
     return (
         <header className={classes.header_container}>
             <div className={classes.header_wrapper}>
@@ -17,7 +19,7 @@ const Header = async () => {
                     </div>
                     <div className={classes.nav_right}>
                         {!session ? <LogInBtn /> : ''}
-                        {!session ? <Link href="/register">회원가입</Link>: ''}
+                        {!session ? <Link href="/register">회원가입</Link> : ''}
                         {session ? <p>{session.user.name}님 반갑습니다😊</p> : ''}
                         {session ? <LogoutBtn /> : ''}
                         {session ? <Link href="/MyPage">마이페이지</Link> : ''}
