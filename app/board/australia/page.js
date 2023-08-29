@@ -4,7 +4,7 @@ import AustraliaBoard from "./board";
 
 const AustraliaPage = async () => {
     const db = (await connectDB).db('DecantingHouse');
-    let postArr = await db.collection('Forum').find({country: 'Australia'}).toArray();
+    let postArr = await db.collection('Forum').find({country: 'australia'}).toArray();
 
     return (
         <div className={classes.board_australia_container}>

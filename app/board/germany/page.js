@@ -4,7 +4,7 @@ import classes from "./germany.module.css";
 
 const GermanyPage = async () => {
     const db = (await connectDB).db('DecantingHouse');
-    let postArr = await db.collection('Forum').find({country: 'Germany'}).toArray();
+    let postArr = await db.collection('Forum').find({country: 'germany'}).toArray();
 
     return (
         <div className={classes.board_germany_container}>

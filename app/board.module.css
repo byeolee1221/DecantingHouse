@@ -85,11 +85,13 @@
     border-radius: 20px;
     cursor: pointer;
     background-color: white;
+    text-decoration: none;
 }
 
 .board_item h3 {
     margin-bottom: 0;
     font-size: 1.5rem;
+    color: var(--color-font-1);
 }
 
 .board_item p {
@@ -107,12 +109,14 @@
 .board_item .date_item {
     margin-top: 0;
     margin-bottom: 30px;
+    color: var(--color-font-3);
 }
 
 .board_item .contents_item {
     height: 120px;
     border-bottom: 1px solid var(--color-box-1);
     margin-bottom: 0;
+    color: var(--color-font-3);
 }
 
 .board_item .author_item {

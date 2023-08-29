@@ -37,15 +37,15 @@ const GermanyBoard = (props) => {
                     <Link href="/write/germany/new">새 글 쓰기</Link>
                 </div>
                 <div className={classes.board_itemBox}>
-                    {props.post.map((postData, i) => {
+                    {props.post.sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate)).map((postData, i) => {
                         return (
-                            <div className={classes.board_item} key={i}>
+                            <Link href={`/board/detail/${postData._id}`} className={classes.board_item} key={i}>            
                                 <h3>{postData.userTitle}</h3>
                                 <p className={classes.category_item}>카테고리: {postData.category}</p>
                                 <p className={classes.date_item}>{postData.uploadDate}</p>
                                 <p className={classes.contents_item}>{postData.userContents}</p>
-                                <p className={classes.author_item}>by {postData.author}</p>
-                            </div>
+                                <p className={classes.author_item}>by {postData.author}</p>          
+                            </Link>
                         );
                     })} 
                 </div>

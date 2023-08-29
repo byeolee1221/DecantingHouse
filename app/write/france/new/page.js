@@ -1,11 +1,11 @@
 import WriteNewFormPage from "../../writeNewForm";
-import classes from "../../write.module.css";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import classes from "../../write.module.css";
 
 const WriteNewPage = async () => {
     let session = await getServerSession(authOptions);
-    const country = 'France';
+    const country = 'france';
 
     // 로그인 안하고 진입하려 하면 로그인페이지로 안내
 

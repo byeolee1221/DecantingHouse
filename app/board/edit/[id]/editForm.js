@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
-import classes from "./writeNewForm.module.css";
+import classes from "../../../write/writeNewForm.module.css";
 
-const WriteNewFormPage = (props) => {
+const EditFormPage = (props) => {
     const router = useRouter();
 
     const cancelHandler = () => {
@@ -12,9 +12,9 @@ const WriteNewFormPage = (props) => {
     }
 
     const [author, setAuthor] = useState(props.session.user.name);
-    const [category, setCategory] = useState('');
-    const [title, setTitle] = useState('');
-    const [contents, setContents] = useState('');
+    const [category, setCategory] = useState(props.postInfo.category);
+    const [title, setTitle] = useState(props.postInfo.userTitle);
+    const [contents, setContents] = useState(props.postInfo.userContents);
     const [fileName, setFileName] = useState('');
     const [postData, setPostData] = useState([]);
 
@@ -44,17 +44,29 @@ const WriteNewFormPage = (props) => {
         isCompleted = true;
     }
 
-    let uploadTime = new Date();
+    // let authorEmail = props.session.user.authorEmail;
 
-    let uploadYear = uploadTime.getFullYear();
-    let uploadMonth = uploadTime.getMonth() + 1;
-    let uploadDay = uploadTime.getDate();
-    let uploadHour = uploadTime.getHours();
-    let uploadMinute = uploadTime.getMinutes();
-    let uploadSeconds = uploadTime.getSeconds();
+    // const submitHandler = async (event) => {
+    //     event.preventDefault();
 
-    let uploadDate = `${uploadYear}.${uploadMonth}.${uploadDay}`;
-    let uploadDate2 = `${uploadHour}:${uploadMinute}:${uploadSeconds}`;
+    //     let updateData = {
+    //         author,
+    //         category,
+    //         title,
+    //         contents,
+    //         fileName,
+    //         authorEmail
+    //     }
+
+    //     const response = await fetch('/api/update', {
+    //         method: 'POST',
+    //         headers: { 'content-type' : 'application/json' },
+    //         body: JSON.stringify({ updateData })
+    //     })
+
+    //     const data = await response.json();
+    //     console.log(data)
+    // }
 
     // 로그인 안하고 진입하려 하면 미들웨어를 통해 로그인페이지로 안내
 
@@ -89,23 +101,23 @@ const WriteNewFormPage = (props) => {
                 <input type="file" id="user-file" name="userFile" accept="image/*" onChange={fileChangeHandler} />
             </div>
             <div className={classes.upload_timeBox}>
-                <input type="text" name="uploadDate" value={uploadDate} />
-            </div>
-            <div className={classes.upload_timeBox}>
-                <input type="text" name="uploadDate2" value={uploadDate2} />
+                <input type="text" name="uploadDate" value={props.postInfo.uploadDate} />
             </div>
             <div className={classes.country_box}>
-                <input type="text" name="country" value={props.country} />
+                <input type="text" name="country" value={props.postInfo.country} />
+            </div>
+            <div className={classes.id_box}>
+                <input type="text" name="authorId" value={props.postInfo._id} />
             </div>
             <div className={classes.email_box}>
                 <input type="text" name="authorEmail" value={props.session.user.email} />
             </div>
             <div className={classes.write_formBtnBox}>
-                <button type="submit" id={classes.write_submitBtn} disabled={!isCompleted}>완료</button>
+                <button type="submit" id={classes.write_submitBtn} disabled={!isCompleted} >완료</button>
                 <button type="button" onClick={cancelHandler}>취소</button>
             </div>
         </Fragment>
     );
 }
 
-export default WriteNewFormPage;
+export default EditFormPage;

@@ -16,6 +16,10 @@
     border: none;
 }
 
+.write_formContents input:disabled {
+    background-color: var(--color-box-8);
+}
+
 .write_formContents select {
     width: 32%;
     padding: .5rem;
@@ -74,11 +78,10 @@
     border: 0;
 }
 
-.upload_timeBox {
-    display: none;
-}
-
-.country_box {
+.upload_timeBox,
+.country_box,
+.id_box,
+.email_box {
     display: none;
 }
 

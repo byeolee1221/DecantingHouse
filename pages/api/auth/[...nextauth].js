@@ -55,6 +55,7 @@ export const authOptions = {
 
     pages: {
         signIn: "/signIn",
+        error: "/error"
     },
 
     session: {

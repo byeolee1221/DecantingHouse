@@ -1,13 +1,11 @@
-'use client'
-
-import { useState } from "react";
 import WriteNewFormPage from "../../writeNewForm";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import classes from "../../write.module.css";
 
-const WriteNewPage = () => {
-    const [postData, setPostData] = useState([]);
-
-    const country = 'Australia';
+const WriteNewPage = async () => {
+    let session = await getServerSession(authOptions);
+    const country = 'australia';
 
     // 로그인 안하고 진입하려 하면 로그인페이지로 안내
 
@@ -18,7 +16,7 @@ const WriteNewPage = () => {
                     <h1>게시글 작성하기</h1>
                 </div>
                 <form action="/api/write/australia" method="POST" className={classes.write_userForm} >
-                    <WriteNewFormPage country={country} />
+                    <WriteNewFormPage country={country} session={session} />
                 </form>
             </div>
         </div>
