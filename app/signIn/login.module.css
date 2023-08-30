@@ -27,7 +27,6 @@
 .third_loginBox {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* gap: 60px; */
     align-items: center;
     justify-content: center;
     margin-top: 40px;

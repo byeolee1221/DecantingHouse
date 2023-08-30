@@ -1,12 +1,24 @@
 import { connectDB } from "@/util/database";
 import { ObjectId } from "mongodb";
+import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import LikeBtn from "./likeBtn";
+import CommentPage from "./comment";
 
 import classes from "../../detail.module.css";
-import Link from "next/link";
- 
+
 const boardDetail = async (props) => {
     const db = (await connectDB).db('DecantingHouse');
     let checkPost = await db.collection('Forum').findOne({ _id: new ObjectId(props.params.id) });
+    let session = await getServerSession(authOptions);
+    
+    let isPossibleEdit = false;
+
+    if (checkPost.authorEmail === session?.user.email) {
+        isPossibleEdit = true;
+    }
+    // console.log(session);
     // console.log(checkPost);
 
     return (
@@ -26,14 +38,15 @@ const boardDetail = async (props) => {
                 </div>
                 <div className={classes.detail_btnBox}>
                     <div className={classes.btnBox_left}>
-                        <p>💚 <span>0</span></p>
+                        
                     </div>
                     <div className={classes.btnBox_right}>
-                        <button type="button">🧡 좋아요</button>
-                        <Link href={`/board/edit/${checkPost._id}`}>수정하기</Link>
-                        <button type="button">삭제하기</button>
+                        <LikeBtn session={session} />
+                        {isPossibleEdit ? <Link href={`/board/edit/${checkPost._id}`}>수정하기</Link> : ''}
+                        {isPossibleEdit ? <button type="button">삭제하기</button> : ''}
                     </div>
                 </div>
+                <CommentPage checkPost={checkPost} session={session} />
             </div>
         </div>
     );

@@ -25,9 +25,7 @@ const updatePost = async (req, res) => {
                 let updatePost = await db.collection('Forum').updateOne({ _id: new ObjectId(req.body.authorId)}, {$set: updateValue});
                 // console.log(updatePost);
                 return res.status(200).redirect(302, `/board/${req.body.country}`);
-            } else {
-                return res.status(500).json({ message: '본인의 글만 수정할 수 있습니다.', status: 500 });
-            }
+            } 
         }
     } catch (error) {
         return res.status(500).redirect(302, "/error");

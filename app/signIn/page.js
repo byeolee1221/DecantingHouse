@@ -1,12 +1,16 @@
 'use client'
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import classes from "./login.module.css";
 
 const signInPage = () => {
     const router = useRouter();
+    const searchParms = useSearchParams();
+
+    let socialErrors = searchParms.get('error');
+    console.log(socialErrors);
 
     const cancelBtnHandler = () => {
         router.back();
@@ -15,6 +19,7 @@ const signInPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [socialError, setSocialError] = useState('');
 
     const emailChangeHandler = (event) => {
         setEmail(event.target.value);
@@ -53,7 +58,15 @@ const signInPage = () => {
             router.back();
         }
     }
-    
+
+    let isRegistered = false;
+
+    if (socialErrors === 'OAuthAccountNotLinked') {
+        isRegistered = true;
+
+        setSocialError('이미 가입된 이메일입니다.');
+    }
+
     return (
         <div className={classes.login_container}>
             <div className={classes.login_wrapper}>
@@ -63,13 +76,14 @@ const signInPage = () => {
                 <div className={classes.third_loginBox}>
                     {loginBoxImg.map((data, i) => {
                         return (
-                        <div className={classes.loginBox_item} key={i}>
+                        <div className={classes.loginBox_item} key={3}>
                             <button type="button" onClick={data.btnHandler}>
                                 <img src={data.path} alt={data.imgAlt} />
                             </button>
                             <p>{data.providerName} 로그인</p>
                         </div>);
                     })}
+                    <p className={classes.login_errorMsg}>{socialError}</p>
                 </div>
                 <div className={classes.Oauth_loginBox}>
                     <h2>또는</h2>

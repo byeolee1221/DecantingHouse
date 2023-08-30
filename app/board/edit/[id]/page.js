@@ -10,7 +10,7 @@ const editBoardContents = async (props) => {
     let editPost = await db.collection('Forum').findOne({ _id: new ObjectId(props.params.id) });
     let session = await getServerSession(authOptions);
     // console.log(editPost);
-    // console.log(session)
+    console.log(session);
 
     return (
         <div className={classes.board_write_container}>

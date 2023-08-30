@@ -37,17 +37,36 @@ const USABoard = (props) => {
                     <Link href="/write/usa/new">새 글 쓰기</Link>
                 </div>
                 <div className={classes.board_itemBox}>
-                    {props.post.sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate)).map((postData, i) => {
-                        return (
-                            <Link href={`/board/detail/${postData._id}`} className={classes.board_item} key={i}>            
-                                <h3>{postData.userTitle}</h3>
-                                <p className={classes.category_item}>카테고리: {postData.category}</p>
-                                <p className={classes.date_item}>{postData.uploadDate}</p>
-                                <p className={classes.contents_item}>{postData.userContents}</p>
-                                <p className={classes.author_item}>by {postData.author}</p>          
-                            </Link>
-                        );
-                    })} 
+                    {props.post
+                        .sort(
+                            (a, b) => {
+                                let dateA = new Date(`${a.uploadDate2} ${a.uploadDate}`);
+                                let dateB = new Date(`${b.uploadDate2} ${b.uploadDate}`);
+                                return dateB - dateA;
+                            })
+                        .map((postData, i) => {
+                            return (
+                                <Link
+                                    href={`/board/detail/${postData._id}`}
+                                    className={classes.board_item}
+                                    key={i}
+                                >
+                                    <h3>{postData.userTitle}</h3>
+                                    <p className={classes.category_item}>
+                                        카테고리: {postData.category}
+                                    </p>
+                                    <p className={classes.date_item}>
+                                        {postData.uploadDate}
+                                    </p>
+                                    <p className={classes.contents_item}>
+                                        {postData.userContents}
+                                    </p>
+                                    <p className={classes.author_item}>
+                                        by {postData.author}
+                                    </p>
+                                </Link>
+                            );
+                        })}
                 </div>
             </div>
         </div>
