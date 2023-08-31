@@ -56,8 +56,6 @@ const WriteNewFormPage = (props) => {
     let uploadDate = `${uploadYear}.${uploadMonth}.${uploadDay}`;
     let uploadDate2 = `${uploadHour}:${uploadMinute}:${uploadSeconds}`;
 
-    // 로그인 안하고 진입하려 하면 미들웨어를 통해 로그인페이지로 안내
-
     return (
         <Fragment>
             <div className={classes.write_formContents}>

@@ -10,7 +10,7 @@ const signInPage = () => {
     const searchParms = useSearchParams();
 
     let socialErrors = searchParms.get('error');
-    console.log(socialErrors);
+    // console.log(socialErrors);
 
     const cancelBtnHandler = () => {
         router.back();

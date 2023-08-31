@@ -18,6 +18,7 @@ const boardDetail = async (props) => {
     if (checkPost.authorEmail === session?.user.email) {
         isPossibleEdit = true;
     }
+
     // console.log(session);
     // console.log(checkPost);
 

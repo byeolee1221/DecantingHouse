@@ -44,6 +44,10 @@
     background-color: var(--color-box-9);
 }
 
+.comment_errorMsg {
+    color: var(--color-font-4);
+}
+
 .contents_BtnBox {
     display: flex;
     align-items: center;
@@ -66,10 +70,26 @@
 
 .commentBox p {
     margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.commentBox p span {
+.commentBox span {
     font-weight: bold;
+}
+
+.commentBox input {
+    display: none;
+}
+
+.commentBox textarea {
+    width: 90%;
+    border-radius: 10px;
+    resize: none;
+    overflow: auto;
+    font: inherit;
+    padding: .5rem;
 }
 
 .commentBtnBox {

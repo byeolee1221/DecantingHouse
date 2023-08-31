@@ -16,7 +16,6 @@ const EditFormPage = (props) => {
     const [title, setTitle] = useState(props.postInfo.userTitle);
     const [contents, setContents] = useState(props.postInfo.userContents);
     const [fileName, setFileName] = useState('');
-    const [postData, setPostData] = useState([]);
 
     const authorChangeHandler = (event) => {
         setAuthor(event.target.value);
@@ -43,8 +42,6 @@ const EditFormPage = (props) => {
     if (author && category && title && contents) {
         isCompleted = true;
     }
-
-    // 로그인 안하고 진입하려 하면 미들웨어를 통해 로그인페이지로 안내
 
     return (
         <Fragment>
