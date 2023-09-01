@@ -42,7 +42,7 @@ const boardDetail = async (props) => {
                         
                     </div>
                     <div className={classes.btnBox_right}>
-                        <LikeBtn session={session} />
+                        <LikeBtn checkPost={checkPost} session={session} />
                         {isPossibleEdit ? <Link href={`/board/edit/${checkPost._id}`}>수정하기</Link> : ''}
                         {isPossibleEdit ? <button type="button">삭제하기</button> : ''}
                     </div>

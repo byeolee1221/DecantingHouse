@@ -5,6 +5,7 @@ import AustraliaBoard from "./board";
 const AustraliaPage = async () => {
     const db = (await connectDB).db('DecantingHouse');
     let postArr = await db.collection('Forum').find({country: 'australia'}).toArray();
+    let popularPost = await db.collection('Forum').find({country: 'australia', count: {$gt: 0}}).sort({ count: -1 }).limit(4).toArray();
 
     return (
         <div className={classes.board_australia_container}>
@@ -18,7 +19,7 @@ const AustraliaPage = async () => {
                         <img src="/australia.jpg" alt="오스트레일리아 포도밭" id={classes.title_rightBottom} />
                     </div>
                 </div>
-                <AustraliaBoard post={postArr} />
+                <AustraliaBoard post={postArr} popular={popularPost} />
             </div>
         </div>
     );

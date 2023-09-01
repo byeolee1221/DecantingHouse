@@ -15,7 +15,7 @@ const CommentUpdate = async (req, res) => {
     try {
         if (req.method === 'POST') {
             if (session.user.email === req.body.commentUserEmail) {
-                let updateComment = await db.collection('comment').updateOne({ _id: new ObjectId(req.body.commentId)}, {$set: updateCommentValue});
+                let updateComment = await db.collection('comment').updateOne({ _id: new ObjectId(req.body.id)}, {$set: updateCommentValue});
                 // console.log(updateComment);
                 return res.status(200).json({ status: 200 });
             } else {

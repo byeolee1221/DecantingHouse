@@ -5,6 +5,7 @@ import classes from "./italy.module.css";
 const ItalyPage = async () => {
     const db = (await connectDB).db('DecantingHouse');
     let postArr = await db.collection('Forum').find({country: 'italy'}).toArray();
+    let popularPost = await db.collection('Forum').find({country: 'italy', count: {$gt: 0}}).sort({ count: -1 }).limit(4).toArray();
 
     return (
         <div className={classes.board_italy_container}>
@@ -18,7 +19,7 @@ const ItalyPage = async () => {
                         <img src="/italy-vineyard.jpg" alt="이탈리아 포도밭" id={classes.title_rightBottom} />
                     </div>
                 </div>
-                <ItalyBoard post={postArr} />
+                <ItalyBoard post={postArr} popular={popularPost} />
             </div>
         </div>
     );

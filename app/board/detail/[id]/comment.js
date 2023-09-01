@@ -10,6 +10,7 @@ const CommentPage = (props) => {
     const [post, setPost] = useState(false);
     const [update, setUpdate] = useState(false);
     const [updateComment, setUpdateComment] = useState('');
+    const [id, setId] = useState('');
 
     const commentChangeHandler = (event) => {
         setComment(event.target.value);
@@ -53,6 +54,7 @@ const CommentPage = (props) => {
     
             const commentData = await response.json();
             // console.log(commentData);
+           
             setGetData(commentData);
         }
 
@@ -60,11 +62,11 @@ const CommentPage = (props) => {
 
     }, [post])
 
-    const commentDeleteHandler = async (commentId) => {  
+    const commentDeleteHandler = async () => {  
         let commentData = {
             id : props.checkPost._id,
             commentUserEmail: props.session?.user.email,
-            commentId
+            commentId : id
         };
 
         // console.log(commentData);
@@ -85,15 +87,19 @@ const CommentPage = (props) => {
         }
     }
 
-    const commentUpdateBtnHandler = () => {
+    const commentUpdateBtnHandler = (commentId) => {
         setUpdate(true);
+
+        setId(commentId);
+        // get 요청 보내서 댓글 이메일 받기
+        // 
     }
 
-    const commentUpdateHandler = async (commentId) => {
+    const commentUpdateHandler = async () => {
         let updateData = {
             comment: updateComment,
             commentUserEmail: props.session?.user.email,
-            commentId
+            id
         };
 
         // console.log(updateData);
@@ -137,17 +143,17 @@ const CommentPage = (props) => {
                     {getData.length > 0 ? getData.map((data, i) => {
                         return (
                             <div className={classes.commentBox} key={i}>
-                                {!update ? <p>
+                                {id !== data._id || !update ? <p>
                                     <span>{data.commentUser}</span>: {data.comment}
-                                </p> : 
+                                </p> :
                                 <p>
                                     <span>{data.commentUser}</span>: <textarea name="commentUpdate" cols={100} rows={1} defaultValue={data.comment} onChange={updateCommentChangeHandler} />
                                 </p>}
                                 <div className={classes.commentBtnBox}>
-                                    {props.session?.user.email === data.commentUserEmail && !update ? <button type="button" onClick={commentUpdateBtnHandler}>수정</button> : ''}
-                                    {update ? <button type="button" onClick={() => commentUpdateHandler(data._id)}>등록</button> : ''}
-                                    {update ? <button type="button" onClick={updateCancelHandler}>취소</button> : ''}
-                                    {props.session?.user.email === data.commentUserEmail && !update ? <button type="button" onClick={() => commentDeleteHandler(data._id)}>삭제</button> : ''}
+                                    {props.session?.user.email === data.commentUserEmail && !update ? <button type="button" onClick={() => commentUpdateBtnHandler(data._id)}>수정</button> : ''}
+                                    {id === data._id && update ? <button type="button" onClick={commentUpdateHandler}>등록</button> : ''}
+                                    {id === data._id && update ? <button type="button" onClick={updateCancelHandler}>취소</button> : ''}
+                                    {props.session?.user.email === data.commentUserEmail && !update ? <button type="button" onClick={commentDeleteHandler}>삭제</button> : ''}
                                 </div>     
                             </div>
                         );

@@ -6,7 +6,7 @@ const GermanyWriteHandler = async (req, res) => {
     let session = await getServerSession(req, res, authOptions);
 
     const db = (await connectDB).db("DecantingHouse");
-    console.log(req.body);
+    // console.log(req.body);
 
     try {
         if (req.method === "POST") {

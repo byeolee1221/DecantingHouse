@@ -10,26 +10,17 @@ const AustraliaBoard = (props) => {
                 <div className={classes.board_popular}>
                     <h1>이 게시판의 인기게시물</h1>
                     <div className={classes.popular_itemBox}>
-                        <div className={classes.popular_item}>
-                            <h3>글 제목</h3>
-                            <p>카테고리</p>
-                            <p>글 내용</p>
-                        </div>
-                        <div className={classes.popular_item}>
-                            <h3>글 제목</h3>
-                            <p>카테고리</p>
-                            <p>글 내용</p>
-                        </div>
-                        <div className={classes.popular_item}>
-                            <h3>글 제목</h3>
-                            <p>카테고리</p>
-                            <p>글 내용</p>
-                        </div>
-                        <div className={classes.popular_item}>
-                            <h3>글 제목</h3>
-                            <p>카테고리</p>
-                            <p>글 내용</p>
-                        </div>
+                        {props.popular.map((data, i) => {
+                            return (
+                                <div className={classes.popular_item} key={i}>
+                                    <h3>{data.userTitle}</h3>
+                                    <p className={classes.popular_category}>카테고리: {data.category}</p>
+                                    <p>{data.uploadDate}</p>
+                                    <p className={classes.popular_contents}>{data.userContents}</p>
+                                    <p className={classes.popular_last}><span>by {data.author}</span>🧡 {data.count}</p>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
                 <div className={classes.board_title}>
@@ -62,7 +53,7 @@ const AustraliaBoard = (props) => {
                                         {postData.userContents}
                                     </p>
                                     <p className={classes.author_item}>
-                                        by {postData.author}
+                                        by {postData.author} <span> 💚 {postData.count}</span>
                                     </p>
                                 </Link>
                             );

@@ -5,6 +5,7 @@ import classes from "./chile.module.css";
 const ChilePage = async () => {
     const db = (await connectDB).db('DecantingHouse');
     let postArr = await db.collection('Forum').find({country: 'chile'}).toArray();
+    let popularPost = await db.collection('Forum').find({country: 'chile', count: {$gt: 0}}).sort({ count: -1 }).limit(4).toArray();
 
     return (
         <div className={classes.board_chile_container}>
@@ -18,7 +19,7 @@ const ChilePage = async () => {
                         <img src="/chile.jpg" alt="칠레" id={classes.title_rightBottom} />
                     </div>
                 </div>
-                <ChileBoard post={postArr} />
+                <ChileBoard post={postArr} popular={popularPost} />
             </div>
         </div>
     );
