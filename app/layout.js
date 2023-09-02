@@ -11,7 +11,6 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const db = (await connectDB).db('DecantingHouse');
-
   let session = await getServerSession(authOptions);
 
   return (

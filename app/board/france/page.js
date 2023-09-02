@@ -3,6 +3,10 @@ import FranceBoard from "./board";
 import classes from "./france.module.css";
 
 const FrancePage = async () => {
+    const country = ['France', 'usa', 'italy', 'chile', 'australia', 'germany'];
+
+    const countryMap = country.map((country) => {return country});
+    console.log(countryMap)
     const db = (await connectDB).db('DecantingHouse');
     let postArr = await db.collection('Forum').find({country: 'france'}).toArray();
     let popularPost = await db.collection('Forum').find({country: 'france', count: {$gt: 0}}).sort({ count: -1 }).limit(4).toArray();

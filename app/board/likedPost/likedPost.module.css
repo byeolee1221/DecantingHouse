@@ -1,0 +1,79 @@
+.LikedPost_container {
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.LikedPost_titleBox h2 {
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.LikedPost_board {
+    width: 100%;
+}
+
+.mainBoard_contentsBox {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.mainBoard_contents {
+    width: 90%;
+    margin: auto;
+    height: 300px;
+    border: 2px solid var(--color-box-7);
+    padding: .5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: white;
+    text-decoration: none;
+}
+
+.mainBoard_contentsInnerBox {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-box-1);
+    padding-bottom: 20px;
+    height: 250px;
+}
+
+.mainBoard_contentsInnerBox h3 {
+    margin-bottom: 0;
+    font-size: 1.3rem;
+    color: var(--color-font-1);
+}
+
+.mainBoard_category {
+    color: var(--color-font-2);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.mainBoard_uploadDate {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--color-font-3);
+}
+
+.mainBoard_Postcontents {
+    overflow: hidden;
+    margin-bottom: 0;
+    color: var(--color-font-3);
+}
+
+.mainBoard_author {
+    margin-top: 5px;
+    color: var(--color-font-3);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

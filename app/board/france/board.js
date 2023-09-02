@@ -2,8 +2,16 @@
 
 import Link from "next/link";
 import classes from "../../board.module.css";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const FranceBoard = (props) => {
+    const router = useRouter();
+
+    useEffect(() => {
+        router.refresh();
+    }, [])
+
     return (
         <div className={classes.board_container}>
             <div className={classes.board_wrapper}>
@@ -13,10 +21,12 @@ const FranceBoard = (props) => {
                         {props.popular.map((data, i) => {
                             return (
                                 <Link href={`/board/detail/${data._id}`} className={classes.popular_item} key={i}>
-                                    <h3>{data.userTitle}</h3>
-                                    <p className={classes.popular_category}>카테고리: {data.category}</p>
-                                    <p>{data.uploadDate}</p>
-                                    <p className={classes.popular_contents}>{data.userContents}</p>
+                                    <div className={classes.board_popular_item_inner}>
+                                        <h3>{data.userTitle}</h3>
+                                        <p className={classes.popular_category}>카테고리: {data.category}</p>
+                                        <p>{data.uploadDate}</p>
+                                        <p className={classes.popular_contents}>{data.userContents}</p>
+                                    </div>
                                     <p className={classes.popular_last}><span>by {data.author}</span>🧡 {data.count}</p>
                                 </Link>
                             );
@@ -25,6 +35,9 @@ const FranceBoard = (props) => {
                 </div>
                 <div className={classes.board_title}>
                     <h2>게시판</h2>
+                    <div className={classes.board_category_section}>
+                        카테고리 자리. 마지막 카테고리는 '내 글'
+                    </div>
                     <Link href="/write/france/new">새 글 쓰기</Link>
                 </div>
                 <div className={classes.board_itemBox}>
@@ -42,16 +55,18 @@ const FranceBoard = (props) => {
                                     className={classes.board_item}
                                     key={i}
                                 >
-                                    <h3>{postData.userTitle}</h3>
-                                    <p className={classes.category_item}>
-                                        카테고리: {postData.category}
-                                    </p>
-                                    <p className={classes.date_item}>
-                                        {postData.uploadDate}
-                                    </p>
-                                    <p className={classes.contents_item}>
-                                        {postData.userContents}
-                                    </p>
+                                    <div className={classes.board_innerBox}>
+                                        <h3>{postData.userTitle}</h3>
+                                        <p className={classes.category_item}>
+                                            카테고리: {postData.category}
+                                        </p>
+                                        <p className={classes.date_item}>
+                                            {postData.uploadDate}
+                                        </p>
+                                        <p className={classes.contents_item}>
+                                            {postData.userContents}
+                                        </p>
+                                    </div>
                                     <p className={classes.author_item}>
                                         by {postData.author} <span> 💚 {postData.count ? postData.count : 0}</span>
                                     </p>

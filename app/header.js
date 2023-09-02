@@ -39,10 +39,10 @@ const Header = async () => {
                         <Link href="/board/germany">Germany</Link>
                     </div>
                     <div className={classes.second_nav_right}>
-                        <button type="button">
+                        <Link href="/board/likedPost">
                             <img src="/favorite.png" alt="좋아요한 게시물" />
                             좋아요한 게시물
-                        </button>
+                        </Link>
                     </div>
                 </nav>
             </div>

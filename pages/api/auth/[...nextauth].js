@@ -34,7 +34,9 @@ export const authOptions = {
 
             async authorize(credentials) {
                 let db = (await connectDB).db("DecantingHouse");
+                let dbSocial = (await connectDB).db('test')
                 let user = await db.collection("user").findOne({ email: credentials.email });
+                let userSocial = await db.collection("users").findOne({ email: credentials.email });
                 // console.log(credentials);
                 // console.log(user);
 

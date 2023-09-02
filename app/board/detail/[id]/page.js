@@ -4,20 +4,21 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import LikeBtn from "./likeBtn";
+import DeleteBtn from "./deleteBtn";
 import CommentPage from "./comment";
 
 import classes from "../../detail.module.css";
 
 const boardDetail = async (props) => {
     const db = (await connectDB).db('DecantingHouse');
-    let checkPost = await db.collection('Forum').findOne({ _id: new ObjectId(props.params.id) });
+    let checkPost = await db.collection('Forum').findOne({ _id: new ObjectId(props.params.id)});
     let session = await getServerSession(authOptions);
     
     let isPossibleEdit = false;
 
     if (checkPost.authorEmail === session?.user.email) {
         isPossibleEdit = true;
-    }
+    };
 
     // console.log(session);
     // console.log(checkPost);
@@ -44,7 +45,7 @@ const boardDetail = async (props) => {
                     <div className={classes.btnBox_right}>
                         <LikeBtn checkPost={checkPost} session={session} />
                         {isPossibleEdit ? <Link href={`/board/edit/${checkPost._id}`}>수정하기</Link> : ''}
-                        {isPossibleEdit ? <button type="button">삭제하기</button> : ''}
+                        {isPossibleEdit ? <DeleteBtn checkPost={checkPost} session={session} /> : ''}
                     </div>
                 </div>
                 <CommentPage checkPost={checkPost} session={session} />

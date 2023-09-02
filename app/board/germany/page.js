@@ -19,7 +19,7 @@ const GermanyPage = async () => {
                         <img src="/wood-germany.jpg" alt="독일 와인병" id={classes.title_rightBottom} />
                     </div>
                 </div>
-                <GermanyBoard post={postArr} />
+                <GermanyBoard post={postArr} popular={popularPost} />
             </div>
         </div>
     );
