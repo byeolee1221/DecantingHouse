@@ -73,10 +73,14 @@
 .second_nav_left input {
     border: none;
     border-radius: 10px;
-    width: 100%;
+    width: 85%;
     padding: .5rem;
     margin-left: 10px;
     background: none;
+}
+
+.second_nav_left button {
+    display: none;
 }
 
 .second_nav_center a {

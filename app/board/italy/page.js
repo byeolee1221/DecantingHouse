@@ -1,11 +1,17 @@
 import { connectDB } from "@/util/database";
 import ItalyBoard from "./board";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+
 import classes from "./italy.module.css";
 
 const ItalyPage = async () => {
     const db = (await connectDB).db('DecantingHouse');
+    let session = await getServerSession(authOptions);
+
     let postArr = await db.collection('Forum').find({country: 'italy'}).toArray();
     let popularPost = await db.collection('Forum').find({country: 'italy', count: {$gt: 0}}).sort({ count: -1 }).limit(4).toArray();
+    let sessionUserPost = await db.collection('Forum').find({country: 'italy', authorEmail: session?.user.email}).toArray();
 
     return (
         <div className={classes.board_italy_container}>
@@ -19,7 +25,7 @@ const ItalyPage = async () => {
                         <img src="/italy-vineyard.jpg" alt="이탈리아 포도밭" id={classes.title_rightBottom} />
                     </div>
                 </div>
-                <ItalyBoard post={postArr} popular={popularPost} />
+                <ItalyBoard post={postArr} popular={popularPost} sessionUserPost={sessionUserPost} session={session} />
             </div>
         </div>
     );

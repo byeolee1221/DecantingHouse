@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import LogInBtn from "./loginBtn";
 import LogoutBtn from "./logoutBtn";
+import HeaderSearch from "./headerSearch";
 import classes from "./header.module.css";
 
 const Header = async () => {
@@ -26,10 +27,7 @@ const Header = async () => {
                     </div>
                 </nav>
                 <nav className={classes.header_second_nav}>    
-                    <div className={classes.second_nav_left}>
-                        <img src="/search.png" alt="검색" />
-                        <input type="text" id="user_search" name="search" />
-                    </div>
+                    <HeaderSearch />
                     <div className={classes.second_nav_center}>
                         <Link href="/board/france">France</Link>
                         <Link href="/board/usa">U.S.A</Link>

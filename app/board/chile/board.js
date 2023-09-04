@@ -2,11 +2,36 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react";
+import MyPost from "../myPost";
+import AllPost from "../allPost";
+
 import classes from "../../board.module.css";
-import { useEffect } from "react";
 
 const ChileBoard = (props) => {
     const router = useRouter();
+
+    const [myPost, setMyPost] = useState(false);
+
+    let emptyPostError = <p>아직 업로드한 게시글이 없습니다.</p>;
+
+    const myPostHandler = () => {
+        if (!props.session) {
+            alert('로그인이 필요합니다.');
+            router.push('http://localhost:3000/signIn');
+            return;
+        };
+
+        if (!props.sessionUserPost) {
+            return emptyPostError;
+        }
+
+        setMyPost(true);
+    }
+
+    const allPostHandler = () => {
+        setMyPost(false);
+    }
 
     useEffect(() => {
         router.refresh();
@@ -34,43 +59,21 @@ const ChileBoard = (props) => {
                     </div>
                 </div>
                 <div className={classes.board_title}>
-                    <h2>게시판</h2>
-                    <Link href="/write/Chile/new">새 글 쓰기</Link>
+                    <div className={classes.board_myPost_section}>
+                        <h2>게시판</h2>
+                        <div className={classes.box_centerBorder}></div>
+                        <button type="button" className={classes.board_PostBtn} onClick={allPostHandler}>전체 보기</button>
+                    </div>
+                    <div className={classes.board_category_section}>
+                        카테고리 자리. 마지막 카테고리는 '내 글'
+                    </div>
+                    <div className={classes.board_myPost_section}>
+                        <button type="button" className={classes.board_PostBtn} onClick={myPostHandler}>내 글</button>
+                        <div className={classes.box_centerBorder}></div>
+                        <Link href="/write/chile/new">새 글 쓰기</Link>
+                    </div>
                 </div>
-                <div className={classes.board_itemBox}>
-                    {props.post
-                        .sort(
-                            (a, b) => {
-                                let dateA = new Date(`${a.uploadDate2} ${a.uploadDate}`);
-                                let dateB = new Date(`${b.uploadDate2} ${b.uploadDate}`);
-                                return dateB - dateA;
-                            })
-                        .map((postData, i) => {
-                            return (
-                                <Link
-                                    href={`/board/detail/${postData._id}`}
-                                    className={classes.board_item}
-                                    key={i}
-                                >
-                                    <div className={classes.board_innerBox}>
-                                        <h3>{postData.userTitle}</h3>
-                                        <p className={classes.category_item}>
-                                            카테고리: {postData.category}
-                                        </p>
-                                        <p className={classes.date_item}>
-                                            {postData.uploadDate}
-                                        </p>
-                                        <p className={classes.contents_item}>
-                                            {postData.userContents}
-                                        </p>
-                                    </div>
-                                    <p className={classes.author_item}>
-                                        by {postData.author} <span> 💚 {postData.count ? postData.count : 0}</span>
-                                    </p>
-                                </Link>
-                            );
-                        })}  
-                </div>
+                {myPost ? <MyPost sessionUserPost={props.sessionUserPost} /> : <AllPost post={props.post} />}
             </div>
         </div>
     );

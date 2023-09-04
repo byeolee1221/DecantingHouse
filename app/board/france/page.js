@@ -1,15 +1,20 @@
 import { connectDB } from "@/util/database";
 import FranceBoard from "./board";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+
 import classes from "./france.module.css";
 
 const FrancePage = async () => {
-    const country = ['France', 'usa', 'italy', 'chile', 'australia', 'germany'];
+    // const countries = ['france', 'usa', 'italy', 'chile', 'australia', 'germany'];
 
-    const countryMap = country.map((country) => {return country});
-    console.log(countryMap)
     const db = (await connectDB).db('DecantingHouse');
+    let session = await getServerSession(authOptions);
+
     let postArr = await db.collection('Forum').find({country: 'france'}).toArray();
     let popularPost = await db.collection('Forum').find({country: 'france', count: {$gt: 0}}).sort({ count: -1 }).limit(4).toArray();
+    let sessionUserPost = await db.collection('Forum').find({country: 'france', authorEmail: session?.user.email}).toArray();
+    // console.log(sessionUserPost);
 
     return (
         <div className={classes.board_france_container}>
@@ -23,7 +28,7 @@ const FrancePage = async () => {
                         <img src="/france-road.jpg" alt="프랑스 포도밭 도로" id={classes.title_rightBottom} />
                     </div>
                 </div>
-                <FranceBoard post={postArr} popular={popularPost} />
+                <FranceBoard post={postArr} popular={popularPost} sessionUserPost={sessionUserPost} session={session} />
             </div>
         </div>
     );

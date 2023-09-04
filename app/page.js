@@ -6,6 +6,7 @@ import classes from "./page.module.css";
 
 export default async function Home () {
   const db = (await connectDB).db('DecantingHouse');
+
   let popularPostFrance = await db.collection('Forum').find({country: 'france', count: {$gt: 0}}).sort({ count: -1 }).limit(1).toArray();
   let popularPostUsa = await db.collection('Forum').find({country: 'usa', count: {$gt: 0}}).sort({ count: -1 }).limit(1).toArray();
   let popularPostItaly = await db.collection('Forum').find({country: 'italy', count: {$gt: 0}}).sort({ count: -1 }).limit(1).toArray();
