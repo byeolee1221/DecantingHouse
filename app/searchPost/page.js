@@ -48,7 +48,7 @@ const SearchPost = () => {
                             return dateB - dateA;
                         }).map((data, i) => {
                             return (
-                                <Link href={`/board/detail/${data._id}`} key={i} className={classes.searchPost_contents}>
+                                <Link href={`/board/detail/${data._id.toString()}`} key={i} className={classes.searchPost_contents}>
                                 <div className={classes.searchPost_contentsInnerBox}>
                                     <h3>{data.userTitle}</h3>
                                     <p className={classes.searchPost_category}>카테고리: {data.category}</p>

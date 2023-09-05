@@ -76,7 +76,7 @@ const signInPage = () => {
                 <div className={classes.third_loginBox}>
                     {loginBoxImg.map((data, i) => {
                         return (
-                        <div className={classes.loginBox_item} key={3}>
+                        <div className={classes.loginBox_item} key={i}>
                             <button type="button" onClick={data.btnHandler}>
                                 <img src={data.path} alt={data.imgAlt} />
                             </button>

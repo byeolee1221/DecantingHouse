@@ -80,7 +80,7 @@ const EditFormPage = (props) => {
                 <input type="text" name="country" value={props.postInfo.country} />
             </div>
             <div className={classes.id_box}>
-                <input type="text" name="authorId" value={props.postInfo._id} />
+                <input type="text" name="authorId" value={props.postInfo._id.toString()} />
             </div>
             <div className={classes.email_box}>
                 <input type="text" name="authorEmail" value={props.session.user.email} />

@@ -28,7 +28,7 @@ const MainBoardPage = (props) => {
                             return dateB - dateA;
                         }).map((data, i) => {
                             return (
-                                <Link href={`/board/detail/${data._id}`} key={i} className={classes.mainBoard_board}>
+                                <Link href={`/board/detail/${data._id.toString()}`} key={i} className={classes.mainBoard_board}>
                                     <div className={classes.mainBoard_board_inner}>
                                         <h3>{data.userTitle}</h3>
                                         <p className={classes.board_category}>카테고리: {data.category}</p>
@@ -48,7 +48,7 @@ const MainBoardPage = (props) => {
                             return dateB - dateA;
                         }).map((data, i) => {
                             return (
-                                <Link href={`/board/detail/${data._id}`} key={i} className={classes.mainBoard_board}>
+                                <Link href={`/board/detail/${data._id.toString()}`} key={i} className={classes.mainBoard_board}>
                                     <div className={classes.mainBoard_board_inner}>
                                         <h3>{data.userTitle}</h3>
                                         <p className={classes.board_category}>카테고리: {data.category}</p>
@@ -68,7 +68,7 @@ const MainBoardPage = (props) => {
                             return dateB - dateA;
                         }).map((data, i) => {
                             return (
-                                <Link href={`/board/detail/${data._id}`} key={i} className={classes.mainBoard_board}>
+                                <Link href={`/board/detail/${data._id.toString()}`} key={i} className={classes.mainBoard_board}>
                                     <div className={classes.mainBoard_board_inner}>
                                         <h3>{data.userTitle}</h3>
                                         <p className={classes.board_category}>카테고리: {data.category}</p>
@@ -88,7 +88,7 @@ const MainBoardPage = (props) => {
                             return dateB - dateA;
                         }).map((data, i) => {
                             return (
-                                <Link href={`/board/detail/${data._id}`} key={i} className={classes.mainBoard_board}>
+                                <Link href={`/board/detail/${data._id.toString()}`} key={i} className={classes.mainBoard_board}>
                                     <div className={classes.mainBoard_board_inner}>
                                         <h3>{data.userTitle}</h3>
                                         <p className={classes.board_category}>카테고리: {data.category}</p>
@@ -108,7 +108,7 @@ const MainBoardPage = (props) => {
                             return dateB - dateA;
                         }).map((data, i) => {
                             return (
-                                <Link href={`/board/detail/${data._id}`} key={i} className={classes.mainBoard_board}>
+                                <Link href={`/board/detail/${data._id.toString()}`} key={i} className={classes.mainBoard_board}>
                                     <div className={classes.mainBoard_board_inner}>
                                         <h3>{data.userTitle}</h3>
                                         <p className={classes.board_category}>카테고리: {data.category}</p>
@@ -128,7 +128,7 @@ const MainBoardPage = (props) => {
                             return dateB - dateA;
                         }).map((data, i) => {
                             return (
-                                <Link href={`/board/detail/${data._id}`} key={i} className={classes.mainBoard_board}>
+                                <Link href={`/board/detail/${data._id.toString()}`} key={i} className={classes.mainBoard_board}>
                                     <div className={classes.mainBoard_board_inner}>
                                         <h3>{data.userTitle}</h3>
                                         <p className={classes.board_category}>카테고리: {data.category}</p>

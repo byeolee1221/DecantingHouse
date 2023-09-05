@@ -17,7 +17,13 @@ const middleware = async (request) => {
         };
     };
 
-    if (request.nextUrl.pathname.startsWith('/mypage')) {
+    if (request.nextUrl.pathname.startsWith('/MyPage')) {
+        if (session === null) {
+            return NextResponse.redirect('http://localhost:3000/signIn?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2F');
+        };
+    };
+
+    if (request.nextUrl.pathname.startsWith('/MyPage/signOut')) {
         if (session === null) {
             return NextResponse.redirect('http://localhost:3000/signIn?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2F');
         };

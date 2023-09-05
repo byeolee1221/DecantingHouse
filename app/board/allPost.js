@@ -14,7 +14,7 @@ const AllPost = (props) => {
                 .map((postData, i) => {
                     return (
                         <Link
-                            href={`/board/detail/${postData._id}`}
+                            href={`/board/detail/${postData._id.toString()}`}
                             className={classes.board_item}
                             key={i}
                         >

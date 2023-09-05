@@ -12,8 +12,25 @@ const FrancePage = async () => {
     let session = await getServerSession(authOptions);
 
     let postArr = await db.collection('Forum').find({country: 'france'}).toArray();
+
+    postArr = postArr.map((data) => {
+        data._id = data._id.toString();
+        return data;
+    });
+
     let popularPost = await db.collection('Forum').find({country: 'france', count: {$gt: 0}}).sort({ count: -1 }).limit(4).toArray();
+
+    popularPost = popularPost.map((data) => {
+        data._id = data._id.toString();
+        return data;
+    });
+
     let sessionUserPost = await db.collection('Forum').find({country: 'france', authorEmail: session?.user.email}).toArray();
+
+    sessionUserPost = sessionUserPost.map((data) => {
+        data._id = data._id.toString();
+        return data;
+    });
     // console.log(sessionUserPost);
 
     return (

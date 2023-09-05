@@ -143,7 +143,7 @@ const CommentPage = (props) => {
                     {getData.length > 0 ? getData.map((data, i) => {
                         return (
                             <div className={classes.commentBox} key={i}>
-                                {id !== data._id || !update ? <p>
+                                {id !== data._id.toString() || !update ? <p>
                                     <span>{data.commentUser}</span>: {data.comment}
                                 </p> :
                                 <p>

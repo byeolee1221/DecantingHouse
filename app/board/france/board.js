@@ -12,8 +12,7 @@ const FranceBoard = (props) => {
     const router = useRouter();
 
     const [myPost, setMyPost] = useState(false);
-
-    let emptyPostError = <p>아직 업로드한 게시글이 없습니다.</p>;
+    const [error, setError] = useState('');
 
     const myPostHandler = () => {
         if (!props.session) {
@@ -23,8 +22,9 @@ const FranceBoard = (props) => {
         };
 
         if (!props.sessionUserPost) {
-            return emptyPostError;
-        }
+            setError('아직 게시한 글이 없습니다.');
+            return;
+        };
 
         setMyPost(true);
     }
@@ -45,7 +45,7 @@ const FranceBoard = (props) => {
                     <div className={classes.popular_itemBox}>
                         {props.popular.map((data, i) => {
                             return (
-                                <Link href={`/board/detail/${data._id}`} className={classes.popular_item} key={i}>
+                                <Link href={`/board/detail/${data._id.toString()}`} className={classes.popular_item} key={i}>
                                     <div className={classes.board_popular_item_inner}>
                                         <h3>{data.userTitle}</h3>
                                         <p className={classes.popular_category}>카테고리: {data.category}</p>
@@ -73,7 +73,9 @@ const FranceBoard = (props) => {
                         <Link href="/write/france/new">새 글 쓰기</Link>
                     </div>
                 </div>
-                {myPost ? <MyPost sessionUserPost={props.sessionUserPost} /> : <AllPost post={props.post} />}
+                {error && <p className={classes.emptyPostError}>{error}</p>}
+                {!myPost && <AllPost post={props.post} />}
+                {myPost && <MyPost sessionUserPost={props.sessionUserPost} />}
             </div>
         </div>
     );

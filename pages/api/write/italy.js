@@ -11,7 +11,7 @@ const ItalyWriteHandler = async (req, res) => {
     try {
         if (req.method === "POST") {
             let result = await db.collection("Forum").insertOne(req.body);
-            console.log(result);
+            // console.log(result);
 
             return res.status(200).redirect(302, "/board/italy");
         }

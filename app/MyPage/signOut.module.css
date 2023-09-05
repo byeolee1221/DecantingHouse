@@ -1,0 +1,81 @@
+.menuBox_signout {
+    width: 100%;
+    padding: .5rem;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.menuBox_signout h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.signout_description {
+    color: var(--color-font-4);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.myPage_signOut_form {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.signOut_form_item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    gap: 20px;
+}
+
+.signOut_form_item label {
+    width: 140px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: .1rem;
+}
+
+.signOut_form_item input {
+    width: 40%;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-box-3);
+    padding: .5rem;
+}
+
+.signOut_box_errorMsg {
+    color: var(--color-font-4);
+    margin-top: 0;
+}
+
+.SignOut_form_btnBox {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.SignOut_form_btnBox button {
+    background-color: var(--color-box-4);
+    border: none;
+    border-radius: 10px;
+    transition: all .3s ease-in-out;
+    padding: .5rem 1.5rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+}
+
+.SignOut_form_btnBox button:hover,
+.SignOut_form_btnBox button:active {
+    background-color: var(--color-box-5);
+}
