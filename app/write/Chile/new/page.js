@@ -7,8 +7,6 @@ const WriteNewPage = async () => {
     let session = await getServerSession(authOptions);
     const country = 'chile';
 
-    // 로그인 안하고 진입하려 하면 로그인페이지로 안내
-
     return (
         <div className={classes.board_write_container}>
             <div className={classes.write_wrapper}>

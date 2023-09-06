@@ -11,6 +11,8 @@ const SignOut = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [socialError, setSocialError] = useState('');
+    const [socialSignOut, setSocialSignOut] = useState(false);
 
     const emailChangeHandler = (event) => {
         setEmail(event.target.value);
@@ -44,6 +46,8 @@ const SignOut = () => {
             setError(data.message);
         };
     }
+
+    
 
     const cancelBtnHandler = () => {
         router.back();

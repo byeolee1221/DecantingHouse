@@ -16,7 +16,6 @@ const WriteNewFormPage = (props) => {
     const [title, setTitle] = useState('');
     const [contents, setContents] = useState('');
     const [fileName, setFileName] = useState('');
-    const [postData, setPostData] = useState([]);
 
     const authorChangeHandler = (event) => {
         setAuthor(event.target.value);

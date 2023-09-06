@@ -12,17 +12,17 @@ export const authOptions = {
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            allowDangerousEmailAccountLinking: true
+            // allowDangerousEmailAccountLinking: true
         }),
         KakaoProvider({
             clientId: process.env.KAKAO_CLIENT_ID,
             clientSecret: process.env.KAKAO_CLIENT_SECRET,
-            allowDangerousEmailAccountLinking: true
+            // allowDangerousEmailAccountLinking: true
         }),
         NaverProvider({
             clientId: process.env.NAVER_CLIENT_ID,
             clientSecret: process.env.NAVER_CLIENT_SECRET,
-            allowDangerousEmailAccountLinking: true
+            // allowDangerousEmailAccountLinking: true
         }),
 
         CredentialsProvider({
@@ -65,7 +65,7 @@ export const authOptions = {
 
     session: {
         strategy: "jwt",
-        maxAge: 30 * 60
+        maxAge: 30 * 24 * 60 * 60
     },
 
     callbacks: {
