@@ -5,27 +5,43 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 import classes from "./france.module.css";
 
-const FrancePage = async () => {
-    const countries = ['france', 'usa', 'italy', 'chile', 'australia', 'germany'];
-
+const CountryPage = async () => {
     const db = (await connectDB).db('DecantingHouse');
     let session = await getServerSession(authOptions);
 
-    let postArr = await db.collection('Forum').find({country: 'france'}).toArray();
+    const countries = ['france', 'usa', 'italy', 'chile', 'australia', 'germany'];
+
+    let countrylist = countries.map((data) => {
+        return data;
+    })
+
+    let postArr = await Promise.all(
+        countries.map((country) => {
+            return db.collection('Forum').find({ country: country }).toArray();
+        })
+    );
 
     postArr = postArr.map((data) => {
         data._id = data._id.toString();
         return data;
     });
 
-    let popularPost = await db.collection('Forum').find({country: 'france', count: {$gt: 0}}).sort({ count: -1 }).limit(4).toArray();
+    let popularPost = await Promise.all(
+        countries.map((country) => {
+            return db.collection('Forum').find({country: country, count: {$gt: 0}}).sort({ count: -1 }).limit(4).toArray();
+        })
+    );
 
     popularPost = popularPost.map((data) => {
         data._id = data._id.toString();
         return data;
     });
 
-    let sessionUserPost = await db.collection('Forum').find({country: 'france', authorEmail: session?.user.email}).toArray();
+    let sessionUserPost = await Promise.all(
+        countries.map((country) => {
+            return db.collection('Forum').find({country: country, authorEmail: session?.user.email}).toArray();
+        })
+    );
 
     sessionUserPost = sessionUserPost.map((data) => {
         data._id = data._id.toString();
@@ -34,19 +50,20 @@ const FrancePage = async () => {
 
     const category = ['품종', '페어링', '제품', '맛', '기타'];
 
-    let category1Post = await db.collection('Forum').find({ country: 'france', category: '품종' }).toArray();
-    let category2Post = await db.collection('Forum').find({ country: 'france', category: '페어링' }).toArray();
-    let category3Post = await db.collection('Forum').find({ country: 'france', category: '제품' }).toArray();
-    let category4Post = await db.collection('Forum').find({ country: 'france', category: '맛' }).toArray();
-    let category5Post = await db.collection('Forum').find({ country: 'france', category: '기타' }).toArray();
-    // console.log(sessionUserPost);
+    let categoryPost = await Promise.all(
+        countries.map((country) => {
+            category.map((category) => {
+                return db.collection('Forum').find({ country: country, category: category }).toArray();
+            })
+        })
+    );
 
     return (
         <div className={classes.board_france_container}>
             <div className={classes.board_wrapper}>
                 <div className={classes.board_titleBox}>
                     <div className={classes.title_left}>
-                        <h1 className={classes.board_title}>FRANCE</h1>
+                        <h1 className={classes.board_title}>{countrylist}</h1>
                     </div>
                     <div className={classes.board_titleBox_right}>
                         <img src="/france-vineyard.jpg" alt="프랑스 포도밭" id={classes.title_rightTop} />
@@ -58,15 +75,12 @@ const FrancePage = async () => {
                     popular={popularPost} 
                     sessionUserPost={sessionUserPost} 
                     session={session} 
-                    category1={category1Post} 
-                    category2={category2Post}
-                    category3={category3Post}
-                    category4={category4Post}
-                    category5={category5Post}
+                    category={categoryPost}
                 />
             </div>
         </div>
     );
+
 }
 
-export default FrancePage;
+export default CountryPage;

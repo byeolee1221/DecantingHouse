@@ -31,7 +31,7 @@ const ContentsLike = async (req, res) => {
             let getData = await db.collection('Like').find({ parent: req.query.id }).toArray();
             // console.log(getData); 
             let getCount = getData.reduce((sum, obj) => sum + obj.count, 0);
-            console.log(getCount);
+            // console.log(getCount);
             
             return res.status(200).json(getCount);
         }

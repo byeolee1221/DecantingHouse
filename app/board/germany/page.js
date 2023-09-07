@@ -10,8 +10,31 @@ const GermanyPage = async () => {
     let session = await getServerSession(authOptions);
 
     let postArr = await db.collection('Forum').find({country: 'germany'}).toArray();
+
+    postArr = postArr.map((data) => {
+        data._id = data._id.toString();
+        return data;
+    });
+
     let popularPost = await db.collection('Forum').find({country: 'germany', count: {$gt: 0}}).sort({ count: -1 }).limit(4).toArray();
+
+    popularPost = popularPost.map((data) => {
+        data._id = data._id.toString();
+        return data;
+    });
+
     let sessionUserPost = await db.collection('Forum').find({country: 'germany', authorEmail: session?.user.email}).toArray();
+
+    sessionUserPost = sessionUserPost.map((data) => {
+        data._id = data._id.toString();
+        return data;
+    });
+
+    let category1Post = await db.collection('Forum').find({ country: 'germany', category: '품종' }).toArray();
+    let category2Post = await db.collection('Forum').find({ country: 'germany', category: '페어링' }).toArray();
+    let category3Post = await db.collection('Forum').find({ country: 'germany', category: '제품' }).toArray();
+    let category4Post = await db.collection('Forum').find({ country: 'germany', category: '맛' }).toArray();
+    let category5Post = await db.collection('Forum').find({ country: 'germany', category: '기타' }).toArray();
 
     return (
         <div className={classes.board_germany_container}>
@@ -25,7 +48,17 @@ const GermanyPage = async () => {
                         <img src="/wood-germany.jpg" alt="독일 와인병" id={classes.title_rightBottom} />
                     </div>
                 </div>
-                <GermanyBoard post={postArr} popular={popularPost} sessionUserPost={sessionUserPost} session={session} />
+                <GermanyBoard 
+                    post={postArr} 
+                    popular={popularPost} 
+                    sessionUserPost={sessionUserPost} 
+                    session={session} 
+                    category1={category1Post} 
+                    category2={category2Post}
+                    category3={category3Post}
+                    category4={category4Post}
+                    category5={category5Post}
+                />
             </div>
         </div>
     );

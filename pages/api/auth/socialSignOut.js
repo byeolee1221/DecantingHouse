@@ -14,13 +14,13 @@ const SocialSignOut = async (req, res) => {
             let status = '';
             
             if (userAuth) {
-                // let tokenCheckUser = await db.collection('accounts').findOne({ userId: new ObjectId(userAuth._id) });
-                // // console.log(tokenCheckUser);
-                // let tokenCheck = tokenCheckUser.expires_at;
-                // let tokenDate = new Date(tokenCheck * 1000);
-                // // console.log(tokenDate);
-                // let currentDate = new Date()
-                // console.log(currentDate);
+                let tokenCheckUser = await db.collection('accounts').findOne({ userId: new ObjectId(userAuth._id) });
+                // console.log(tokenCheckUser);
+                let tokenCheck = tokenCheckUser.expires_at;
+                let tokenDate = new Date(tokenCheck * 1000);
+                console.log(tokenDate);
+                let currentDate = new Date()
+                console.log(currentDate);
 
                     let getUserInfo = await db.collection('accounts').findOne({ userId: new ObjectId(userAuth._id) });
                     let getAccessToken = '';
@@ -28,13 +28,14 @@ const SocialSignOut = async (req, res) => {
 
                     if (getUserInfo.provider === 'google') {
                         // console.log(getUserInfo);
-                        let accessToken = getUserInfo.access_token;
+                        getAccessToken = getUserInfo.access_token;
                         let googleKey = process.env.GOOGLE_API_KEY;
                         let deleteProvider = ['google.com'];
     
-                        // console.log(idToken);
-                        const signOut = await fetch(`https://accounts.google.com/o/oauth2/revoke?token=${accessToken}`, {
-                            method: 'GET',
+                        console.log(getAccessToken);
+                        const signOut = await fetch(` https://oauth2.googleapis.com/revoke?token=${getAccessToken}`, {
+                            method: 'POST',
+                            headers: { 'content-type' : 'application/x-www-form-urlencoded' }
                         });
     
                         const googleResult = await signOut.json();
@@ -42,8 +43,7 @@ const SocialSignOut = async (req, res) => {
     
                         if (googleResult.status === 200) {   
                             console.log(yes)              
-                            status = 200;
-                            return;                        
+                            status = 200;                     
                         } else if (googleResult.error_description === 'Token expired or revoked') {
                             console.log('토큰 만료되어 직접 삭제대상');
                             status = 200;
@@ -67,24 +67,32 @@ const SocialSignOut = async (req, res) => {
                         if (kakaoResult.status === 200) {
                             console.log(yes)              
                             status = 200;
-                            return; 
                         } else if (kakaoResult.msg === 'this access token does not exist') {
+                            console.log('카카오 토큰만료')
                             status = 200;
-                            return;
                         }
                     }
     
                     if (getUserInfo.provider === 'naver') {
-                        console.log('naver')
+                        getAccessToken = getUserInfo.access_token;
+                        console.log(getAccessToken)
+                        const tokenCheck = await fetch(`https://openapi.naver.com/v1/nid/me?Authorization=${getAccessToken}`, {
+                            method: 'GET'
+                        });
+
+                        const tokenResult = await tokenCheck.json();
+                        console.log(tokenResult);
+
                         const signOut = await fetch(
                             `https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=${process.env.NAVER_CLIENT_ID}&client_secret=${process.env.NAVER_CLIENT_SECRET}&access_token=${getAccessToken}`, {
                             method: 'GET'
                         });
             
                         const naverResult = await signOut.json();
+                        console.log(naverResult);
             
                         if (naverResult.result === 'success') {
-                            return res.status(200).json({ status: 200 });
+                            status = 200;
                         };
                     }
                 

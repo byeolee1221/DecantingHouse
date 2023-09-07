@@ -39,6 +39,12 @@
     color: var(--color-font-3);
 }
 
+.mainBoard_board p {
+    margin-top: 10px;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+}
+
 .mainBoard_board h3 {
     margin-bottom: 5px;
     font-size: 1.5rem;
@@ -57,10 +63,12 @@
 
 .board_contents {
     margin-bottom: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
-.board_author {
-    margin: 0;
+.mainBoard_board .board_author {
+    margin-top: 0;
     font-weight: bold;
     display: flex;
     align-items: center;

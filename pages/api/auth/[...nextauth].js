@@ -60,12 +60,13 @@ export const authOptions = {
 
     pages: {
         signIn: "/signIn",
-        error: "/signIn"
+        error: "/socialError"
     },
 
     session: {
         strategy: "jwt",
-        maxAge: 30 * 24 * 60 * 60
+        maxAge: 1 * 60 * 60,
+        rollingSession: true
     },
 
     callbacks: {
@@ -76,7 +77,7 @@ export const authOptions = {
                 token.user.nickName = user.nickName;
                 token.user.email = user.email;
                 token.user.role = user.role;
-            }
+            };
             return token;
         },
       

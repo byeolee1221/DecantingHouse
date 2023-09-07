@@ -36,9 +36,9 @@ const signInPage = () => {
     };
 
     const loginBoxImg = [
-        { providerName: "Google", btnHandler: () => signIn("google"), path: "/g-logo.png", imgAlt: "구글 로그인" },
-        { providerName: "KAKAO", btnHandler: () => signIn("kakao"), path: "/kakao_login_large.png", imgAlt: "카카오 로그인" },
-        { providerName: "네이버", btnHandler: () => signIn("naver"), path: "/naver.png", imgAlt: "네이버 로그인" }
+        { providerName: "Google", provider: "google", path: "/g-logo.png", imgAlt: "구글 로그인" },
+        { providerName: "KAKAO", provider: "kakao", path: "/kakao_login_large.png", imgAlt: "카카오 로그인" },
+        { providerName: "네이버", provider: "naver", path: "/naver.png", imgAlt: "네이버 로그인" }
     ];
 
     const loginBtnHandler = async (event) => {
@@ -75,9 +75,10 @@ const signInPage = () => {
                 </div>
                 <div className={classes.third_loginBox}>
                     {loginBoxImg.map((data, i) => {
+                        const btnHandler = () => signIn(data.provider);
                         return (
                         <div className={classes.loginBox_item} key={i}>
-                            <button type="button" onClick={data.btnHandler}>
+                            <button type="button" onClick={btnHandler}>
                                 <img src={data.path} alt={data.imgAlt} />
                             </button>
                             <p>{data.providerName} 로그인</p>

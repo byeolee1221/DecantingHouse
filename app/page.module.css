@@ -97,6 +97,7 @@
     overflow: hidden;
     height: 230px;
     border-bottom: 1px solid white;
+    padding-bottom: 10px;
 }
 
 .popularPost_item h3 {
@@ -105,8 +106,9 @@
 }
 
 .popularPost_item p {
-    text-overflow: ellipsis;
+    margin-top: 10px;
     word-break: keep-all;
+    text-overflow: ellipsis;
 }
 
 .popularPost_item p:first-of-type {

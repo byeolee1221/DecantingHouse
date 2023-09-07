@@ -13,6 +13,12 @@
 .title_inner {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.title_inner_left {
+    display: flex;
+    align-items: center;
     gap: 50px;
 }
 

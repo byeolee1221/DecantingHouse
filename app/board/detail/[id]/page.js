@@ -6,7 +6,8 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import LikeBtn from "./likeBtn";
 import DeleteBtn from "./deleteBtn";
 import CommentPage from "./comment";
-
+import Hits from "./hits";
+ 
 import classes from "../../detail.module.css";
 
 const boardDetail = async (props) => {
@@ -30,9 +31,14 @@ const boardDetail = async (props) => {
                     <p>카테고리: {checkPost.category}</p>
                     <h1>{checkPost.userTitle}</h1>
                     <div className={classes.title_inner}>
-                        <p>{checkPost.uploadDate}</p>
-                        <p>{checkPost.country.toUpperCase()}</p>
-                        <p>게시자: {checkPost.author}</p>
+                        <div className={classes.title_inner_left}>
+                            <p>{checkPost.uploadDate}</p>
+                            <p>{checkPost.country.toUpperCase()}</p>
+                            <p>게시자: {checkPost.author}</p>
+                        </div>
+                        <div className={classes.title_inner_right}>
+                            <Hits checkPost={checkPost} />
+                        </div>
                     </div>
                 </div>
                 <div className={classes.detail_contentsBox}>
@@ -44,7 +50,7 @@ const boardDetail = async (props) => {
                     </div>
                     <div className={classes.btnBox_right}>
                         <LikeBtn checkPost={checkPost} session={session} />
-                        {isPossibleEdit ? <Link href={`/board/edit/${checkPost._id}`}>수정하기</Link> : ''}
+                        {isPossibleEdit ? <Link href={`/board/edit/${checkPost._id.toString()}`}>수정하기</Link> : ''}
                         {isPossibleEdit ? <DeleteBtn checkPost={checkPost} session={session} /> : ''}
                     </div>
                 </div>
