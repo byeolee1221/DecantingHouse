@@ -60,7 +60,7 @@ export const authOptions = {
 
     pages: {
         signIn: "/signIn",
-        error: "/socialError"
+        error: "/signIn"
     },
 
     session: {
@@ -74,9 +74,10 @@ export const authOptions = {
             if (user) {
                 token.user = {};
                 token.user.name = user.name;
-                token.user.nickName = user.nickName;
+                token.user.realName = user.realName;
                 token.user.email = user.email;
                 token.user.role = user.role;
+                token.user.reportWarning = user.reportWarning;
             };
             return token;
         },

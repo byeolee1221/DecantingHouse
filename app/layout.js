@@ -1,8 +1,10 @@
-import './globals.css'
-import Header from './header'
+import Header from './header';
+import Footer from './footer';
 import { getServerSession } from 'next-auth'
 import { authOptions } from "../pages/api/auth/[...nextauth]";
 import { connectDB } from '@/util/database';
+
+import './globals.css';
 
 export const metadata = {
   title: '디캔팅하우스 | Decanting House',
@@ -18,6 +20,7 @@ export default async function RootLayout({ children }) {
       <body>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   )

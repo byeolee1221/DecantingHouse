@@ -1,13 +1,11 @@
 import { connectDB } from "@/util/database";
-import FranceBoard from "./board";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import FranceBoard from "./board";
 
 import classes from "./france.module.css";
 
 const FrancePage = async () => {
-    const countries = ['france', 'usa', 'italy', 'chile', 'australia', 'germany'];
-
     const db = (await connectDB).db('DecantingHouse');
     let session = await getServerSession(authOptions);
 
@@ -34,11 +32,20 @@ const FrancePage = async () => {
 
     const category = ['품종', '페어링', '제품', '맛', '기타'];
 
-    let category1Post = await db.collection('Forum').find({ country: 'france', category: '품종' }).toArray();
-    let category2Post = await db.collection('Forum').find({ country: 'france', category: '페어링' }).toArray();
-    let category3Post = await db.collection('Forum').find({ country: 'france', category: '제품' }).toArray();
-    let category4Post = await db.collection('Forum').find({ country: 'france', category: '맛' }).toArray();
-    let category5Post = await db.collection('Forum').find({ country: 'france', category: '기타' }).toArray();
+    let categoryPost = {};
+
+    const categoryMap = await Promise.all(
+        category.map(async (data) => {
+            const result = await db.collection('Forum').find({ country: 'france', category: data }).toArray();
+            categoryPost[data] = result;
+        })
+    )
+
+    let category1Post = categoryPost['품종'];
+    let category2Post = categoryPost['페어링'];
+    let category3Post = categoryPost['제품'];
+    let category4Post = categoryPost['맛'];
+    let category5Post = categoryPost['기타'];
     // console.log(sessionUserPost);
 
     return (

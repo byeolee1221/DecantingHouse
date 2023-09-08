@@ -9,7 +9,7 @@ import classes from "./header.module.css";
 const Header = async () => {
     let session = await getServerSession(authOptions);
 
-    // console.log(session);
+    const country = ['france', 'usa', 'italy', 'chile', 'australia', 'germany'];
 
     return (
         <header className={classes.header_container}>
@@ -29,12 +29,11 @@ const Header = async () => {
                 <nav className={classes.header_second_nav}>    
                     <HeaderSearch />
                     <div className={classes.second_nav_center}>
-                        <Link href="/board/france">France</Link>
-                        <Link href="/board/usa">U.S.A</Link>
-                        <Link href="/board/italy">Italy</Link>
-                        <Link href="/board/chile">Chile</Link>
-                        <Link href="/board/australia">Australia</Link>
-                        <Link href="/board/germany">Germany</Link>
+                        {country.map((data) => {
+                            return (
+                                <Link href={`/board/${data}`}>{data.toUpperCase()}</Link>
+                            );
+                        })}
                     </div>
                     <div className={classes.second_nav_right}>
                         <Link href="/board/likedPost">

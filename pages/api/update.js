@@ -21,7 +21,7 @@ const updatePost = async (req, res) => {
             let authorAuth = await db.collection('Forum').findOne({ _id: new ObjectId(req.body.authorId) });
             // console.log(authorAuth);
             
-            if (authorAuth.authorEmail === req.body.authorEmail || session.user.role === 'admin') {
+            if (authorAuth.authorEmail === req.body.authorEmail || session.user.email === 'decantinghouse.official@gmail.com') {
                 let updatePost = await db.collection('Forum').updateOne({ _id: new ObjectId(req.body.authorId)}, {$set: updateValue});
                 // console.log(updatePost);
                 return res.status(200).redirect(302, `/board/${req.body.country}`);

@@ -30,6 +30,7 @@ const SocialSignOut = () => {
         <div className={classes.menuBox_social_signOut}>
             <h3>소셜로그인 연결 해제</h3>
             <p className={classes.social_signOut_description}>소셜로그인 연결 해제를 하시면 탈퇴처리가 자동으로 이루어집니다.</p>
+            <p>(탈퇴 시 모든 활동내역도 함께 삭제됩니다.)</p>
             <p className={classes.signOut_box_errorMsg}>{socialError}</p>
             <button type="button" onClick={socialSignOutHandler}>연결 해제</button>
         </div>

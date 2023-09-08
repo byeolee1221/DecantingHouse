@@ -26,6 +26,26 @@ const FranceBoard = (props) => {
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
 
+    useEffect(() => {
+        let reportWarning = props.session?.user?.reportWarning;
+
+        if (reportWarning === 1) {
+            alert('회원님의 게시글의 신고가 누적되어 삭제되었습니다. 4회 더 삭제될 시 회원자격이 박탈됩니다.');
+        };
+
+        if (reportWarning === 2) {
+            alert('회원님의 게시글의 신고가 누적되어 삭제되었습니다. 3회 더 삭제될 시 회원자격이 박탈됩니다.');
+        };
+
+        if (reportWarning === 3) {
+            alert('회원님의 게시글의 신고가 누적되어 삭제되었습니다. 2회 더 삭제될 시 회원자격이 박탈됩니다.');
+        };
+
+        if (reportWarning === 4) {
+            alert('회원님의 게시글의 신고가 누적되어 삭제되었습니다. 1회 더 삭제될 시 회원자격이 박탈됩니다.');
+        };
+    }, [props.session?.user?.reportWarning])
+
     const myPostHandler = () => {
         if (!props.session) {
             alert('로그인이 필요합니다.');
@@ -120,7 +140,7 @@ const FranceBoard = (props) => {
                     <div className={classes.popular_itemBox}>
                         {props.popular.map((data, i) => {
                             return (
-                                <Link href={`/board/detail/${data._id.toString()}`} className={classes.popular_item} key={i}>
+                                <Link href={`/board/detail/${data._id}`} className={classes.popular_item} key={i}>
                                     <div className={classes.board_popular_item_inner}>
                                         <h3>{data.userTitle}</h3>
                                         <p className={classes.popular_category}>카테고리: {data.category}</p>

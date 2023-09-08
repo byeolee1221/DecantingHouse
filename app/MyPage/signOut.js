@@ -11,8 +11,6 @@ const SignOut = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [socialError, setSocialError] = useState('');
-    const [socialSignOut, setSocialSignOut] = useState(false);
 
     const emailChangeHandler = (event) => {
         setEmail(event.target.value);
@@ -41,13 +39,10 @@ const SignOut = () => {
         if (data.status === 200) {
             alert('그동안 이용해주셔서 감사합니다.');
             signOut();
-            // router.push('/MyPage/signOut');
         } else {
             setError(data.message);
         };
     }
-
-    
 
     const cancelBtnHandler = () => {
         router.back();
@@ -57,6 +52,7 @@ const SignOut = () => {
         <div className={classes.menuBox_signout}>
             <h3>회원탈퇴</h3>
             <p className={classes.signout_description}>정보입력 후 확인을 누르면 바로 탈퇴처리되므로 탈퇴의사를 확인해주시기 바랍니다.</p>
+            <p className={classes.signout_description2}>(탈퇴 시 모든 활동내역도 함께 삭제됩니다.)</p>
             <div className={classes.signOut_box}>
                 <form action="/" method="POST" className={classes.myPage_signOut_form} onSubmit={submitHandler}>
                     <div className={classes.signOut_form_item}>

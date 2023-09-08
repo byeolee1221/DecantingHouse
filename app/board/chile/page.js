@@ -30,11 +30,22 @@ const ChilePage = async () => {
         return data;
     });
 
-    let category1Post = await db.collection('Forum').find({ country: 'chile', category: '품종' }).toArray();
-    let category2Post = await db.collection('Forum').find({ country: 'chile', category: '페어링' }).toArray();
-    let category3Post = await db.collection('Forum').find({ country: 'chile', category: '제품' }).toArray();
-    let category4Post = await db.collection('Forum').find({ country: 'chile', category: '맛' }).toArray();
-    let category5Post = await db.collection('Forum').find({ country: 'chile', category: '기타' }).toArray();
+    const category = ['품종', '페어링', '제품', '맛', '기타'];
+    
+    let categoryPost = {};
+
+    const categoryMap = await Promise.all(
+        category.map(async (data) => {
+            const result = await db.collection('Forum').find({ country: 'chile', category: data }).toArray();
+            categoryPost[data] = result;
+        })
+    )
+
+    let category1Post = categoryPost['품종'];
+    let category2Post = categoryPost['페어링'];
+    let category3Post = categoryPost['제품'];
+    let category4Post = categoryPost['맛'];
+    let category5Post = categoryPost['기타'];
 
     return (
         <div className={classes.board_chile_container}>

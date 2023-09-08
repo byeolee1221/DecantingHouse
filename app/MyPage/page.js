@@ -8,6 +8,7 @@ import SocialSignOut from "./socialSignOut";
 import classes from "./MyPage.module.css";
 
 const MyPage = () => {
+
     const [passwordChange, setPasswordChange] = useState(false);
     const [signOut, setSignOut] = useState(false);
     const [social, setSocial] = useState(false);

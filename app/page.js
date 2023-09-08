@@ -56,6 +56,15 @@ export default async function Home () {
   const classNameOfAustralia = `${classes.popularPost_item} ${classes.australia}`;
   const classNameOfGermany = `${classes.popularPost_item} ${classes.germany}`;
 
+  const mapData = [
+    {postName: popularPostFrance, className: classNameOfFrance},
+    {postName: popularPostUsa, className: classNameOfUsa},
+    {postName: popularPostItaly, className: classNameOfItaly},
+    {postName: popularPostChile, className: classNameOfChile},
+    {postName: popularPostAustralia, className: classNameOfAustralia},
+    {postName: popularPostGermany, className: classNameOfGermany},
+  ];
+
   return (
     <main className={classes.home_container}>
       <div className={classes.home_wrapper}>
@@ -67,54 +76,18 @@ export default async function Home () {
             <h2>인기게시물</h2>
           </div>
           <div className={classes.popularPost_itemBox}>
-            <Link href={`/board/detail/${popularPostFrance._id.toString()}`} className={classNameOfFrance}>   
-              <div className={classes.popularPost_item_inner}>
-                <h3>{popularPostFrance.userTitle}</h3>
-                <p>{popularPostFrance.country.toUpperCase()} | {popularPostFrance.uploadDate}</p>
-                <p>{popularPostFrance.userContents}</p>
-              </div>
-              <p>by {popularPostFrance.author}</p>
-            </Link>
-            <Link href={`/board/detail/${popularPostUsa._id.toString()}`} className={classNameOfUsa}>   
-              <div className={classes.popularPost_item_inner}>
-                <h3>{popularPostUsa.userTitle}</h3>
-                <p>{popularPostUsa.country.toUpperCase()} | {popularPostUsa.uploadDate}</p>
-                <p>{popularPostUsa.userContents}</p>   
-              </div>  
-              <p>by {popularPostUsa.author}</p>
-            </Link>
-            <Link href={`/board/detail/${popularPostItaly._id.toString()}`} className={classNameOfItaly}> 
-              <div className={classes.popularPost_item_inner}>
-                <h3>{popularPostItaly.userTitle}</h3>
-                <p>{popularPostItaly.country.toUpperCase()} | {popularPostItaly.uploadDate}</p>
-                <p>{popularPostItaly.userContents}</p>           
-              </div>    
-              <p>by {popularPostItaly.author}</p>
-            </Link>
-            <Link href={`/board/detail/${popularPostChile._id.toString()}`} className={classNameOfChile}>
-              <div className={classes.popularPost_item_inner}>
-                <h3>{popularPostChile.userTitle}</h3>
-                <p>{popularPostChile.country.toUpperCase()} | {popularPostChile.uploadDate}</p>
-                <p>{popularPostChile.userContents}</p>
-              </div>     
-              <p>by {popularPostChile.author}</p>
-            </Link>
-            <Link href={`/board/detail/${popularPostAustralia._id.toString()}`} className={classNameOfAustralia}>  
-              <div className={classes.popularPost_item_inner}>
-                <h3>{popularPostAustralia.userTitle}</h3>
-                <p>{popularPostAustralia.country.toUpperCase()} | {popularPostAustralia.uploadDate}</p>
-                <p>{popularPostAustralia.userContents}</p>
-              </div>   
-              <p>by {popularPostAustralia.author}</p>
-            </Link>
-            <Link href={`/board/detail/${popularPostGermany._id.toString()}`} className={classNameOfGermany}>
-              <div className={classes.popularPost_item_inner}>
-                <h3>{popularPostGermany.userTitle}</h3>
-                <p>{popularPostGermany.country.toUpperCase()} | {popularPostGermany.uploadDate}</p>
-                <p>{popularPostGermany.userContents}</p>
-              </div>     
-              <p>by {popularPostGermany.author}</p>
-            </Link>
+            {mapData.map((data) => {
+              return (
+                <Link href={`/board/detail/${data.postName._id.toString()}`} className={data.className}>   
+                  <div className={classes.popularPost_item_inner}>
+                    <h3>{data.postName.userTitle}</h3>
+                    <p>{data.postName.country.toUpperCase()} | {data.postName.uploadDate}</p>
+                    <p>{data.postName.userContents}</p>
+                  </div>
+                  <p>by {data.postName.author}</p>
+                </Link>
+              );
+            })} 
           </div>
         </div>
         <MainBoardPage post={arrData} />

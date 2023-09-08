@@ -35,6 +35,18 @@
     justify-content: space-between;
 }
 
+.btnBox_left button {
+    background-color: var(--color-box-6);
+    border: none;
+    border-radius: 10px;
+    transition: all .3s ease-in-out;
+    padding: .5rem 1.5rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+}
+
 .btnBox_right a {
     background-color: var(--color-box-6);
     border: none;
@@ -63,6 +75,8 @@
 .btnBox_right button:hover,
 .btnBox_right button:active,
 .btnBox_right a:hover,
-.btnBox_right a:active {
+.btnBox_right a:active,
+.btnBox_left button:hover,
+.btnBox_left button:active {
     background-color: var(--color-box-9);
 }

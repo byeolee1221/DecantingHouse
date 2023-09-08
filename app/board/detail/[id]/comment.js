@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from "react";
 import classes from "./comment.module.css";
+import { useRouter } from "next/navigation";
 
 const CommentPage = (props) => {
+    const router = useRouter();
+
     const [comment, setComment] = useState('');
     const [error, setError] = useState('');
     const [getData, setGetData] = useState([]);
@@ -27,7 +30,7 @@ const CommentPage = (props) => {
             comment,
             commentUser: props.session.user.name,
             commentUserEmail: props.session.user.email,
-            parent: props.checkPost._id
+            parent: props.checkPost._id.toString()
         };
 
         const response = await fetch('/api/write/comment/comment', {
@@ -48,7 +51,7 @@ const CommentPage = (props) => {
 
     useEffect(() => {
         const getDataHandler = async () => {
-            const response = await fetch(`/api/write/comment/comment?id=${props.checkPost._id}`, {
+            const response = await fetch(`/api/write/comment/comment?id=${props.checkPost._id.toString()}`, {
                 method: 'GET'
             })
     
@@ -59,12 +62,13 @@ const CommentPage = (props) => {
         }
 
         getDataHandler();
+        router.refresh();
 
     }, [post])
 
     const commentDeleteHandler = async () => {  
         let commentData = {
-            id : props.checkPost._id,
+            id : props.checkPost._id.toString(),
             commentUserEmail: props.session?.user.email,
             commentId : id
         };
@@ -82,6 +86,7 @@ const CommentPage = (props) => {
         if (data.status === 200) {
             alert('댓글이 삭제되었습니다.');
             setPost(true);
+            
         } else {
             alert(data.message);
         }
@@ -91,8 +96,6 @@ const CommentPage = (props) => {
         setUpdate(true);
 
         setId(commentId);
-        // get 요청 보내서 댓글 이메일 받기
-        // 
     }
 
     const commentUpdateHandler = async () => {
@@ -121,6 +124,34 @@ const CommentPage = (props) => {
         }
     }
 
+    const commentReportBtnHandler = async (commentId) => {
+        if (!props.session) {
+            alert('로그인이 필요합니다.');
+            return;
+        };
+
+        let sendData = {
+            commentId,
+            reportClickUser: props.session.user.email
+        };
+
+        const response = await fetch('/api/write/comment/report', {
+            method: 'POST',
+            headers: { 'content-type' : 'application/json' },
+            body: JSON.stringify(sendData)
+        });
+
+        const data = await response.json();
+
+        if (data.status === 200) {
+            alert('신고완료 되었습니다. 감사합니다.');
+            return;
+        } else {
+            alert(data.message);
+            return;
+        }
+    }
+
     const updateCancelHandler = () => {
         setUpdate(false);
     }
@@ -134,7 +165,7 @@ const CommentPage = (props) => {
                 <div className={classes.comment_contentsBox}>
                     {props.session ? <div className={classes.contents_inner}>
                         <p>{props.session?.user.name}</p>
-                        <textarea name="userComment" cols={100} rows={5} placeholder=" 내용을 입력하세요." onChange={commentChangeHandler} value={comment} />
+                        <textarea name="userComment" cols={100} rows={5} placeholder=" 댓글신고가 10회 이상이면 경고없이 삭제됩니다." onChange={commentChangeHandler} value={comment} />
                         <div className={classes.contents_BtnBox}>
                             <button type="submit" onClick={commentSubmitHandler}>등록</button>
                             <p>{error}</p>
@@ -150,10 +181,11 @@ const CommentPage = (props) => {
                                     <span>{data.commentUser}</span>: <textarea name="commentUpdate" cols={100} rows={1} defaultValue={data.comment} onChange={updateCommentChangeHandler} />
                                 </p>}
                                 <div className={classes.commentBtnBox}>
-                                    {props.session?.user.email === data.commentUserEmail && !update ? <button type="button" onClick={() => commentUpdateBtnHandler(data._id)}>수정</button> : ''}
-                                    {id === data._id && update ? <button type="button" onClick={commentUpdateHandler}>등록</button> : ''}
-                                    {id === data._id && update ? <button type="button" onClick={updateCancelHandler}>취소</button> : ''}
-                                    {props.session?.user.email === data.commentUserEmail && !update ? <button type="button" onClick={commentDeleteHandler}>삭제</button> : ''}
+                                    {props.session?.user.email === data.commentUserEmail && !update ? <button type="button" onClick={() => commentUpdateBtnHandler(data._id.toString())}>수정</button> : ''}
+                                    {id === data._id.toString() && update ? <button type="button" onClick={commentUpdateHandler}>등록</button> : ''}
+                                    {id === data._id.toString() && update ? <button type="button" onClick={updateCancelHandler}>취소</button> : ''}
+                                    {props.session?.user.email === data.commentUserEmail && !update || props.isAdmin ? <button type="button" onClick={commentDeleteHandler}>삭제</button> : ''}
+                                    {props.session?.user.email !== data.commentUserEmail && !update ? <button type="button" onClick={() => commentReportBtnHandler(data._id.toString())}>신고</button> : ''}
                                 </div>     
                             </div>
                         );

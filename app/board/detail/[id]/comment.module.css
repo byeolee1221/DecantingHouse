@@ -84,7 +84,7 @@
 }
 
 .commentBox textarea {
-    width: 90%;
+    width: 80%;
     border-radius: 10px;
     resize: none;
     overflow: auto;

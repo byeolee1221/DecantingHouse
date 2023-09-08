@@ -7,6 +7,7 @@ import LikeBtn from "./likeBtn";
 import DeleteBtn from "./deleteBtn";
 import CommentPage from "./comment";
 import Hits from "./hits";
+import ReportBtn from "./reportBtn";
  
 import classes from "../../detail.module.css";
 
@@ -16,10 +17,15 @@ const boardDetail = async (props) => {
     let session = await getServerSession(authOptions);
     
     let isPossibleEdit = false;
+    let isAdmin = false;
 
-    if (checkPost.authorEmail === session?.user.email) {
+    if (checkPost.authorEmail === session?.user.email || session.user.email === 'decantinghouse.official@gmail.com') {
         isPossibleEdit = true;
     };
+
+    if (session.user.email === 'decantinghouse.official@gmail.com') {
+        isAdmin = true;
+    }
 
     // console.log(session);
     // console.log(checkPost);
@@ -46,7 +52,7 @@ const boardDetail = async (props) => {
                 </div>
                 <div className={classes.detail_btnBox}>
                     <div className={classes.btnBox_left}>
-                        
+                        {session.user.email !== checkPost.authorEmail ? <ReportBtn checkPost={checkPost} session={session} /> : ''}
                     </div>
                     <div className={classes.btnBox_right}>
                         <LikeBtn checkPost={checkPost} session={session} />
@@ -54,7 +60,7 @@ const boardDetail = async (props) => {
                         {isPossibleEdit ? <DeleteBtn checkPost={checkPost} session={session} /> : ''}
                     </div>
                 </div>
-                <CommentPage checkPost={checkPost} session={session} />
+                <CommentPage checkPost={checkPost} session={session} isAdmin={isAdmin} />
             </div>
         </div>
     );

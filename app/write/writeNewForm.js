@@ -78,7 +78,7 @@ const WriteNewFormPage = (props) => {
             </div>
             <div className={classes.write_formContents}>
                 <label htmlFor="user-contents">내용</label>
-                <textarea name="userContents" id="user-contents" cols="50" rows="15" onChange={contentsChangeHandler} value={contents} />
+                <textarea name="userContents" id="user-contents" cols="50" rows="15" onChange={contentsChangeHandler} value={contents} placeholder=" 게시글은 10회 이상 신고되면 경고없이 삭제됩니다." />
             </div>
             <div className={classes.write_formContents} id={classes.formContents_file}>
                 <input className={classes.uploadFile_name} value={fileName} disabled />

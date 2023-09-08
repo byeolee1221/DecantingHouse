@@ -1,0 +1,28 @@
+.legal_container {
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.legal_title {
+    border-bottom: 2px solid var(--color-box-8);
+}
+
+.navLeft_list {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.list_link {
+    text-decoration: none;
+    color: var(--color-font-3);
+    font-weight: bold;
+}
+
+.legal_contents_list li a {
+    text-decoration: none;
+    color: var(--color-font-3);
+}

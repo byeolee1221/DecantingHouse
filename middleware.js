@@ -28,6 +28,18 @@ const middleware = async (request) => {
             return NextResponse.redirect('http://localhost:3000/signIn?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2F');
         };
     };
+
+    if (request.nextUrl.pathname.startsWith('/register')) {
+        if (session) {
+            return NextResponse.redirect('http://localhost:3000/');
+        };
+    };
+
+    if (request.nextUrl.pathname.startsWith('/register/success')) {
+        if (session === null || session) {
+            return NextResponse.redirect('http://localhost:3000/');
+        };
+    };
 }
 
 export default middleware;
