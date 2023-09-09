@@ -23,17 +23,15 @@ const SocialSignOut = async (req, res) => {
                 console.log(currentDate);
 
                     let getUserInfo = await db.collection('accounts').findOne({ userId: new ObjectId(userAuth._id) });
-                    let getAccessToken = '';
+                    let getAccessToken = getUserInfo.access_token;
                     // console.log(userAuth);
 
                     if (getUserInfo.provider === 'google') {
                         // console.log(getUserInfo);
-                        getAccessToken = getUserInfo.access_token;
                         let googleKey = process.env.GOOGLE_API_KEY;
-                        let deleteProvider = ['google.com'];
     
                         console.log(getAccessToken);
-                        const signOut = await fetch(` https://oauth2.googleapis.com/revoke?token=${getAccessToken}`, {
+                        const signOut = await fetch(`https://oauth2.googleapis.com/revoke?token=${getAccessToken}`, {
                             method: 'POST',
                             headers: { 'content-type' : 'application/x-www-form-urlencoded' }
                         });
@@ -41,18 +39,15 @@ const SocialSignOut = async (req, res) => {
                         const googleResult = await signOut.json();
                         console.log(googleResult);
     
-                        if (googleResult.status === 200) {   
-                            console.log(yes)              
+                        if (googleResult.status === 200) {                
                             status = 200;                     
                         } else if (googleResult.error_description === 'Token expired or revoked') {
-                            console.log('토큰 만료되어 직접 삭제대상');
+                            // console.log('토큰 만료되어 직접 삭제대상');
                             status = 200;
                         }
                     };
                     
                     if (getUserInfo.provider === 'kakao') {
-                        getAccessToken = getUserInfo.access_token;
-                        console.log(getAccessToken)
                         const signOut = await fetch('https://kapi.kakao.com/v1/user/unlink', {
                             method: 'POST',
                             headers: { 
@@ -68,21 +63,12 @@ const SocialSignOut = async (req, res) => {
                             console.log(yes)              
                             status = 200;
                         } else if (kakaoResult.msg === 'this access token does not exist') {
-                            console.log('카카오 토큰만료')
+                            // console.log('카카오 토큰만료');
                             status = 200;
-                        }
-                    }
+                        };
+                    };
     
                     if (getUserInfo.provider === 'naver') {
-                        getAccessToken = getUserInfo.access_token;
-                        console.log(getAccessToken)
-                        const tokenCheck = await fetch(`https://openapi.naver.com/v1/nid/me?Authorization=${getAccessToken}`, {
-                            method: 'GET'
-                        });
-
-                        const tokenResult = await tokenCheck.json();
-                        console.log(tokenResult);
-
                         const signOut = await fetch(
                             `https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=${process.env.NAVER_CLIENT_ID}&client_secret=${process.env.NAVER_CLIENT_SECRET}&access_token=${getAccessToken}`, {
                             method: 'GET'
@@ -93,9 +79,88 @@ const SocialSignOut = async (req, res) => {
             
                         if (naverResult.result === 'success') {
                             status = 200;
+                        } else {
+                            status = 200;
                         };
-                    }
+                    };
                 
+                    if (status === 200) {
+                        let deleteUserInfo = await db.collection('users').deleteOne({ email: userAuth.email });
+                        let deleteUserAccounts = await db.collection('accounts').deleteOne({ userId: new ObjectId(getUserInfo.userId) });
+                        let deleteUserContents = await mainDb.collection('Forum').deleteMany({ authorEmail: userAuth.email });
+                        let deleteUserLike = await mainDb.collection('Like').deleteMany({ likeUser: userAuth.email });
+                        let deleteUserComment = await mainDb.collection('comment').deleteMany({ commentUserEmail: userAuth.email });
+                                    
+                        return res.status(200).json({ status: 200 });                      
+                    };
+                    
+            } else {
+                return res.status(500).json({ status: 500 });
+            }
+        } 
+
+        if (req.method === 'DELETE') {
+            let checkWarning = await db.collection('users').findOne({ email: req.body.email });
+            let status = '';
+
+            if (checkWarning.reportWarning === 5) {
+                let findAccount = await db.collection('account').findOne({ userId: new ObjectId(checkWarning._id) });
+                let getAccessToken = findAccount.access_token;
+
+                if (findAccount.provider === 'google') {
+                    const signOut = await fetch(`https://oauth2.googleapis.com/revoke?token=${getAccessToken}`, {
+                        method: 'POST',
+                        headers: { 'content-type' : 'application/x-www-form-urlencoded' }
+                    });
+    
+                    const googleResult = await signOut.json();
+                    console.log(googleResult);
+    
+                    if (googleResult.status === 200) {                
+                        status = 200;                     
+                    } else if (googleResult.error_description === 'Token expired or revoked') {
+                        // console.log('토큰 만료되어 직접 삭제대상');
+                        status = 200;
+                    };
+                };
+
+                if (findAccount.provider === 'kakao') {
+                    const signOut = await fetch('https://kapi.kakao.com/v1/user/unlink', {
+                        method: 'POST',
+                        headers: { 
+                            'content-type' : 'application/x-www-form-urlencoded',
+                            'Authorization' : `Bearer ${getAccessToken}` 
+                        }
+                    });
+    
+                    const kakaoResult = await signOut.json();
+                    console.log(kakaoResult)
+    
+                    if (kakaoResult.status === 200) {
+                        console.log(yes)              
+                        status = 200;
+                    } else if (kakaoResult.msg === 'this access token does not exist') {
+                        // console.log('카카오 토큰만료');
+                        status = 200;
+                    };
+                };
+
+                if (findAccount.provider === 'naver') {
+                    const signOut = await fetch(
+                        `https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=${process.env.NAVER_CLIENT_ID}&client_secret=${process.env.NAVER_CLIENT_SECRET}&access_token=${getAccessToken}`, {
+                        method: 'GET'
+                    });
+        
+                    const naverResult = await signOut.json();
+                    console.log(naverResult);
+        
+                    if (naverResult.result === 'success') {
+                        status = 200;
+                    } else {
+                        status = 200;
+                    };
+                };
+
                 if (status === 200) {
                     let deleteUserInfo = await db.collection('users').deleteOne({ email: userAuth.email });
                     let deleteUserAccounts = await db.collection('accounts').deleteOne({ userId: new ObjectId(getUserInfo.userId) });
@@ -103,15 +168,11 @@ const SocialSignOut = async (req, res) => {
                     let deleteUserLike = await mainDb.collection('Like').deleteMany({ likeUser: userAuth.email });
                     let deleteUserComment = await mainDb.collection('comment').deleteMany({ commentUserEmail: userAuth.email });
                                 
-                    if (deleteUserInfo && deleteUserAccounts && deleteUserContents && deleteUserLike && deleteUserComment) {
-                        return res.status(200).json({ status: 200 });                      
-                    }
-                }
-                // console.log(getAccessToken);
-            } else {
-                return res.status(500).json({ status: 500 });
-            }
-        } 
+                    return res.status(200).json({ status: 200 });                      
+                };
+            };
+        };
+
     } catch (error) {
         return res.status(500).redirect(302, '/error');
     }

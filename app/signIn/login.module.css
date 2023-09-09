@@ -94,7 +94,10 @@
     letter-spacing: .1rem;
 }
 
-.login_form {
+.login_form,
+.emailFind_form,
+.passwordFind_form,
+.passwordFind_Find_form {
     width: 90%;
     margin: auto;
     margin-top: 30px;
@@ -113,6 +116,14 @@
     margin-bottom: 40px;
 }
 
+.loginForm_contentsBox:nth-of-type(2) {
+    margin-bottom: 20px;
+}
+
+.passwordFind_form .loginForm_contentsBox:nth-of-type(2) {
+    margin-bottom: 40px;
+}
+
 .loginForm_contentsBox label {
     width: 120px;
     font-size: 1.1rem;
@@ -128,6 +139,27 @@
     padding: .5rem;
 }
 
+.loginForm_findInfoBox {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.findInfo_center {
+    width: 2px;
+    height: 18px;
+    background-color: var(--color-box-1);
+}
+
+.loginForm_findInfoBox button {
+    background: none;
+    border: none;
+    font: inherit;
+    padding: 0;
+    cursor: pointer;
+}
+
 .login_errorMsg {
     color: var(--color-font-4);
     text-align: center;
@@ -141,7 +173,8 @@
     margin-bottom: 40px;
 }
 
-.loginForm_btn button {
+.loginForm_btn button,
+.emailFind_findBox button {
     background-color: var(--color-box-4);
     border: none;
     border-radius: 10px;
@@ -154,11 +187,44 @@
 }
 
 .loginForm_btn button:hover,
-.loginForm_btn button:active {
+.loginForm_btn button:active,
+.emailFind_findBox button:hover,
+.emailFind_findBox button:active {
     background-color: var(--color-box-5);
 }
 
-#login_submitBtn:disabled {
+#login_submitBtn:disabled,
+#emailFind_submitBtn:disabled,
+#passwordFind_submitBtn:disabled,
+#passwordFind_findBox_submitBtn:disabled {
     background-color: #adadad;
     cursor: default;
 }
+
+.emailFind_box h3,
+.passwordFind_box h3 {
+    text-align: center;
+    margin: 0;
+    color: var(--color-font-3);
+}
+
+.emailFind_findMsg {
+    text-align: center;
+    color: var(--color-font-3);
+}
+
+.emailFind_findBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.passwordFind_findBox {
+    margin-top: 20px;
+}
+
+.passwordFind_findBox label {
+    width: 140px;
+}
+

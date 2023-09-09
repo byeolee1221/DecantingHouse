@@ -16,10 +16,16 @@ const Signup = async (req, res) => {
 
             let Auth = await db.collection('user').findOne({ email: req.body.email });
             let AuthSocial = await dbSocial.collection('users').findOne({ email: req.body.email });
+            let AuthName = await db.collection('user').findOne({ name: req.body.name });
+            let AuthNameInSocial = await dbSocial.collection('users').findOne({ name: req.body.name });
 
             if (Auth || AuthSocial) {
-                return res.status(500).json({message: '이미 가입한 회원입니다.', status: 500});
-            }
+                return res.status(500).json({ message: '이미 가입한 회원입니다.', status: 500 });
+            };
+
+            if (AuthName || AuthNameInSocial ) {
+                return res.status(500).json({ message: '이미 등록된 닉네임입니다.', status: 500 });
+            };
 
             await db.collection('user').insertOne(req.body);
             return res.status(200).json({message: '가입이 완료되었습니다.', status: 200});

@@ -2,6 +2,7 @@ import { connectDB } from "@/util/database";
 import ChileBoard from "./board";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import PageBtn from "../pageBtn";
 
 import classes from "./chile.module.css";
 
@@ -70,6 +71,7 @@ const ChilePage = async () => {
                     category4={category4Post}
                     category5={category5Post}
                 />
+                <PageBtn country="chile"/>
             </div>
         </div>
     );

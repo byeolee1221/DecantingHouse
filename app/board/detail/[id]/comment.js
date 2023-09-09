@@ -15,6 +15,12 @@ const CommentPage = (props) => {
     const [updateComment, setUpdateComment] = useState('');
     const [id, setId] = useState('');
 
+    let reportWarning = props.session.user.reportWarning;
+
+    if (reportWarning === undefined) {
+        reportWarning = 0;
+    };
+
     const commentChangeHandler = (event) => {
         setComment(event.target.value);
     }
@@ -165,7 +171,7 @@ const CommentPage = (props) => {
                 <div className={classes.comment_contentsBox}>
                     {props.session ? <div className={classes.contents_inner}>
                         <p>{props.session?.user.name}</p>
-                        <textarea name="userComment" cols={100} rows={5} placeholder=" 댓글신고가 10회 이상이면 경고없이 삭제됩니다." onChange={commentChangeHandler} value={comment} />
+                        <textarea name="userComment" cols={100} rows={5} placeholder={` 댓글신고가 10회 이상이면 경고없이 삭제되며 계정경고가 누적됩니다. (현재 계정경고: ${reportWarning})`} onChange={commentChangeHandler} value={comment} />
                         <div className={classes.contents_BtnBox}>
                             <button type="submit" onClick={commentSubmitHandler}>등록</button>
                             <p>{error}</p>

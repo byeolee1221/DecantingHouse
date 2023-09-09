@@ -39,11 +39,29 @@ const ContentsDelete = async (req, res) => {
 
                         if (findUser) {
                             let updateUser = await db.collection('user').updateOne({ email: req.body.reportedUser }, {$inc: {reportWarning: 1}});
+                            let checkWarning = await db.collection('user').findOne({ email: req.body.reportedUser });
+
+                            if (checkWarning.reportWarning === 5) {
+                                const deleteRequest = await fetch('/api/signOut', {
+                                    method: 'DELETE',
+                                    headers: { 'content-type' : 'application/json' },
+                                    body: JSON.stringify(checkWarning)
+                                });
+                            };
+                        
                         } else if (findUsers) {
                             let updateUsers = await dbTest.collection('users').updateOne({ email: req.body.reportedUser }, {$inc: {reportWarning: 1}});
+                            let checkWarning = await dbTest.collection('users').findOne({ email: req.body.reportedUser });
+
+                            if (checkWarning.reportWarning === 5) {
+                                const deleteRequest = await fetch('/api/socialSignOut', {
+                                    method: 'DELETE',
+                                    headers: { 'content-type' : 'application/json' },
+                                    body: JSON.stringify(checkWarning)
+                                });
+                            };
                         };
                     };
-    
                     return res.status(200).json({ status: 200 });
                 } else {
                     return res.status(500).json({ status: 500, message: '신고는 한 번만 할 수 있습니다.' });

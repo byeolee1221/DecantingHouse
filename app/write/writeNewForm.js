@@ -11,6 +11,12 @@ const WriteNewFormPage = (props) => {
         router.back();
     }
 
+    let reportWarning = props.session.user.reportWarning;
+
+    if (reportWarning === undefined) {
+        reportWarning = 0;
+    };
+
     const [author, setAuthor] = useState(props.session.user.name);
     const [category, setCategory] = useState('');
     const [title, setTitle] = useState('');
@@ -78,7 +84,7 @@ const WriteNewFormPage = (props) => {
             </div>
             <div className={classes.write_formContents}>
                 <label htmlFor="user-contents">내용</label>
-                <textarea name="userContents" id="user-contents" cols="50" rows="15" onChange={contentsChangeHandler} value={contents} placeholder=" 게시글은 10회 이상 신고되면 경고없이 삭제됩니다." />
+                <textarea name="userContents" id="user-contents" cols="50" rows="15" onChange={contentsChangeHandler} value={contents} placeholder={` 게시글은 10회 이상 신고되면 경고없이 삭제되며 계정경고가 누적됩니다. (현재 계정경고: ${reportWarning})`} />
             </div>
             <div className={classes.write_formContents} id={classes.formContents_file}>
                 <input className={classes.uploadFile_name} value={fileName} disabled />

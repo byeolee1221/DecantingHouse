@@ -2,6 +2,7 @@ import { connectDB } from "@/util/database";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import FranceBoard from "./board";
+import PageBtn from "../pageBtn";
 
 import classes from "./france.module.css";
 
@@ -46,7 +47,6 @@ const FrancePage = async () => {
     let category3Post = categoryPost['제품'];
     let category4Post = categoryPost['맛'];
     let category5Post = categoryPost['기타'];
-    // console.log(sessionUserPost);
 
     return (
         <div className={classes.board_france_container}>
@@ -71,6 +71,7 @@ const FrancePage = async () => {
                     category4={category4Post}
                     category5={category5Post}
                 />
+                <PageBtn country="france"/>
             </div>
         </div>
     );

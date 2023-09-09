@@ -3,6 +3,7 @@ import USABoard from "./board";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import classes from "./usa.module.css";
+import PageBtn from "../pageBtn";
 
 const UsaPage = async () => {
     const db = (await connectDB).db('DecantingHouse');
@@ -69,6 +70,7 @@ const UsaPage = async () => {
                     category4={category4Post}
                     category5={category5Post}
                 />
+                <PageBtn country="usa"/>
             </div>
         </div>
     );
