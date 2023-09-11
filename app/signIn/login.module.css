@@ -107,7 +107,8 @@
     justify-content: center;
 }
 
-.loginForm_contentsBox {
+.loginForm_contentsBox,
+.loginForm_contentsBox_passwordFind {
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -131,7 +132,8 @@
     letter-spacing: .1rem;
 }
 
-.loginForm_contentsBox input {
+.loginForm_contentsBox input,
+.loginForm_contentsBox_passwordFind input {
     border: none;
     background-color: var(--color-box-3);
     border-radius: 10px;
@@ -228,3 +230,38 @@
     width: 140px;
 }
 
+@media screen and (max-width: 767px) {
+    .login_container {
+        width: 100vw;
+    }
+
+    .third_loginBox {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px;
+    }
+
+    .loginForm_contentsBox_passwordFind {
+        flex-direction: column;
+    }
+
+    .passwordFind_findBox label {
+        width: 100%;
+    }
+
+    .loginForm_contentsBox_passwordFind input {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .login_container {
+        width: 90%;
+        height: 60vh;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1365px) {
+    .login_container {
+        width: 90%;
+    }
+}

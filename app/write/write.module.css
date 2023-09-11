@@ -17,3 +17,32 @@
     margin: auto;
 }
 
+@media screen and (max-width: 767px) {
+    .board_write_container {
+        width: 90%;
+    }
+
+    .write_userForm {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .board_write_container {
+        width: 90%;
+    }
+
+    .write_userForm {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1365px) {
+    .board_write_container {
+        width: 90%;
+    }
+
+    .write_userForm {
+        width: 80%;
+    }
+}

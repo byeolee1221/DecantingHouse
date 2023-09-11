@@ -74,3 +74,21 @@
     align-items: center;
     justify-content: space-between;
 }
+
+@media screen and (max-width: 767px) {
+    .main_inner {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .main_inner {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1365px) {
+    .main_inner {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

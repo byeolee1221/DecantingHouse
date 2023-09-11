@@ -31,7 +31,9 @@ const SignOutAuth = async (req, res) => {
         }
 
         if (req.method === 'DELETE') {
+            console.log(req.body);
             let deleteUserInfo = await db.collection('user').deleteOne({ email: req.body.email });
+            console.log(deleteUserInfo)
             let deleteUserContents = await db.collection('Forum').deleteMany({ authorEmail: req.body.email });
             let deleteUserLike = await db.collection('Like').deleteMany({ likeUser: req.body.email });
             let deleteUserComment = await db.collection('comment').deleteMany({ commentUserEmail: req.body.email });

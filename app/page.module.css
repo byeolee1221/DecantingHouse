@@ -123,3 +123,33 @@
     margin-top: 0;
     font-weight: bold;
 }
+
+@media screen and (max-width: 767px) {
+    .home_titleImg {
+        height: 300px;
+    }
+
+    .home_wrapper h1 {
+        font-size: 1.7rem;
+    }
+
+    .popularPost_itemBox {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .home_titleImg {
+        height: 400px;
+    }
+
+    .popularPost_itemBox {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1365px) {
+    .popularPost_itemBox {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

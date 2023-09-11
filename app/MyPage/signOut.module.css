@@ -123,3 +123,17 @@
 .menuBox_social_signOut button:active {
     background-color: var(--color-box-3);
 }
+
+@media screen and (max-width: 767px) {
+    .myPage_signOut_form {
+        width: 100%;
+    }
+
+    .signOut_form_item label {
+        width: 80px;
+    }
+
+    .signOut_form_item input {
+        width: 50%;
+    }
+}

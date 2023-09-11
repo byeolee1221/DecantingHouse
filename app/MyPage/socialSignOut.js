@@ -8,11 +8,8 @@ const SocialSignOut = () => {
     const [socialError, setSocialError] = useState('');
 
     const socialSignOutHandler = async () => {
-        // 카카오는 호스팅 받고 테스트 및 완성. 연결 끊기 api를 사용하려면 https를 사용해야하기 때문.
-
         const response = await fetch('/api/auth/socialSignOut' , {
-            method: 'POST',
-            headers: { 'content-type' : 'application/json' }
+            method: 'GET'
         });
 
         const data = await response.json();

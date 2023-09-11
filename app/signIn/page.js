@@ -64,13 +64,10 @@ const signInPage = () => {
         }
     }
 
-    let isRegistered = false;
-
     if (socialErrors === 'OAuthAccountNotLinked') {
-        isRegistered = true;
-
-        setSocialError('이미 가입된 이메일입니다.');
-    }
+        router.push('/socialError');
+        return;
+    };
 
     const emailFindBtnHandler = () => {
         setEmailFind(true);

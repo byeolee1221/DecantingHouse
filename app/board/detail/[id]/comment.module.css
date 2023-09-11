@@ -103,3 +103,62 @@
     cursor: pointer;
     font-size: .9rem;
 }
+
+@media screen and (max-width: 767px) {
+    .contents_inner button {
+        transition: none;
+    }
+
+    .contents_inner button:hover,
+    .contents_inner button:active {
+        background: none;
+    }
+
+    .commentBox {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .contents_inner button {
+        width: 30%;
+    }
+
+    .commentBtnBox button {
+        padding-left: 0;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .contents_inner button {
+        transition: none;
+    }
+
+    .contents_inner button:hover,
+    .contents_inner button:active {
+        background: none;
+    }
+
+    .contents_inner button {
+        width: 20%;
+    }
+
+    .commentBtnBox {
+        width: 15%;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1365px) {
+    .contents_inner button {
+        transition: none;
+    }
+
+    .contents_inner button:hover,
+    .contents_inner button:active {
+        background: none;
+    }
+
+    .commentBtnBox {
+        width: 15%;
+    }
+}

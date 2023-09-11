@@ -29,7 +29,7 @@ const ContentsDelete = async (req, res) => {
                     let findPost = await db.collection('Forum').findOne({ _id: new ObjectId(req.body.postId) });
                     let updateReport = await db.collection('Report').insertOne({ reportedPost: req.body.postId, reportClick: req.body.reportClickUser });
     
-                    if (findPost.report === 10) {
+                    if (findPost.report === 1) {
                         let deleteContents = await db.collection('Forum').deleteOne({ _id: new ObjectId(req.body.postId) });
                         let deleteComments = await db.collection('comment').deleteMany({ parent: req.body.id });
                         let deleteLike = await db.collection('Like').deleteMany({ parent: req.body.id });
@@ -40,26 +40,11 @@ const ContentsDelete = async (req, res) => {
                         if (findUser) {
                             let updateUser = await db.collection('user').updateOne({ email: req.body.reportedUser }, {$inc: {reportWarning: 1}});
                             let checkWarning = await db.collection('user').findOne({ email: req.body.reportedUser });
-
-                            if (checkWarning.reportWarning === 5) {
-                                const deleteRequest = await fetch('/api/signOut', {
-                                    method: 'DELETE',
-                                    headers: { 'content-type' : 'application/json' },
-                                    body: JSON.stringify(checkWarning)
-                                });
-                            };
-                        
+                            return res.status(200).json({status: 200, warning: checkWarning.reportWarning });
                         } else if (findUsers) {
                             let updateUsers = await dbTest.collection('users').updateOne({ email: req.body.reportedUser }, {$inc: {reportWarning: 1}});
-                            let checkWarning = await dbTest.collection('users').findOne({ email: req.body.reportedUser });
-
-                            if (checkWarning.reportWarning === 5) {
-                                const deleteRequest = await fetch('/api/socialSignOut', {
-                                    method: 'DELETE',
-                                    headers: { 'content-type' : 'application/json' },
-                                    body: JSON.stringify(checkWarning)
-                                });
-                            };
+                            let checkWarning = await dbTest.collection('users').findOne({ email: req.body.reportedUser });  
+                            return res.status(200).json({status: 200, warning: checkWarning.reportWarning });  
                         };
                     };
                     return res.status(200).json({ status: 200 });

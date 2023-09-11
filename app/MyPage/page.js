@@ -55,7 +55,7 @@ const MyPage = () => {
                         </ul>
                     </div>
                     <div className={classes.main_right_menuBox}>
-                        {!passwordChange && !signOut && !social && <p className={classes.menuBox_initialMsg}>왼쪽 메뉴에서 원하시는 메뉴를 골라주세요.</p>}
+                        {!passwordChange && !signOut && !social && <p className={classes.menuBox_initialMsg}>메뉴에서 원하시는 메뉴를 골라주세요.</p>}
                         {passwordChange && <PasswordChange />}
                         {signOut && <SignOut />}
                         {social && <SocialSignOut />}

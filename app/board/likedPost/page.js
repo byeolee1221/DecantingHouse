@@ -22,7 +22,7 @@ const LikedPost = async () => {
                     <h2>좋아요한 게시물</h2>
                 </div>
                 <div className={classes.LikedPost_board}>
-                    {userLikePost ? <LikedBoard userLikePost={userLikePost} /> : '좋아요한 게시물이 없습니다.'};
+                    {userLikePost ? <LikedBoard userLikePost={userLikePost} /> : '좋아요한 게시물이 없습니다.'}
                 </div>
             </div>
         </div>

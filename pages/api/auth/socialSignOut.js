@@ -9,167 +9,38 @@ const SocialSignOut = async (req, res) => {
     let session = await getServerSession(req, res, authOptions);
 
     try {
-        if (req.method === 'POST') {    
+        if (req.method === 'GET') {    
             let userAuth = await db.collection('users').findOne({ email: session.user.email });
-            let status = '';
+            console.log(userAuth)
             
             if (userAuth) {
-                let tokenCheckUser = await db.collection('accounts').findOne({ userId: new ObjectId(userAuth._id) });
-                // console.log(tokenCheckUser);
-                let tokenCheck = tokenCheckUser.expires_at;
-                let tokenDate = new Date(tokenCheck * 1000);
-                console.log(tokenDate);
-                let currentDate = new Date()
-                console.log(currentDate);
+                let findAccount = await db.collection('accounts').findOne({ userId: new ObjectId(userAuth._id) });
 
-                    let getUserInfo = await db.collection('accounts').findOne({ userId: new ObjectId(userAuth._id) });
-                    let getAccessToken = getUserInfo.access_token;
-                    // console.log(userAuth);
-
-                    if (getUserInfo.provider === 'google') {
-                        // console.log(getUserInfo);
-                        let googleKey = process.env.GOOGLE_API_KEY;
-    
-                        console.log(getAccessToken);
-                        const signOut = await fetch(`https://oauth2.googleapis.com/revoke?token=${getAccessToken}`, {
-                            method: 'POST',
-                            headers: { 'content-type' : 'application/x-www-form-urlencoded' }
-                        });
-    
-                        const googleResult = await signOut.json();
-                        console.log(googleResult);
-    
-                        if (googleResult.status === 200) {                
-                            status = 200;                     
-                        } else if (googleResult.error_description === 'Token expired or revoked') {
-                            // console.log('토큰 만료되어 직접 삭제대상');
-                            status = 200;
-                        }
-                    };
-                    
-                    if (getUserInfo.provider === 'kakao') {
-                        const signOut = await fetch('https://kapi.kakao.com/v1/user/unlink', {
-                            method: 'POST',
-                            headers: { 
-                                'content-type' : 'application/x-www-form-urlencoded',
-                                'Authorization' : `Bearer ${getAccessToken}` 
-                            }
-                        });
-    
-                        const kakaoResult = await signOut.json();
-                        console.log(kakaoResult)
-    
-                        if (kakaoResult.status === 200) {
-                            console.log(yes)              
-                            status = 200;
-                        } else if (kakaoResult.msg === 'this access token does not exist') {
-                            // console.log('카카오 토큰만료');
-                            status = 200;
-                        };
-                    };
-    
-                    if (getUserInfo.provider === 'naver') {
-                        const signOut = await fetch(
-                            `https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=${process.env.NAVER_CLIENT_ID}&client_secret=${process.env.NAVER_CLIENT_SECRET}&access_token=${getAccessToken}`, {
-                            method: 'GET'
-                        });
-            
-                        const naverResult = await signOut.json();
-                        console.log(naverResult);
-            
-                        if (naverResult.result === 'success') {
-                            status = 200;
-                        } else {
-                            status = 200;
-                        };
-                    };
-                
-                    if (status === 200) {
-                        let deleteUserInfo = await db.collection('users').deleteOne({ email: userAuth.email });
-                        let deleteUserAccounts = await db.collection('accounts').deleteOne({ userId: new ObjectId(getUserInfo.userId) });
-                        let deleteUserContents = await mainDb.collection('Forum').deleteMany({ authorEmail: userAuth.email });
-                        let deleteUserLike = await mainDb.collection('Like').deleteMany({ likeUser: userAuth.email });
-                        let deleteUserComment = await mainDb.collection('comment').deleteMany({ commentUserEmail: userAuth.email });
+                let deleteUserContents = await mainDb.collection('Forum').deleteMany({ authorEmail: userAuth.email });
+                let deleteUserLike = await mainDb.collection('Like').deleteMany({ likeUser: userAuth.email });
+                let deleteUserComment = await mainDb.collection('comment').deleteMany({ commentUserEmail: userAuth.email });
+                let deleteUserAccounts = await db.collection('accounts').deleteOne({ userId: new ObjectId(findAccount.userId) });
+                let deleteUserInfo = await db.collection('users').deleteOne({ email: userAuth.email });
                                     
-                        return res.status(200).json({ status: 200 });                      
-                    };
-                    
+                return res.status(200).json({ status: 200 });
             } else {
-                return res.status(500).json({ status: 500 });
-            }
-        } 
+                return res.status(500).json({ status: 500, message: '오류가 발생하여 아직 탈퇴되지 않았습니다.' });
+            };
+        };
 
         if (req.method === 'DELETE') {
             let checkWarning = await db.collection('users').findOne({ email: req.body.email });
-            let status = '';
 
             if (checkWarning.reportWarning === 5) {
                 let findAccount = await db.collection('account').findOne({ userId: new ObjectId(checkWarning._id) });
-                let getAccessToken = findAccount.access_token;
 
-                if (findAccount.provider === 'google') {
-                    const signOut = await fetch(`https://oauth2.googleapis.com/revoke?token=${getAccessToken}`, {
-                        method: 'POST',
-                        headers: { 'content-type' : 'application/x-www-form-urlencoded' }
-                    });
-    
-                    const googleResult = await signOut.json();
-                    console.log(googleResult);
-    
-                    if (googleResult.status === 200) {                
-                        status = 200;                     
-                    } else if (googleResult.error_description === 'Token expired or revoked') {
-                        // console.log('토큰 만료되어 직접 삭제대상');
-                        status = 200;
-                    };
-                };
-
-                if (findAccount.provider === 'kakao') {
-                    const signOut = await fetch('https://kapi.kakao.com/v1/user/unlink', {
-                        method: 'POST',
-                        headers: { 
-                            'content-type' : 'application/x-www-form-urlencoded',
-                            'Authorization' : `Bearer ${getAccessToken}` 
-                        }
-                    });
-    
-                    const kakaoResult = await signOut.json();
-                    console.log(kakaoResult)
-    
-                    if (kakaoResult.status === 200) {
-                        console.log(yes)              
-                        status = 200;
-                    } else if (kakaoResult.msg === 'this access token does not exist') {
-                        // console.log('카카오 토큰만료');
-                        status = 200;
-                    };
-                };
-
-                if (findAccount.provider === 'naver') {
-                    const signOut = await fetch(
-                        `https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=${process.env.NAVER_CLIENT_ID}&client_secret=${process.env.NAVER_CLIENT_SECRET}&access_token=${getAccessToken}`, {
-                        method: 'GET'
-                    });
-        
-                    const naverResult = await signOut.json();
-                    console.log(naverResult);
-        
-                    if (naverResult.result === 'success') {
-                        status = 200;
-                    } else {
-                        status = 200;
-                    };
-                };
-
-                if (status === 200) {
-                    let deleteUserInfo = await db.collection('users').deleteOne({ email: userAuth.email });
-                    let deleteUserAccounts = await db.collection('accounts').deleteOne({ userId: new ObjectId(getUserInfo.userId) });
-                    let deleteUserContents = await mainDb.collection('Forum').deleteMany({ authorEmail: userAuth.email });
-                    let deleteUserLike = await mainDb.collection('Like').deleteMany({ likeUser: userAuth.email });
-                    let deleteUserComment = await mainDb.collection('comment').deleteMany({ commentUserEmail: userAuth.email });
+                let deleteUserContents = await mainDb.collection('Forum').deleteMany({ authorEmail: userAuth.email });
+                let deleteUserLike = await mainDb.collection('Like').deleteMany({ likeUser: userAuth.email });
+                let deleteUserComment = await mainDb.collection('comment').deleteMany({ commentUserEmail: userAuth.email });
+                let deleteUserAccounts = await db.collection('accounts').deleteOne({ userId: new ObjectId(findAccount.userId) });
+                let deleteUserInfo = await db.collection('users').deleteOne({ email: checkWarning.email });
                                 
-                    return res.status(200).json({ status: 200 });                      
-                };
+                return res.status(200).json({ status: 200 });                      
             };
         };
 

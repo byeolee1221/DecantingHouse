@@ -3,18 +3,10 @@ import USABoard from "./board";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import classes from "./usa.module.css";
-import PageBtn from "../pageBtn";
 
 const UsaPage = async () => {
     const db = (await connectDB).db('DecantingHouse');
     let session = await getServerSession(authOptions);
-
-    let postArr = await db.collection('Forum').find({country: 'usa'}).toArray();
-
-    postArr = postArr.map((data) => {
-        data._id = data._id.toString();
-        return data;
-    });
 
     let popularPost = await db.collection('Forum').find({country: 'usa', count: {$gt: 0}}).sort({ count: -1 }).limit(4).toArray();
 
@@ -59,8 +51,7 @@ const UsaPage = async () => {
                         <img src="/usa-winery.jpg" alt="미국 나파밸리" id={classes.title_rightBottom} />
                     </div>
                 </div>
-                <USABoard 
-                    post={postArr} 
+                <USABoard  
                     popular={popularPost} 
                     sessionUserPost={sessionUserPost} 
                     session={session} 
@@ -70,7 +61,6 @@ const UsaPage = async () => {
                     category4={category4Post}
                     category5={category5Post}
                 />
-                <PageBtn country="usa"/>
             </div>
         </div>
     );

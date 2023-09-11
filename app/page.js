@@ -28,7 +28,7 @@ export default async function Home () {
 
   let postArrMap = await Promise.all(
     country.map(async (data) => {
-      const result = await db.collection('Forum').find({country: data}).limit(5).toArray();
+      const result = await db.collection('Forum').find({country: data}).sort({_id: -1}).limit(5).toArray();
       postArrByCountry[data] = result;
     })
   )

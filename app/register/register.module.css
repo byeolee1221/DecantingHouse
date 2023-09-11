@@ -31,8 +31,7 @@
     margin: 10px auto;
     padding: .5rem 0;
     letter-spacing: .4rem;
-    border-top: 1px solid var(--color-box-1);
-    
+    border-top: 1px solid var(--color-box-1); 
 }
 
 .register_form {
@@ -108,4 +107,31 @@
 #register_submitBtn:disabled {
     background-color: #adadad;
     cursor: default;
+}
+
+@media screen and (max-width: 767px) {
+    .register_container {
+        width: 100vw;
+    }
+
+    .register_title p {
+        font-size: .8rem; 
+    }
+
+    .register_form {
+        width: 95%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .register_container {
+        width: 80%;
+        height: 60vh;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1365px) {
+    .register_container {
+        width: 80%;
+    }
 }

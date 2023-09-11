@@ -127,11 +127,11 @@ const PasswordFind = () => {
             {find && 
             <div className={classes.passwordFind_findBox}>
                 <form action="/" method="POST" className={classes.passwordFind_Find_form} onSubmit={passwordChangeHandler}>
-                    <div className={classes.loginForm_contentsBox}>
+                    <div className={classes.loginForm_contentsBox_passwordFind}>
                         <label htmlFor="new-password">새 비밀번호</label>
                         <input type="password" id="new-password" name="newPassword" min="8" placeholder=" 8자 이상 입력" onChange={newPasswordChangeHandler} value={newPassword} /> 
                     </div>
-                    <div className={classes.loginForm_contentsBox}>
+                    <div className={classes.loginForm_contentsBox_passwordFind}>
                         <label htmlFor="new-password2">새 비밀번호 확인</label>
                         <input type="password" id="new-password2" name="newPassword2" min="8" placeholder=" 위 비밀번호와 동일하게 입력" onChange={newPassword2ChangeHandler} value={newPassword2} /> 
                     </div>

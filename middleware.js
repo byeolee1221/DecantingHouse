@@ -29,6 +29,12 @@ const middleware = async (request) => {
         };
     };
 
+    if (request.nextUrl.pathname.startsWith('/socialError')) {
+        if (session) {
+            return NextResponse.redirect('http://localhost:3000/');
+        };
+    };
+
     if (request.nextUrl.pathname.startsWith('/register')) {
         if (session) {
             return NextResponse.redirect('http://localhost:3000/');

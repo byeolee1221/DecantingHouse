@@ -46,3 +46,20 @@
     color: white;
     text-decoration: none;
 }
+
+@media screen and (max-width: 767px) {
+    .footer_contents {
+        flex-direction: column;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .footer_contents_right {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer_contents_right p:nth-of-type(2) {
+        padding: 0 4rem;
+    }
+}

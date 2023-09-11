@@ -15,7 +15,7 @@ const CommentPage = (props) => {
     const [updateComment, setUpdateComment] = useState('');
     const [id, setId] = useState('');
 
-    let reportWarning = props.session.user.reportWarning;
+    let reportWarning = props.session?.user?.reportWarning;
 
     if (reportWarning === undefined) {
         reportWarning = 0;

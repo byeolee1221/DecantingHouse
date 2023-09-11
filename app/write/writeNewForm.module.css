@@ -114,3 +114,19 @@
     background-color: #adadad;
     cursor: default;
 }
+
+@media screen and (max-width: 767px) {
+    .write_formContents input {
+        width: 100%;
+    }
+
+    .write_formContents select {
+        width: 100%;
+        height: 100%;
+    }
+
+    #formContents_file {
+        flex-direction: column;
+    }
+}
+

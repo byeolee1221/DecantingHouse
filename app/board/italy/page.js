@@ -2,20 +2,12 @@ import { connectDB } from "@/util/database";
 import ItalyBoard from "./board";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import PageBtn from "../pageBtn";
 
 import classes from "./italy.module.css";
 
 const ItalyPage = async () => {
     const db = (await connectDB).db('DecantingHouse');
     let session = await getServerSession(authOptions);
-
-    let postArr = await db.collection('Forum').find({country: 'italy'}).toArray();
-
-    postArr = postArr.map((data) => {
-        data._id = data._id.toString();
-        return data;
-    });
 
     let popularPost = await db.collection('Forum').find({country: 'italy', count: {$gt: 0}}).sort({ count: -1 }).limit(4).toArray();
 
@@ -61,7 +53,6 @@ const ItalyPage = async () => {
                     </div>
                 </div>
                 <ItalyBoard 
-                    post={postArr} 
                     popular={popularPost} 
                     sessionUserPost={sessionUserPost} 
                     session={session}
@@ -71,7 +62,6 @@ const ItalyPage = async () => {
                     category4={category4Post}
                     category5={category5Post}
                 />
-                <PageBtn country="italy"/>
             </div>
         </div>
     );

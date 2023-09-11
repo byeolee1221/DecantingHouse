@@ -19,11 +19,11 @@ const boardDetail = async (props) => {
     let isPossibleEdit = false;
     let isAdmin = false;
 
-    if (checkPost.authorEmail === session?.user.email || session.user.email === 'decantinghouse.official@gmail.com') {
+    if (checkPost.authorEmail === session?.user.email || session?.user.email === 'decantinghouse.official@gmail.com') {
         isPossibleEdit = true;
     };
 
-    if (session.user.email === 'decantinghouse.official@gmail.com') {
+    if (session?.user.email === 'decantinghouse.official@gmail.com') {
         isAdmin = true;
     }
 
@@ -52,7 +52,7 @@ const boardDetail = async (props) => {
                 </div>
                 <div className={classes.detail_btnBox}>
                     <div className={classes.btnBox_left}>
-                        {session.user.email !== checkPost.authorEmail ? <ReportBtn checkPost={checkPost} session={session} /> : ''}
+                        {session?.user.email !== checkPost.authorEmail ? <ReportBtn checkPost={checkPost} session={session} /> : ''}
                     </div>
                     <div className={classes.btnBox_right}>
                         <LikeBtn checkPost={checkPost} session={session} />

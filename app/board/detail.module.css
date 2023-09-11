@@ -80,3 +80,42 @@
 .btnBox_left button:active {
     background-color: var(--color-box-9);
 }
+
+@media screen and (max-width: 767px) {
+    .detail_container {
+        width: 90%;
+    }
+
+    .title_inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .title_inner_left {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .detail_btnBox {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .btnBox_right {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .detail_container {
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1365px) {
+    .detail_container {
+        width: 90%;
+    }
+}

@@ -36,3 +36,26 @@
 .success_wrapper button:active {
     background-color: var(--color-box-5);
 }
+
+@media screen and (max-width: 767px) {
+    .success_wrapper h1 {
+        font-size: 1.7rem;
+    }
+
+    .success_wrapper h3 {
+        padding: 0 1rem;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1365px) {
+    .success_container {
+        height: 30vh;
+    }
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1517px) {
+    .success_container {
+        height: 30vh;
+    }
+}

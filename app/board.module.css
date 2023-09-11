@@ -151,7 +151,7 @@
 .board_itemBox {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(auto-fill, 1fr);
     gap: 30px;
     align-items: center;
     justify-content: center;
@@ -225,3 +225,151 @@
     color: var(--color-font-3);
 }
 
+.pageBtn_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.pageBtn_box button {
+    background: none;
+    border: none;
+    font: inherit;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.pageBtn_CenterLine {
+    width: 2px;
+    height: 18px;
+    background-color: var(--color-box-1);
+}
+
+@media screen and (max-width: 767px) {
+    .board_popular h1 {
+        font-size: 1.7rem;
+    }
+
+    .popular_itemBox {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px;
+    }
+
+    .board_title {
+        flex-direction: column;
+    }
+
+    .board_title h2 {
+        font-size: 1.5rem;
+    }
+
+    .board_title a {
+        font-size: 1.5rem;
+    }
+
+    .board_PostBtn {
+        font-size: 1.5rem;
+        transition: none;
+    }
+
+    .board_PostBtn:hover,
+    .board_PostBtn:active {
+        background: none;
+    }
+
+    .board_category_list {
+        flex-wrap: wrap;
+        text-align: center;
+        padding-left: 0;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .board_category_item button {
+        font-size: 1.2rem;
+    }
+
+    .board_itemBox {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(auto-fill, 1fr);
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .popular_itemBox {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .board_title h2 {
+        font-size: 1rem;
+    }
+
+    .board_title a {
+        font-size: 1rem;
+    }
+
+    .board_PostBtn {
+        font-size: 1rem;
+        transition: none;
+    }
+
+    .board_PostBtn:hover,
+    .board_PostBtn:active {
+        background: none;
+    }
+
+    .box_centerBorder {
+        width: 2px;
+        height: 25px;
+    }
+
+    .board_category_list {
+        padding-left: 0;
+    }
+
+    .board_category_item button {
+        font-size: 1rem;
+    }
+
+    .board_itemBox {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(auto-fill, 1fr);
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1365px) {
+    .popular_itemBox {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+
+    .board_title h2 {
+        font-size: 1rem;
+    }
+
+    .board_title a {
+        font-size: 1rem;
+    }
+
+    .board_PostBtn {
+        font-size: 1rem;
+        transition: none;
+    }
+
+    .board_PostBtn:hover,
+    .board_PostBtn:active {
+        background: none;
+    }
+
+    .board_category_list {
+        padding-left: 0;
+    }
+
+    .board_itemBox {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(auto-fill, 1fr);
+    }
+}
