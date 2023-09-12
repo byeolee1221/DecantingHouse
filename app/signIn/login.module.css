@@ -259,10 +259,19 @@
         width: 90%;
         height: 60vh;
     }
+
+    .loginBox_item {
+        height: 90%;
+    }
 }
 
 @media screen and (min-width: 1025px) and (max-width: 1365px) {
     .login_container {
         width: 90%;
+        height: 60vh;
+    }
+
+    .loginBox_item {
+        height: 90%;
     }
 }
