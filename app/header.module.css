@@ -290,4 +290,8 @@
     .second_nav_right {
         margin-right: 120px;
     }
+
+    .second_nav_center a {
+        margin: 0 20px;
+    }
 }

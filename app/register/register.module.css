@@ -135,3 +135,9 @@
         width: 80%;
     }
 }
+
+@media screen and (min-width: 1366px) and (max-width: 1517px) {
+    .register_container {
+        width: 80%;
+    }
+}
