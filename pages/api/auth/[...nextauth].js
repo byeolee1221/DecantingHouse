@@ -10,18 +10,18 @@ import bcrypt from "bcrypt";
 export const authOptions = {
     providers: [
         GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            clientId: process.env.AUTH_GOOGLE_ID,
+            clientSecret: process.env.AUTH_GOOGLE_SECRET,
             // allowDangerousEmailAccountLinking: true
         }),
         KakaoProvider({
-            clientId: process.env.KAKAO_CLIENT_ID,
-            clientSecret: process.env.KAKAO_CLIENT_SECRET,
+            clientId: process.env.AUTH_KAKAO_ID,
+            clientSecret: process.env.AUTH_KAKAO_SECRET,
             // allowDangerousEmailAccountLinking: true
         }),
         NaverProvider({
-            clientId: process.env.NAVER_CLIENT_ID,
-            clientSecret: process.env.NAVER_CLIENT_SECRET,
+            clientId: process.env.AUTH_NAVER_ID,
+            clientSecret: process.env.AUTH_NAVER_SECRET,
             // allowDangerousEmailAccountLinking: true
         }),
 

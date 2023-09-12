@@ -45,6 +45,7 @@
     font-weight: bold;
     margin-left: 50px;
     cursor: pointer;
+    color: inherit;
 }
 
 .header_second_nav {
@@ -282,10 +283,10 @@
 
 @media screen and (min-width: 1366px) and (max-width: 1517px) {
     .second_nav_left {
-        margin-left: 150px;
+        margin-left: 120px;
     }
 
     .second_nav_right {
-        margin-right: 150px;
+        margin-right: 120px;
     }
 }

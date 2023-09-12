@@ -113,6 +113,7 @@
     transition: all .3s ease-in-out;
     cursor: pointer;
     border-radius: 50px;
+    color: inherit;
 }
 
 .board_PostBtn:hover,
@@ -133,6 +134,7 @@
     font: inherit;
     font-size: 1.2rem;
     cursor: pointer;
+    color: inherit;
 }
 
 .box_centerBorder {
@@ -239,6 +241,7 @@
     font: inherit;
     font-size: 1.1rem;
     cursor: pointer;
+    color: inherit;
 }
 
 .pageBtn_CenterLine {
@@ -305,15 +308,18 @@
 
     .board_title h2 {
         font-size: 1rem;
+        padding: 0 .5rem;
     }
 
     .board_title a {
         font-size: 1rem;
+        padding: 0 .5rem;
     }
 
     .board_PostBtn {
         font-size: 1rem;
         transition: none;
+        padding: 0 .5rem;
     }
 
     .board_PostBtn:hover,
@@ -328,6 +334,7 @@
 
     .board_category_list {
         padding-left: 0;
+        gap: 20px;
     }
 
     .board_category_item button {
@@ -356,6 +363,40 @@
 
     .board_PostBtn {
         font-size: 1rem;
+        transition: none;
+    }
+
+    .board_PostBtn:hover,
+    .board_PostBtn:active {
+        background: none;
+    }
+
+    .board_category_list {
+        padding-left: 0;
+    }
+
+    .board_itemBox {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(auto-fill, 1fr);
+    }
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1517px) {
+    .popular_itemBox {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+
+    .board_title h2 {
+        font-size: 1.2rem;
+    }
+
+    .board_title a {
+        font-size: 1.2rem;
+    }
+
+    .board_PostBtn {
+        font-size: 1.2rem;
         transition: none;
     }
 

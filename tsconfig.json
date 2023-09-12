@@ -49,6 +49,6 @@
         "app/header.js",
         "app/layout.js",
         "app/page.js"
-    ],
+, "pages/api/auth/[...nextauth].js"    ],
     "exclude": ["node_modules"]
 }
