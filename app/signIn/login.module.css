@@ -241,6 +241,10 @@
         gap: 30px;
     }
 
+    .Oauth_loginBox {
+        margin-top: 50px;
+    }
+
     .loginForm_contentsBox_passwordFind {
         flex-direction: column;
     }
@@ -257,7 +261,6 @@
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .login_container {
         width: 90%;
-        height: 100vh;
     }
 
     /* .loginBox_item {
@@ -268,7 +271,6 @@
 @media screen and (min-width: 1025px) and (max-width: 1365px) {
     .login_container {
         width: 90%;
-        height: 100vh;
     }
 
     /* .loginBox_item {
