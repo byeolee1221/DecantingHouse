@@ -49,6 +49,7 @@
     font: inherit;
     font-size: 1.1rem;
     cursor: pointer;
+    color: inherit;
 }
 
 .main_right_menuBox {
@@ -115,6 +116,20 @@
 }
 
 @media screen and (min-width: 1025px) and (max-width: 1365px) {
+    .myPage_container {
+        width: 90%;
+    }
+
+    .myPage_main_section {
+        gap: 20px;
+    }
+
+    .main_left_menuBox {
+        width: 25%;
+    }
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1517px) {
     .myPage_container {
         width: 90%;
     }

@@ -26,7 +26,8 @@ const SearchPost = () => {
             console.log(data.searchPost);
             if (data.status === 200) {
                 setResult(data.searchPost);
-            } 
+                router.refresh();
+            };
         }
 
         getData();

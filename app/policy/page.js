@@ -8,7 +8,7 @@ const PolicyPage = () => {
             <div className={classes.legal_wrapper}>
                 <div className={classes.legal_title}>
                     <h1>LEGAL</h1>
-                    <p>마지막 업데이트 2023.09.08</p>
+                    <p>마지막 업데이트 2023.09.12</p>
                     <nav className={classes.legal_title_navLeft}>
                         <ul className={classes.navLeft_list}>
                             <li>
