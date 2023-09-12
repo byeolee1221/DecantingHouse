@@ -22,7 +22,6 @@ const signInPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [socialError, setSocialError] = useState('');
     const [emailFind, setEmailFind] = useState(false);
     const [passwordFind, setPasswordFind] = useState(false);
 
@@ -94,7 +93,6 @@ const signInPage = () => {
                             <p>{data.providerName} 로그인</p>
                         </div>);
                     })}
-                    <p className={classes.login_errorMsg}>{socialError}</p>
                 </div>
                 <div className={classes.Oauth_loginBox}>
                     <h2>또는</h2>

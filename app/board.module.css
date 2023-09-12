@@ -268,6 +268,10 @@
         font-size: 1.5rem;
     }
 
+    .board_myPost_section {
+        height: 30px;
+    }
+
     .board_title a {
         font-size: 1.5rem;
     }
@@ -287,11 +291,11 @@
         text-align: center;
         padding-left: 0;
         justify-content: center;
-        gap: 30px;
+        gap: 10px;
     }
 
     .board_category_item button {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .board_itemBox {
