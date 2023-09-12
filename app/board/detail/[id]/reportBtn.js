@@ -8,6 +8,7 @@ const ReportBtn = (props) => {
     const reportBtnHandler = async () => {
         if (!props.session) {
             alert('로그인이 필요합니다.');
+            new Notification('로그인이 필요합니다.');
             return;
         };
 
@@ -45,12 +46,14 @@ const ReportBtn = (props) => {
 
                 if (data.status === 200) {
                     alert('신고완료 되었습니다. 감사합니다.');
+                    new Notification('신고완료 되었습니다. 감사합니다.');
                     router.back();
                     return;
                 };
             };
 
             alert('신고완료 되었습니다. 감사합니다.');
+            new Notification('신고완료 되었습니다. 감사합니다.');
         } else {
             alert(data.message);
             return;

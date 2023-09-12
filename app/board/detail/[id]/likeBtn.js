@@ -10,6 +10,7 @@ const LikeBtn = (props) => {
     const likeBtnHandler = async () => {
         if (!props.session) {
             alert('로그인이 필요합니다.');
+            new Notification('로그인이 필요합니다.');
             return;
         };
 
@@ -35,6 +36,7 @@ const LikeBtn = (props) => {
                 setIsLike(true);
             } else {
                 alert('좋아요는 한 번만 할 수 있습니다.');
+                new Notification('좋아요는 한 번만 할 수 있습니다.');
                 return;
             }
         };

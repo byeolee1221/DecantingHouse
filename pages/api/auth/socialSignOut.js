@@ -11,7 +11,7 @@ const SocialSignOut = async (req, res) => {
     try {
         if (req.method === 'GET') {    
             let userAuth = await db.collection('users').findOne({ email: session.user.email });
-            console.log(userAuth)
+            // console.log(userAuth);
             
             if (userAuth) {
                 let findAccount = await db.collection('accounts').findOne({ userId: new ObjectId(userAuth._id) });

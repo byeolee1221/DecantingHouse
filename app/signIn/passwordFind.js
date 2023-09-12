@@ -92,7 +92,9 @@ const PasswordFind = () => {
 
         if (data.status === 200) {
             alert('비밀번호가 변경되었습니다.');
+            new Notification('비밀번호가 변경되었습니다.');
             router.push('/');
+            return;
         } else {
             setError(data.message);
         };

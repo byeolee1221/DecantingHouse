@@ -54,8 +54,10 @@ const PasswordChange = () => {
 
         if (data.status === 200) {
             alert('비밀번호가 변경되었습니다. 다시 로그인해주세요.');
+            new Notification('비밀번호가 변경되었습니다. 다시 로그인해주세요.');
             signOut();
             router.push('/');
+            return;
         } else {
             setError(data.message);
             return;

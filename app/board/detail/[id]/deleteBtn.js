@@ -21,9 +21,11 @@ const DeleteBtn = (props) => {
 
         if (data.status === 200) {
             alert('게시글이 삭제되었습니다.');
+            new Notification('게시글이 삭제되었습니다.');
             router.push(`/board/${props.checkPost.country}`);
         } else {
             alert('본인만 삭제가능합니다.');
+            new Notification('본인만 삭제가능합니다.');
             return;
         };
     }

@@ -34,7 +34,7 @@ const SiteTermsPage = () => {
                         </p>
                         <ul className={classes.legal_contents_list}>
                             <li>
-                                <Link href="/">http://localhost:3000</Link>
+                                <Link href="/">https://decanting-house.vercel.app/</Link>
                             </li>
                         </ul>
                         <p>

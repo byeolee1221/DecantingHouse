@@ -91,11 +91,13 @@ const CommentPage = (props) => {
 
         if (data.status === 200) {
             alert('댓글이 삭제되었습니다.');
+            new Notification('댓글이 삭제되었습니다.');
             setPost(true);
-            
         } else {
             alert(data.message);
-        }
+            new Notification(data.message);
+            return;
+        };
     }
 
     const commentUpdateBtnHandler = (commentId) => {
@@ -127,12 +129,15 @@ const CommentPage = (props) => {
         } else {
             setUpdate(false);
             alert(data.message);
-        }
+            new Notification(data.message);
+            return;
+        };
     }
 
     const commentReportBtnHandler = async (commentId) => {
         if (!props.session) {
             alert('로그인이 필요합니다.');
+            new Notification('로그인이 필요합니다.');
             return;
         };
 
@@ -151,11 +156,13 @@ const CommentPage = (props) => {
 
         if (data.status === 200) {
             alert('신고완료 되었습니다. 감사합니다.');
+            new Notification('신고완료 되었습니다. 감사합니다.');
             return;
         } else {
             alert(data.message);
+            new Notification(data.message);
             return;
-        }
+        };
     }
 
     const updateCancelHandler = () => {

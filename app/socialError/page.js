@@ -7,7 +7,7 @@ const SocialError = () => {
     const router = useRouter();
 
     const confirmBtnHandler = () => {
-        router.push('http://localhost:3000/signIn');
+        router.push('https://decanting-house.vercel.app/signIn');
     }
 
     return (

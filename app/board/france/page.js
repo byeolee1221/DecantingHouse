@@ -10,7 +10,6 @@ const FrancePage = async () => {
     let session = await getServerSession(authOptions);
 
     let popularPost = await db.collection('Forum').find({country: 'france', count: {$gt: 0}}).sort({ count: -1 }).limit(4).toArray();
-    console.log()
 
     popularPost = popularPost.map((data) => {
         data._id = data._id.toString();

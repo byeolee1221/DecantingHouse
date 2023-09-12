@@ -38,7 +38,9 @@ const SignOut = () => {
 
         if (data.status === 200) {
             alert('그동안 이용해주셔서 감사합니다.');
+            new Notification('그동안 이용해주셔서 감사합니다.');
             signOut();
+            return;
         } else {
             setError(data.message);
         };

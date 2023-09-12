@@ -25,7 +25,8 @@ const FranceBoard = (props) => {
     const categoryHandler = (category) => {
         if (category === 'myPost' && !props.session) {
             alert('로그인이 필요합니다.');
-            router.push('http://localhost:3000/signIn');
+            new Notification('로그인이 필요합니다.');
+            router.push('https://decanting-house.vercel.app/signIn');
             return;
         };
 
@@ -42,6 +43,8 @@ const FranceBoard = (props) => {
         if (page === -1) {
             setPage(0);
             alert('첫 번째 페이지입니다.');
+            new Notification('첫 번째 페이지입니다.');
+            return;
         } else {
             setPage(page - 1);
         };
@@ -65,6 +68,7 @@ const FranceBoard = (props) => {
     
             if (data.findPost.length === 0) {
                 alert('더 이상 표시할 게시물이 없습니다.');
+                new Notification('더 이상 표시할 게시물이 없습니다.');
                 return;
             };
             

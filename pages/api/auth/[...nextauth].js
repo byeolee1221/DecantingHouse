@@ -89,7 +89,7 @@ export const authOptions = {
 
         async redirect({url, baseUrl}) {
             if (url.startsWith("/")) return `${baseUrl}${url}`;
-            else if (new URL(url).origin === baseUrl) return 'http://localhost:3000/';
+            else if (new URL(url).origin === baseUrl) return 'https://decanting-house.vercel.app/';
             return baseUrl;
         }
     },
