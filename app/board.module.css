@@ -265,7 +265,7 @@
     }
 
     .board_title h2 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .board_myPost_section {
@@ -273,11 +273,11 @@
     }
 
     .board_title a {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .board_PostBtn {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         transition: none;
     }
 
@@ -291,11 +291,11 @@
         text-align: center;
         padding-left: 0;
         justify-content: center;
-        gap: 10px;
+        gap: 8px;
     }
 
     .board_category_item button {
-        font-size: .9rem;
+        font-size: .8rem;
     }
 
     .board_itemBox {
