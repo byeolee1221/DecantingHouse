@@ -54,7 +54,9 @@ const EmailFind = () => {
     }
 
     const cancelBtnHandler = () => {
-        router.push('https://decanting-house.vercel.app/signIn');
+        setName('');
+        setRealName('');
+        router.push('/signIn');
     }
 
     const findBoxBtnHandler = () => {

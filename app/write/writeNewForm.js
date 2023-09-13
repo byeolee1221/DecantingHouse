@@ -100,9 +100,9 @@ const WriteNewFormPage = (props) => {
             <div className={classes.country_box}>
                 <input type="text" name="country" value={props.country} />
             </div>
-            <div className={classes.email_box}>
+            {/* <div className={classes.email_box}>
                 <input type="text" name="authorEmail" value={props.session.user.email} />
-            </div>
+            </div> */}
             <div className={classes.write_formBtnBox}>
                 <button type="submit" id={classes.write_submitBtn} disabled={!isCompleted}>완료</button>
                 <button type="button" onClick={cancelHandler}>취소</button>
