@@ -265,7 +265,7 @@
     }
 
     .board_title h2 {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
 
     .board_myPost_section {
@@ -273,11 +273,11 @@
     }
 
     .board_title a {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
 
     .board_PostBtn {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         transition: none;
     }
 
@@ -285,6 +285,12 @@
     .board_PostBtn:active {
         background: none;
     }
+
+    .box_centerBorder {
+        width: 2px;
+        height: 20px;
+    }
+
 
     .board_category_list {
         flex-wrap: wrap;
