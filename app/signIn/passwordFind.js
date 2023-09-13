@@ -101,7 +101,7 @@ const PasswordFind = () => {
     }
 
     const cancelBtnHandler = () => {
-        router.back();
+        router.push('https://decanting-house.vercel.app/signIn');
     }
 
     return (
