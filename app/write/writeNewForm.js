@@ -51,11 +51,11 @@ const WriteNewFormPage = (props) => {
         const data = await response.json();
 
         let imageData = new FormData();
-        Object.entries({ ...response.Fields, file}).forEach(([key, value]) => {
+        Object.entries({ ...data.Fields, file}).forEach(([key, value]) => {
             imageData.append(key, value)
         });
 
-        let uploadResult = await fetch(response.url, {
+        let uploadResult = await fetch(data.url, {
             method: 'POST',
             body: imageData
         })

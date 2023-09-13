@@ -2,7 +2,7 @@ import aws from "aws-sdk";
 
 const Image = async (req, res) => {
     aws.config.update({
-        accessKeyId: process.env.AWS_ACCESS_KEY,
+        accessKeyId: process.env.ACCESS_KEY,
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
         region: 'ap-northeast-2',
         signatureVersion: 'v4'

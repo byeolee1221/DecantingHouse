@@ -26,7 +26,3 @@ body {
   font-family: 'Noto Sans KR', Roboto, Dongle, Arial, Helvetica, sans-serif, system-ui, -apple-system;
   background-color: var(--color-bg-1);
 }
-
-script {
-  display: none;
-}
