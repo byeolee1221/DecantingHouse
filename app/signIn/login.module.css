@@ -277,3 +277,13 @@
         height: 130px;
     }
 }
+
+@media screen and (min-width: 1366px) and (max-width: 1517px) {
+    .login_container {
+        width: 90%;
+    }
+
+    .loginBox_item {
+        height: 130px;
+    }
+}
