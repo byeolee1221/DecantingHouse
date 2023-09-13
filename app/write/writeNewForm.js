@@ -22,6 +22,7 @@ const WriteNewFormPage = (props) => {
     const [title, setTitle] = useState('');
     const [contents, setContents] = useState('');
     const [fileName, setFileName] = useState('');
+    const [src, setSrc] = useState('');
 
     const authorChangeHandler = (event) => {
         setAuthor(event.target.value);
@@ -39,8 +40,33 @@ const WriteNewFormPage = (props) => {
         setContents(event.target.value);
     }
 
-    const fileChangeHandler = (event) => {
+    const fileChangeHandler = async (event) => {
         setFileName(event.target.files[0].name);
+
+        let file = event.target.files[0];
+        const response = await fetch(`/api/write/image?file=${fileName}`, {
+            method: 'GET'
+        });
+
+        const data = await response.json();
+
+        let imageData = new FormData();
+        Object.entries({ ...response.Fields, file}).forEach(([key, value]) => {
+            imageData.append(key, value)
+        });
+
+        let uploadResult = await fetch(response.url, {
+            method: 'POST',
+            body: imageData
+        })
+
+        console.log(uploadResult);
+
+        if (uploadResult.ok) {
+            setSrc(`uploadResult.url/${fileName}`)
+        } else {
+            console.log('image upload fail');
+        };
     }
 
     let isCompleted = false;
@@ -90,6 +116,7 @@ const WriteNewFormPage = (props) => {
                 <input className={classes.uploadFile_name} value={fileName} disabled />
                 <label htmlFor="user-file">이미지 첨부</label>
                 <input type="file" id="user-file" name="userFile" accept="image/*" onChange={fileChangeHandler} />
+                <img src={src}></img>
             </div>
             <div className={classes.upload_timeBox}>
                 <input type="text" name="uploadDate" value={uploadDate} />
@@ -100,9 +127,6 @@ const WriteNewFormPage = (props) => {
             <div className={classes.country_box}>
                 <input type="text" name="country" value={props.country} />
             </div>
-            {/* <div className={classes.email_box}>
-                <input type="text" name="authorEmail" value={props.session.user.email} />
-            </div> */}
             <div className={classes.write_formBtnBox}>
                 <button type="submit" id={classes.write_submitBtn} disabled={!isCompleted}>완료</button>
                 <button type="button" onClick={cancelHandler}>취소</button>

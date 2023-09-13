@@ -14,6 +14,7 @@
     "@types/node": "20.5.0",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
+    "aws-sdk": "^2.1456.0",
     "bcrypt": "^5.1.1",
     "mongodb": "^5.8.1",
     "next": "13.4.17",
