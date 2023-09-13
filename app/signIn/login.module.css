@@ -242,7 +242,7 @@
     }
 
     .Oauth_loginBox {
-        margin-top: 80px;
+        margin-top: 90px;
     }
 
     .loginForm_contentsBox_passwordFind {
@@ -263,9 +263,9 @@
         width: 90%;
     }
 
-    /* .loginBox_item {
-        height: 90%;
-    } */
+    .loginBox_item {
+        height: 130px;
+    }
 }
 
 @media screen and (min-width: 1025px) and (max-width: 1365px) {
@@ -273,7 +273,7 @@
         width: 90%;
     }
 
-    /* .loginBox_item {
-        height: 90%;
-    } */
+    .loginBox_item {
+        height: 130px;
+    }
 }
