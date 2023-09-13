@@ -24,7 +24,7 @@ const commentSendDate = async (req, res) => {
                 return res.status(200).json({ status: 200 });
             } else {
                 return res.status(500).json({ status: 500, message: '올바른 접근이 아닙니다.' });
-            }
+            };
         } 
 
         if (req.method === 'GET') {
@@ -32,7 +32,7 @@ const commentSendDate = async (req, res) => {
             let storedComment = await db.collection('comment').find({ parent: req.query.id }).toArray();
             // console.log(storedComment) 
             return res.status(200).json(storedComment);
-        } 
+        } ;
 
         if (req.method === 'DELETE') {
             if (session.user.email === req.body.commentUserEmail) {
@@ -43,11 +43,11 @@ const commentSendDate = async (req, res) => {
                 return res.status(200).json({ status: 200 });
             } else {
                 return res.status(500).json({ status: 500, message: '본인만 댓글을 삭제할 수 있습니다.' });
-            }
-        }
+            };
+        };
     } catch (error) {
         return res.status(500).redirect(302, '/error');
-    }
+    };
 }
 
 export default commentSendDate;

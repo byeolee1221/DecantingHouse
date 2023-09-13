@@ -95,6 +95,7 @@ const RegisterPage = () => {
             setSuccess(true);
         } else {
             setErrorMsg(data.message);
+            return;
         }
     }
 

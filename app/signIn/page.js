@@ -10,9 +10,9 @@ import classes from "./login.module.css";
 
 const signInPage = () => {
     const router = useRouter();
-    const searchParms = useSearchParams();
+    const searchParams = useSearchParams();
 
-    let socialErrors = searchParms.get('error');
+    let socialErrors = searchParams.get('error');
     // console.log(socialErrors);
 
     const cancelBtnHandler = () => {

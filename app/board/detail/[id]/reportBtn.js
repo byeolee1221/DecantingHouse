@@ -56,6 +56,7 @@ const ReportBtn = (props) => {
             new Notification('신고완료 되었습니다. 감사합니다.');
         } else {
             alert(data.message);
+            new Notification(data.message);
             return;
         }
     }

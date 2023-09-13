@@ -15,7 +15,6 @@ const EditFormPage = (props) => {
     const [category, setCategory] = useState(props.postInfo.category);
     const [title, setTitle] = useState(props.postInfo.userTitle);
     const [contents, setContents] = useState(props.postInfo.userContents);
-    const [fileName, setFileName] = useState('');
 
     const authorChangeHandler = (event) => {
         setAuthor(event.target.value);
@@ -31,10 +30,6 @@ const EditFormPage = (props) => {
 
     const contentsChangeHandler = (event) => {
         setContents(event.target.value);
-    }
-
-    const fileChangeHandler = (event) => {
-        setFileName(event.target.files[0].name);
     }
 
     let isCompleted = false;
@@ -67,11 +62,6 @@ const EditFormPage = (props) => {
             <div className={classes.write_formContents}>
                 <label htmlFor="user-contents">내용</label>
                 <textarea name="userContents" id="user-contents" cols="50" rows="15" onChange={contentsChangeHandler} value={contents} />
-            </div>
-            <div className={classes.write_formContents} id={classes.formContents_file}>
-                <input className={classes.uploadFile_name} value={fileName} disabled />
-                <label htmlFor="user-file">이미지 첨부</label>
-                <input type="file" id="user-file" name="userFile" accept="image/*" onChange={fileChangeHandler} />
             </div>
             <div className={classes.upload_timeBox}>
                 <input type="text" name="uploadDate" value={props.postInfo.uploadDate} />
