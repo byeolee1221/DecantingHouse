@@ -63,7 +63,7 @@ const WriteNewFormPage = (props) => {
         console.log(uploadResult);
 
         if (uploadResult.ok) {
-            setSrc(`uploadResult.url/${fileName}`)
+            setSrc(`${uploadResult.url}/${fileName}`)
         } else {
             console.log('image upload fail');
         };
