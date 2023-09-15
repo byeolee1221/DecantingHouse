@@ -1,8 +1,5 @@
 import Header from './header';
 import Footer from './footer';
-import { getServerSession } from 'next-auth'
-import { authOptions } from "../pages/api/auth/[...nextauth]";
-import { connectDB } from '@/util/database';
 
 import './globals.css';
 
@@ -12,8 +9,6 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }) {
-  const db = (await connectDB).db('DecantingHouse');
-  let session = await getServerSession(authOptions);
 
   return (
     <html lang="ko">
