@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 
 import classes from "./footer.module.css";
@@ -26,4 +27,4 @@ const Footer = () => {
     );
 }
 
-export default Footer;
+export default React.memo(Footer);
