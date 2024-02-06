@@ -1,28 +1,38 @@
 import { connectDB } from "@/util/database";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import { Session } from "next-auth";
+import { JWT } from "next-auth/jwt";
+import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth";
+import bcrypt from "bcrypt";
 import GoogleProvider from "next-auth/providers/google";
 import KakaoProvider from "next-auth/providers/kakao";
 import NaverProvider from "next-auth/providers/naver";
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcrypt";
+
+const EnvVariable = (name) => {
+    const value = process.env[name];
+
+    if (!value) {
+        throw new Error (`환경변수 ${name}이 없습니다.`);
+    };
+
+    return value;
+}
 
 export const authOptions = {
     providers: [
         GoogleProvider({
-            clientId: process.env.AUTH_GOOGLE_ID,
-            clientSecret: process.env.AUTH_GOOGLE_SECRET,
-            // allowDangerousEmailAccountLinking: true
+            clientId: EnvVariable('AUTH_GOOGLE_ID'),
+            clientSecret: EnvVariable('AUTH_GOOGLE_SECRET'),
         }),
         KakaoProvider({
-            clientId: process.env.AUTH_KAKAO_ID,
-            clientSecret: process.env.AUTH_KAKAO_SECRET,
-            // allowDangerousEmailAccountLinking: true
+            clientId: EnvVariable('AUTH_KAKAO_ID'),
+            clientSecret: EnvVariable('AUTH_KAKAO_SECRET'),
         }),
         NaverProvider({
-            clientId: process.env.AUTH_NAVER_ID,
-            clientSecret: process.env.AUTH_NAVER_SECRET,
-            // allowDangerousEmailAccountLinking: true
+            clientId: EnvVariable('AUTH_NAVER_ID'),
+            clientSecret: EnvVariable('AUTH_NAVER_SECRET'),
         }),
 
         CredentialsProvider({
@@ -33,25 +43,37 @@ export const authOptions = {
             },
 
             async authorize(credentials) {
+                if (!credentials) {
+                    return null;
+                };
+
                 let db = (await connectDB).db("DecantingHouse");
-                let dbSocial = (await connectDB).db('test')
-                let user = await db.collection("user").findOne({ email: credentials.email });
-                let userSocial = await db.collection("users").findOne({ email: credentials.email });
+                let userDocument = await db.collection("user").findOne({ email: credentials.email });
+
                 // console.log(credentials);
                 // console.log(user);
 
-                if (!user) {
+                if (!userDocument) {
                     return null;
-                }
+                };
 
                 const pwcheck = await bcrypt.compare(
                     credentials.password,
-                    user.password1
+                    userDocument.password1
                 );
 
                 if (!pwcheck) {
                     return null;
-                }
+                };
+
+                const user = {
+                    id: userDocument._id.toString(),
+                    name: userDocument.name,
+                    realName: userDocument.realName,
+                    email: userDocument.email,
+                    role: userDocument.role,
+                    reportWarning: userDocument.reportWarning
+                };
 
                 return user;
             },
@@ -65,13 +87,12 @@ export const authOptions = {
 
     session: {
         strategy: "jwt",
-        maxAge: 1 * 60 * 60,
-        rollingSession: true
+        maxAge: 1 * 60 * 60
     },
 
     callbacks: {
         jwt: async ({ token, user }) => {
-            if (user) {
+            if ('name' in user && 'realName' in user && 'email' in user && 'role' in user && 'reportWarning' in user) {
                 token.user = {};
                 token.user.name = user.name;
                 token.user.realName = user.realName;
@@ -79,7 +100,7 @@ export const authOptions = {
                 token.user.role = user.role;
                 token.user.reportWarning = user.reportWarning;
             };
-            return token;
+            return Promise.resolve(token);
         },
       
         session: async ({ session, token }) => {

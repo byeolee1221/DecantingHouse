@@ -1,7 +1,7 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, MongoClientOptions } from 'mongodb';
 
-const url = process.env.MONGODB_URL;
-const options = { useNewUrlParser: true };
+const url = process.env.MONGODB_URL || '';
+const options = {};
 let connectDB;
 
 if (process.env.NODE_ENV === 'development') {
@@ -12,4 +12,5 @@ if (process.env.NODE_ENV === 'development') {
 } else {
   connectDB = new MongoClient(url, options).connect();
 }
+
 export { connectDB };

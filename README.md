@@ -1,22 +1,34 @@
 # Decanting House 프로젝트
 
 ## 프로젝트 소개
-* 제작 계기: 와인을 주제로 한 커뮤니티가 거의 없는 환경에 아쉬움을 느껴 제작하게 되었습니다.
+* 제작 계기: 제가 좋아하는 와인을 주제로 한 커뮤니티가 거의 없고, 소규모로 나눠져있는 환경에 아쉬움을 느껴 제작하게 되었습니다.
 * 제작 기간: 2023.08.18 ~ 2023.09.13 (25일)
 * 제작 인원: 1명 (프론트엔드 - 문창기)
 * 멘토링 : 1명 (풀스택개발자 - 최진태)
 * 사용 기술스택
-  + 프론트엔드: HTML, CSS, Javascript, React, Next.js
-  + 데이터베이스: MongoDB
-  + 배포 및 호스팅: Vercel
+  + 프론트엔드: 
+  ![](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=Next.js&logoColor=white)
+  + 데이터베이스: 
+  ![](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=white)
+  + 배포 및 호스팅:
+  ![](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=Vercel&logoColor=white)
 
 ## Decanting House 웹사이트가 기여할 수 있는 점
 * 국내에서 와인을 좋아하는 사람이라면 누구나 회원가입하여 손쉽게 커뮤니케이션 활동을 할 수 있습니다.
 * 국내의 부족한 와인 커뮤니티 공간을 채워서 보완하고, 소규모로 흩어져있던 여러 커뮤니티들을 하나로 합치는 역할을 할 수 있습니다.
 * 향후 규모가 커졌을 때, 대한민국 와인커뮤니티를 대표하고, 와인계의 유명인사들과의 collaboration event도 진행하여 세계적으로도 알릴 수 있습니다.
 
-## Architecture
-![Alt text](/public/디캔팅하우스.jpg)
+## 웹사이트 특징
+* 눈이 아프지 않은 색상의 테마를 적용하여 웹사이트에 머물러 있는동안 편하게 서칭을 할 수 있습니다.
+* 카드형으로 한 페이지당 20개의 게시글을 배치하여 게시글이 사용자의 시야에 잘 띄도록 하였습니다.
+* 와인과 관련된 가장 중요한 다섯가지의 주제로 구분하여 커뮤니케이션을 할 수 있도록 게시판을 구성하였습니다. 
+
+## 주요기능별 시퀀스 다이어그램
+* 각 국가별 게시글 관리
+![Alt text](/public/boardSequence.png)
+* 게시글 신고 및 회원경고
+
+* 게시글 상단고정 
 
 ## 프로젝트 진행과정에서 생긴 문제와 해결방법
 * 문제
